@@ -1,3 +1,47 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+    <ion-menu side="start" contentId="main" swipeGesture="true">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <!--This needs extra CSS-->
+          <ion-icon slot="start" name="home"></ion-icon>
+          <ion-title>
+            Ingresa a tu cuenta
+          </ion-title>
+          
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+
+        <ion-list>
+  
+          <ion-menu-toggle auto-hide="true">
+            <ion-item button routerLink="tabs/tab1">
+              <ion-icon slot="start" name="home"></ion-icon>
+              Ingresar
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="true">
+            <ion-item button routerLink="tabs/tab2">
+              <ion-icon slot="start" name="home"></ion-icon>
+              Regístrate
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="true">
+            <ion-item button routerLink="tabs/tab3">
+              <ion-icon slot="start" name="home"></ion-icon>
+              Ayuda
+            </ion-item>
+          </ion-menu-toggle>
+
+  
+        </ion-list>
+
+      </ion-content>
+
+    </ion-menu>
+
+    <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

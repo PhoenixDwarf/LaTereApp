@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: Tab2Page,
+  },
+  {
+    path: 'hamburguesas',
+    loadChildren: () => import('./hamburguesas/hamburguesas.module').then( m => m.HamburguesasPageModule)
   }
 ];
 
