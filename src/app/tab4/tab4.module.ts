@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { Tab4PageRoutingModule } from './tab4-routing.module';
 import { Tab4Page } from './tab4.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
-import { ListComponent } from './list/list.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   imports: [
