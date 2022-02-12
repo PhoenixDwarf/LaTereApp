@@ -3,3 +3,9 @@ export interface MenuOptions{
     menuImage:string;
     menuUrl:string;
   }
+
+  export interface list{
+    name:string;
+    url:string;
+    ingredientes:string[]
+  }

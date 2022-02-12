@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PlatosPageRoutingModule } from './platos-routing.module';
 
 import { PlatosPage } from './platos.page';
+import { ListPlatosComponent } from '../components/list-platos/list-platos.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PlatosPage } from './platos.page';
     IonicModule,
     PlatosPageRoutingModule
   ],
-  declarations: [PlatosPage]
+  declarations: [PlatosPage,ListPlatosComponent]
 })
 export class PlatosPageModule {}

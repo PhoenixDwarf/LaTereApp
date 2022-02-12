@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PerrosPageRoutingModule } from './perros-routing.module';
 
 import { PerrosPage } from './perros.page';
+import { ListPerrosComponent } from '../components/list-perros/list-perros.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PerrosPage } from './perros.page';
     IonicModule,
     PerrosPageRoutingModule
   ],
-  declarations: [PerrosPage]
+  declarations: [PerrosPage,ListPerrosComponent]
 })
 export class PerrosPageModule {}

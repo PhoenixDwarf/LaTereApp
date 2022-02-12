@@ -11,7 +11,7 @@ export class ListComponent {
   options:Options[] = [
     {
       name: '¿Quiénes somos?',
-      icon: '././././assets/icon/contactanosVector.svg',
+      icon: '././././assets/icon/quienessomosVector.svg',
       url: 'quienessomos'
     },
 

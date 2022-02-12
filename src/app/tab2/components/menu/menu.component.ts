@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MenuOptions } from '../../interfaces/tab2.interface';
 
 @Component({

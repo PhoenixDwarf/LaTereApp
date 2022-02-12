@@ -1,0 +1,15 @@
+<h4>Selecciona el plato que desees añadir a tu pedido</h4>
+
+<ion-item routerLink="{{ item.url }}" *ngFor="let item of list;">
+  <ion-label>
+    {{ item.name }}
+  </ion-label>
+
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of item.ingredientes">{{item2}}</p> 
+  </ion-label>
+
+    
+</ion-item>
+
+
