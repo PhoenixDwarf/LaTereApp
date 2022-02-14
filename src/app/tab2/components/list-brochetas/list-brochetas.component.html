@@ -1,0 +1,28 @@
+<h2>Brochetas y Patacones De La Casa</h2>
+<ion-img src="./././././assets/images/NoimageLista.png"></ion-img>
+
+<h4>Selecciona la que desees añadir a tu pedido</h4><br>
+
+<h5>(Carne de res, pollo y cerdo)</h5>
+
+
+<ion-item routerLink="{{ item.url }}" *ngFor="let item of list;">
+  <ion-label>
+    {{ item.name }}
+  </ion-label>
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of item.ingredientes">{{item2}}</p> 
+  </ion-label>
+</ion-item>
+
+<br>
+<h5 id="patacones">Patacones</h5>
+
+<ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2;">
+  <ion-label>
+    {{ itemb.name }}
+  </ion-label>
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of itemb.ingredientes">{{item2}}</p> 
+  </ion-label>
+</ion-item>

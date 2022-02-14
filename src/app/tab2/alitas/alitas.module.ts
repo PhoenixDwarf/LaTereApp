@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AlitasPageRoutingModule } from './alitas-routing.module';
 
 import { AlitasPage } from './alitas.page';
+import { ListAlitasComponent } from '../components/list-alitas/list-alitas.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { AlitasPage } from './alitas.page';
     IonicModule,
     AlitasPageRoutingModule
   ],
-  declarations: [AlitasPage]
+  declarations: [AlitasPage,ListAlitasComponent]
 })
 export class AlitasPageModule {}

@@ -1,0 +1,12 @@
+<h2>Alitas y Trozos</h2>
+<ion-img src="./././././assets/images/AlitasList.PNG"></ion-img>
+<h4>Selecciona las alitas que desees añadir a tu pedido</h4><br>
+
+<ion-item routerLink="{{ item.url }}" *ngFor="let item of list;">
+  <ion-label>
+    {{ item.name }}
+  </ion-label>
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of item.ingredientes">{{item2}}</p> 
+  </ion-label>
+</ion-item>

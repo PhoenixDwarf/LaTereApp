@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MordiscosPageRoutingModule } from './mordiscos-routing.module';
 
 import { MordiscosPage } from './mordiscos.page';
+import { ListMordiscosComponent } from '../components/list-mordiscos/list-mordiscos.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { MordiscosPage } from './mordiscos.page';
     IonicModule,
     MordiscosPageRoutingModule
   ],
-  declarations: [MordiscosPage]
+  declarations: [MordiscosPage,ListMordiscosComponent]
 })
 export class MordiscosPageModule {}

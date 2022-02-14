@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CervezasygaseosasPageRoutingModule } from './cervezasygaseosas-routing.module';
 
 import { CervezasygaseosasPage } from './cervezasygaseosas.page';
+import { ListCervezasGaseosasComponent } from '../components/list-cervezas-gaseosas/list-cervezas-gaseosas.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { CervezasygaseosasPage } from './cervezasygaseosas.page';
     IonicModule,
     CervezasygaseosasPageRoutingModule
   ],
-  declarations: [CervezasygaseosasPage]
+  declarations: [CervezasygaseosasPage,ListCervezasGaseosasComponent]
 })
 export class CervezasygaseosasPageModule {}

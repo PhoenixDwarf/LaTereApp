@@ -29,11 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'brochetas',
-    loadChildren: () => import('./brochetas/brochetas.module').then( m => m.BrochetasPageModule)
-  },
-  {
-    path: 'patacones',
-    loadChildren: () => import('./patacones/patacones.module').then( m => m.PataconesPageModule)
+    loadChildren: () => import('./brochetasPatacones/brochetas.module').then( m => m.BrochetasPageModule)
   },
   {
     path: 'cervezasygaseosas',

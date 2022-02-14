@@ -25,7 +25,7 @@ export class MenuComponent {
       menuUrl:'platos'
     },
     {
-      menuName:'Alitas',
+      menuName:'Alitas y Trozos',
       menuImage:'./././assets/images/Alitas.jpg',
       menuUrl:'alitas'
     },
@@ -35,14 +35,9 @@ export class MenuComponent {
       menuUrl:'mordiscos'
     },
     {
-      menuName:'Brochetas',
-      menuImage:'./././assets/images/HamburguesaDePrueba.jpg', //FALTA IMAGEN
+      menuName:'Brochetas y Patacones',
+      menuImage:'./././assets/images/Patacon2.jpg', //FALTA IMAGEN
       menuUrl:'brochetas'
-    },
-    {
-      menuName:'Patacones',
-      menuImage:'./././assets/images/Patacon2.jpg',
-      menuUrl:'patacones'
     },
     {
       menuName:'Cervezas y Gaseosas',

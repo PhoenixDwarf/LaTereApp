@@ -5,8 +5,14 @@
 ion-label{
     text-align: justify !important;
 }
-h4{
+h4,h2{
     text-align: center;
+}
+h2{
+    color: #C5A961;
+}
+ion-img{
+    height: 150px;
 }
 ion-item{
     --ion-background-color: #f7e9c3;
