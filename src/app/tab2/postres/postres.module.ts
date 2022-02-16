@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PostresPageRoutingModule } from './postres-routing.module';
 
 import { PostresPage } from './postres.page';
+import { ListPostresComponent } from '../components/list-postres/list-postres.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PostresPage } from './postres.page';
     IonicModule,
     PostresPageRoutingModule
   ],
-  declarations: [PostresPage]
+  declarations: [PostresPage,ListPostresComponent]
 })
 export class PostresPageModule {}

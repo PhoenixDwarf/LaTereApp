@@ -1,9 +1,9 @@
 <h2>Mordiscos</h2>
-<ion-img src="./././././assets/images/NoimageLista.png"></ion-img>
+<ion-img src="./././././assets/images/MordiscosLista.PNG"></ion-img>
 <h4>Selecciona lo que desees añadir a tu pedido</h4><br>
 
-<ion-item routerLink="{{ item.url }}" *ngFor="let item of list;">
-  <ion-label>
+<ion-item routerLink="{{ item.url }}" *ngFor="let item of list; let i=index" id="{{'i'+i}}">
+  <ion-label class="ion-text-wrap" id="title">
     {{ item.name }}
   </ion-label>
   <ion-label class="ion-text-wrap">
@@ -14,8 +14,8 @@
 <br>
 <h5>Mazorcadas</h5>
 
-<ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2;">
-  <ion-label>
+<ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
+  <ion-label class="ion-text-wrap" id="title">
     {{ itemb.name }}
   </ion-label>
   <ion-label class="ion-text-wrap">

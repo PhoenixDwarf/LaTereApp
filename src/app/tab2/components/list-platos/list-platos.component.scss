@@ -2,9 +2,6 @@
     text-align: left !important;
     font-size: smaller;
 }
-ion-label{
-    text-align: justify !important;
-}
 h4,h2{
     text-align: center;
 }
@@ -14,10 +11,11 @@ h2{
 ion-img{
     height: 150px;
 }
-ion-item{
-    --ion-background-color: #f7e9c3;
-    border-radius: 10px;
-    margin: 5px;
-    backdrop-filter: blur(5px) !important;
+#i0,#i2,#i4,#i6,#i8{
+    --ion-background-color: #eee8d5;
+    border-radius: 5px;
+}
+#title{
+    font-size: 16px;
     
 }

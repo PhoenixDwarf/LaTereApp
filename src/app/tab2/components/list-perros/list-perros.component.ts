@@ -25,13 +25,13 @@ export class ListPerrosComponent {
     {
       name: 'Chilli Cheese Dog',
       url: '',
-      ingredientes:['- Res','- Cerdo','- Chili de Carne','- Queso Cheddar,','- Suero','- Jalapeños'] 
+      ingredientes:['- Res','- Cerdo','- Chili de Carne','- Queso Cheddar','- Suero','- Jalapeños'] 
     },
 
     {
       name: 'Bratwurtst',
       url: '',
-      ingredientes:['- Cerdo,','- Chucrut','- Mostaza','- Salsa Mil Teres'] 
+      ingredientes:['- Cerdo','- Chucrut','- Mostaza','- Salsa Mil Teres'] 
     }
     
   ];

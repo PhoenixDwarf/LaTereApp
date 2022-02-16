@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CoctelesPageRoutingModule } from './cocteles-routing.module';
 
 import { CoctelesPage } from './cocteles.page';
+import { ListCoctelesComponent } from '../components/list-cocteles/list-cocteles.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { CoctelesPage } from './cocteles.page';
     IonicModule,
     CoctelesPageRoutingModule
   ],
-  declarations: [CoctelesPage]
+  declarations: [CoctelesPage,ListCoctelesComponent]
 })
 export class CoctelesPageModule {}

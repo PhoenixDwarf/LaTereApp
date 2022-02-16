@@ -38,7 +38,7 @@ export class ListMordiscosComponent{
 
   list2:list[] = [
     {
-      name: 'La niña de Tere',
+      name: 'La Niña de Tere',
       url: '',
       ingredientes:['- Carne de Res Desmechada','- Piña en Trozos']
     },

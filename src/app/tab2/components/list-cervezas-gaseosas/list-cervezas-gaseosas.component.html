@@ -1,9 +1,9 @@
-<h2>Alitas y Trozos</h2>
-<ion-img src="./././././assets/images/AlitasList.PNG"></ion-img>
-<h4>Selecciona las alitas que desees añadir a tu pedido</h4><br>
+<h2>Cervezas y Gaseosas</h2>
+<ion-img src="./././././assets/images/CervezasLista.PNG"></ion-img>
+<h4>Selecciona la bebida que desees añadir a tu pedido</h4><br>
 
-<ion-item routerLink="{{ item.url }}" *ngFor="let item of list;">
-  <ion-label>
+<ion-item routerLink="{{ item.url }}" *ngFor="let item of list; let i=index" id="{{'i'+i}}">
+  <ion-label class="ion-text-wrap" id="title">
     {{ item.name }}
   </ion-label>
   <ion-label class="ion-text-wrap">

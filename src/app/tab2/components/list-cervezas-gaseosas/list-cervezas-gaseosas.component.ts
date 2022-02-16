@@ -10,22 +10,100 @@ export class ListCervezasGaseosasComponent{
 
   list:list[] = [
     {
-      name: '8 Piezas',
+      name: 'Aguila',
       url: '',
-      ingredientes:['- BBQ Miel','- Buffalo','- Honey Master','- Jalapeño Master','- Thai Oriental']
+      ingredientes:['']
     },
 
     {
-      name: '16 Piezas',
+      name: 'Club Colombia',
       url: '',
-      ingredientes:['- BBQ Miel','- Buffalo','- Honey Master','- Jalapeño Master','- Thai Oriental']
+      ingredientes:['']
     },
 
     {
-      name: '24 Piezas',
+      name: 'Corona',
       url: '',
-      ingredientes:['- BBQ Miel','- Buffalo','- Honey Master','- Jalapeño Master','- Thai Oriental']
-    }
+      ingredientes:['']
+    },
+
+    {
+      name: 'Smirnoff',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Stella Artois',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Coronita',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'BBC',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Redd’s',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Budweiser',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Jarra de Refajo',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Gaseosa 350',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Gaseosa friopack',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Gaseosa friopack',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Gaseosa 1,5 litros',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Jugo en caja',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Agua botella',
+      url: '',
+      ingredientes:['']
+    },
     
   ];
 

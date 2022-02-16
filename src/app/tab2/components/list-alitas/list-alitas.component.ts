@@ -10,19 +10,19 @@ export class ListAlitasComponent {
 
   list:list[] = [
     {
-      name: '8 Piezas',
+      name: '8 Piezas (Especificar)',
       url: '',
       ingredientes:['- BBQ Miel','- Buffalo','- Honey Master','- Jalapeño Master','- Thai Oriental']
     },
 
     {
-      name: '16 Piezas',
+      name: '16 Piezas (Especificar)',
       url: '',
       ingredientes:['- BBQ Miel','- Buffalo','- Honey Master','- Jalapeño Master','- Thai Oriental']
     },
 
     {
-      name: '24 Piezas',
+      name: '24 Piezas (Especificar)',
       url: '',
       ingredientes:['- BBQ Miel','- Buffalo','- Honey Master','- Jalapeño Master','- Thai Oriental']
     }

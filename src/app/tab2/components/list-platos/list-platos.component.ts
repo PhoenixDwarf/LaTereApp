@@ -42,7 +42,7 @@ export class ListPlatosComponent {
     {
       name: 'Corte de Temporada (350g)',
       url: '',
-      ingredientes:['A la parrilla (selección del eía)'] 
+      ingredientes:['A la parrilla (selección del día)'] 
     },
 
     {

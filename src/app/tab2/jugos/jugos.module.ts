@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { JugosPageRoutingModule } from './jugos-routing.module';
 
 import { JugosPage } from './jugos.page';
+import { ListJugosComponent } from '../components/list-jugos/list-jugos.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { JugosPage } from './jugos.page';
     IonicModule,
     JugosPageRoutingModule
   ],
-  declarations: [JugosPage]
+  declarations: [JugosPage,ListJugosComponent]
 })
 export class JugosPageModule {}
