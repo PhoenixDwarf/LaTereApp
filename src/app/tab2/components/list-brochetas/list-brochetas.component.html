@@ -8,7 +8,7 @@
 
 
 <ion-item routerLink="{{ item.url }}" *ngFor="let item of list; let i=index" id="{{'i'+i}}">
-  <ion-label class="ion-text-wrap" id="title">
+  <ion-label class="ion-text-wrap ion-padding" id="title">
     {{ item.name }}
   </ion-label>
   <ion-label class="ion-text-wrap">
@@ -20,7 +20,7 @@
 <h5 id="patacones">Patacones</h5>
 
 <ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
-  <ion-label class="ion-text-wrap" id="title">
+  <ion-label class="ion-text-wrap ion-padding" id="title">
     {{ itemb.name }}
   </ion-label>
   <ion-label class="ion-text-wrap">

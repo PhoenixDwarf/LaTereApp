@@ -3,27 +3,42 @@
 
     <ion-menu-button slot="start"></ion-menu-button>
     <ion-title>
-      <ion-icon class="logo" src="././assets/icon/LogoVector.svg"></ion-icon> 
+      <ion-icon class="logo" src="././assets/icon/LogoVector.svg"></ion-icon>
     </ion-title>
-      
-      <!-- <ion-img src="././assets/images/Logo.JPG"></ion-img> -->
+
+    <!-- <ion-img src="././assets/images/Logo.JPG"></ion-img> -->
   </ion-toolbar>
 </ion-header>
 
 
 
-  <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Tab 1</ion-title>
-      </ion-toolbar>
-    </ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <h3 class="ion-text-center">¿Aún no conoces nuestro restaurante en persona?</h3>
+    <app-swiper></app-swiper>
+  </div>
+
+  
+
+  <div class="ion-padding">
 
 
+    <ion-label class="ion-text-center">
+      <p>No esperes más y visítanos, te estamos esperando.</p>
+      <p>Conoce nuestra ubicación <a routerLink="ubicanos"> aquí</a>.</p>
+    </ion-label><br>
 
+    <h3 class="ion-text-center">Corte de Temporada </h3>
+    <h3 class="ion-text-center" id="subh3">(selección del dia)</h3>
+
+    <div class="ion-padding-top">
+      <app-corte-del-dia></app-corte-del-dia>
+    </div><br>
+
+    <h3 class="ion-text-center">Visita nuestras redes sociales</h3>
     
+    <app-redes-sociales></app-redes-sociales>
 
-  </ion-content>
-
-
-
+  </div>
+</ion-content>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+
+SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom]);
 
 @Component({
   selector: 'app-tab1',
@@ -7,7 +10,5 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor(
-  ) {}
 
 }

@@ -3,7 +3,7 @@
 <h4>Selecciona las alitas que desees añadir a tu pedido</h4><br>
 
 <ion-item routerLink="{{ item.url }}" *ngFor="let item of list; let i=index" id="{{'i'+i}}">
-  <ion-label class="ion-text-wrap" id="title">
+  <ion-label class="ion-text-wrap ion-padding" id="title">
     {{ item.name }}
   </ion-label>
   <ion-label class="ion-text-wrap">
