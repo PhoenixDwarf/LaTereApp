@@ -7,17 +7,44 @@
     {{ item.name }}
   </ion-label>
   <ion-label class="ion-text-wrap">
-    <p *ngFor="let item2 of item.ingredientes">{{item2}}</p> 
+    <p *ngFor="let item2 of item.ingredientes">{{item2}}</p>
   </ion-label>
 </ion-item>
 
 <br>
-  <h5 id="patacones">Smoothies</h5><br>
 
-  <ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
-    <ion-label class="ion-text-wrap ion-padding" id="title">
-      {{ itemb.name }}
-    </ion-label>
-    <ion-label class="ion-text-wrap">
-      <p *ngFor="let item2 of itemb.ingredientes">{{item2}}</p> 
-    </ion-label>
+<h5 id="patacones">En Leche</h5><br>
+
+<ion-item routerLink="{{ itemc.url }}" *ngFor="let itemc of list3; let i=index" id="{{'i'+i}}">
+  <ion-label class="ion-text-wrap ion-padding" id="title">
+    {{ itemc.name }}
+  </ion-label>
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of itemc.ingredientes">{{item2}}</p>
+  </ion-label>
+</ion-item>
+
+<br>
+
+<h5 id="patacones">En Agua</h5><br>
+
+<ion-item routerLink="{{ itemd.url }}" *ngFor="let itemd of list4; let i=index" id="{{'i'+i}}">
+  <ion-label class="ion-text-wrap ion-padding" id="title">
+    {{ itemd.name }}
+  </ion-label>
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of itemd.ingredientes">{{item2}}</p>
+  </ion-label>
+</ion-item>
+
+<br>
+<h5 id="patacones">Smoothies</h5><br>
+
+<ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
+  <ion-label class="ion-text-wrap ion-padding" id="title">
+    {{ itemb.name }}
+  </ion-label>
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of itemb.ingredientes">{{item2}}</p>
+  </ion-label>
+</ion-item>

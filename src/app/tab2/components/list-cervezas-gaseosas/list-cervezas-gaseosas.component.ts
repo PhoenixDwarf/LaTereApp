@@ -68,7 +68,10 @@ export class ListCervezasGaseosasComponent{
       url: '',
       ingredientes:['']
     },
+    
+  ];
 
+  list2:list[]=[
     {
       name: 'Gaseosa 350',
       url: '',
@@ -93,6 +96,10 @@ export class ListCervezasGaseosasComponent{
       ingredientes:['']
     },
 
+    
+  ]
+  list3:list[]=[
+
     {
       name: 'Jugo en caja',
       url: '',
@@ -103,8 +110,8 @@ export class ListCervezasGaseosasComponent{
       name: 'Agua botella',
       url: '',
       ingredientes:['']
-    },
-    
-  ];
+    }
+
+  ]
 
 }

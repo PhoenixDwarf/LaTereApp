@@ -2,11 +2,37 @@
 <ion-img src="./././././assets/images/CervezasLista.PNG"></ion-img>
 <h4>Selecciona la bebida que desees añadir a tu pedido</h4><br>
 
+<h5 id="patacones" class="ion-text-center">Cervezas</h5><br>
+
 <ion-item routerLink="{{ item.url }}" *ngFor="let item of list; let i=index" id="{{'i'+i}}">
   <ion-label class="ion-text-wrap ion-padding" id="title">
     {{ item.name }}
   </ion-label>
   <ion-label class="ion-text-wrap">
     <p *ngFor="let item2 of item.ingredientes">{{item2}}</p> 
+  </ion-label>
+</ion-item>
+
+
+<h5 id="patacones" class="ion-text-center">Gaseosas</h5><br>
+
+<ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
+  <ion-label class="ion-text-wrap ion-padding" id="title">
+    {{ itemb.name }}
+  </ion-label>
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of itemb.ingredientes">{{item2}}</p> 
+  </ion-label>
+</ion-item>
+
+
+<h5 id="patacones" class="ion-text-center">Otros</h5><br>
+
+<ion-item routerLink="{{ itemc.url }}" *ngFor="let itemc of list3; let i=index" id="{{'i'+i}}">
+  <ion-label class="ion-text-wrap ion-padding" id="title">
+    {{ itemc.name }}
+  </ion-label>
+  <ion-label class="ion-text-wrap">
+    <p *ngFor="let item2 of itemc.ingredientes">{{item2}}</p> 
   </ion-label>
 </ion-item>

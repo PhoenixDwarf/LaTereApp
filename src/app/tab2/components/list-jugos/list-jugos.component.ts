@@ -61,22 +61,8 @@ export class ListJugosComponent {
       name: 'Malteadas',
       url: '',
       ingredientes:['']
-    },
-
-    {
-      name: 'En Leche (Especificar)',
-      url: '',
-      ingredientes:['- Maracuya','- Fresa','- Guanabana']
-    },
-
-    {
-      name: 'En Agua (Especificar)',
-      url: '',
-      ingredientes:['- Maracuya','- Fresa','- Mango','- Guanabana']
-    },
-    
+    }
   ];
-
 
 
   list2:list[] = [
@@ -97,5 +83,53 @@ export class ListJugosComponent {
       url: '',
       ingredientes:['']
     }
+  ];
+
+  list3:list[]=[
+    {
+      name: 'Maracuya',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Fresa',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Guanabana',
+      url: '',
+      ingredientes:['']
+    },
+  ];
+
+
+  list4:list[]=[
+    {
+      name: 'Maracuya',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Fresa',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Mango',
+      url: '',
+      ingredientes:['']
+    },
+
+    {
+      name: 'Guanabana',
+      url: '',
+      ingredientes:['']
+    }
+    
   ];
 }
