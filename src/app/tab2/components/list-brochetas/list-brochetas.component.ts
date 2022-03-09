@@ -12,19 +12,19 @@ export class ListBrochetasComponent{
     {
       name: 'El Niño de Tere',
       url: '',
-      ingredientes:['- 1 Proteína']
+      ingredientes:['- 1 Proteína (res, pollo o cerdo)']
     },
 
     {
       name: 'El Sobrino',
       url: '',
-      ingredientes:['- 2 Proteínas'] 
+      ingredientes:['- 2 Proteínas (mixto)'] 
     },
 
     {
       name: 'El Tata de Tere',
       url: '',
-      ingredientes:['- 3 Proteínas'] 
+      ingredientes:['- 3 Proteínas (mixto)'] 
     }
   ];
 

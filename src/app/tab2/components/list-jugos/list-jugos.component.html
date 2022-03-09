@@ -1,6 +1,7 @@
 <h2>Jugos de La Tere</h2>
 <ion-img src="./././././assets/images/JugosLista.PNG"></ion-img>
 <h4>Selecciona el jugo que desees añadir a tu pedido</h4><br>
+<h5>(12 onzas cada uno)</h5><br>
 
 <ion-item routerLink="{{ item.url }}" *ngFor="let item of list; let i=index" id="{{'i'+i}}">
   <ion-label class="ion-text-wrap ion-padding" id="title">
@@ -13,7 +14,7 @@
 
 <br>
 
-<h5 id="patacones">En Leche</h5><br>
+<h5>En Leche</h5><br>
 
 <ion-item routerLink="{{ itemc.url }}" *ngFor="let itemc of list3; let i=index" id="{{'i'+i}}">
   <ion-label class="ion-text-wrap ion-padding" id="title">
@@ -26,7 +27,7 @@
 
 <br>
 
-<h5 id="patacones">En Agua</h5><br>
+<h5>En Agua</h5><br>
 
 <ion-item routerLink="{{ itemd.url }}" *ngFor="let itemd of list4; let i=index" id="{{'i'+i}}">
   <ion-label class="ion-text-wrap ion-padding" id="title">
@@ -38,9 +39,10 @@
 </ion-item>
 
 <br>
-<h5 id="patacones">Smoothies</h5><br>
+<h5>Smoothies</h5>
+<h6>Disfrútalos en nuestro local</h6><br>
 
-<ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
+<ion-item *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
   <ion-label class="ion-text-wrap ion-padding" id="title">
     {{ itemb.name }}
   </ion-label>

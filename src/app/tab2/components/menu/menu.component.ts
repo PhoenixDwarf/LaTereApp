@@ -12,52 +12,62 @@ export class MenuComponent {
     {
       menuName:'Hamburguesas',
       menuImage:'./././assets/images/Hamburguesa.jpg',
-      menuUrl:'hamburguesas1'
+      menuUrl:'hamburguesas1',
+      menuDescription: ''
     },
     {
       menuName:'Perros',
       menuImage:'./././assets/images/Perro.jpg',
-      menuUrl:'perros'
+      menuUrl:'perros',
+      menuDescription: ''
     },
     {
       menuName:'Platos a la Carta',
       menuImage:'./././assets/images/Costilla.jpg',
-      menuUrl:'platos'
+      menuUrl:'platos',
+      menuDescription: ''
     },
     {
       menuName:'Alitas y Trozos',
       menuImage:'./././assets/images/Alitas.jpg',
-      menuUrl:'alitas'
+      menuUrl:'alitas',
+      menuDescription: ''
     },
     {
-      menuName:'Mordiscos',
+      menuName:'Mordiscos (entradas)',
       menuImage:'./././assets/images/Patacon.jpg',
-      menuUrl:'mordiscos'
+      menuUrl:'mordiscos',
+      menuDescription: ''
     },
     {
       menuName:'Brochetas y Patacones',
       menuImage:'./././assets/images/Patacon2.jpg', //FALTA IMAGEN
-      menuUrl:'brochetas'
+      menuUrl:'brochetas',
+      menuDescription: ''
     },
     {
       menuName:'Cervezas y Gaseosas',
       menuImage:'./././assets/images/HamburguesaDePrueba.jpg', // FALTA IMAGEN
-      menuUrl:'cervezasygaseosas'
+      menuUrl:'cervezasygaseosas',
+      menuDescription: ''
     },
     {
       menuName:'Jugos',
       menuImage:'./././assets/images/HamburguesaDePrueba.jpg', // FALTA IMAGEN
-      menuUrl:'jugos'
+      menuUrl:'jugos',
+      menuDescription: ''
     },
     {
       menuName:'Cocteles',
       menuImage:'./././assets/images/HamburguesaDePrueba.jpg', // FALTA IMAGEN
-      menuUrl:'cocteles'
+      menuUrl:'cocteles',
+      menuDescription: 'Disfrútalos en nuestro local'
     },
     {
       menuName:'Postres',
       menuImage:'./././assets/images/HamburguesaDePrueba.jpg', // FALTA IMAGEN
-      menuUrl:'postres'
+      menuUrl:'postres',
+      menuDescription: 'Disfrútalos en nuestro local'
     }
   ];
 

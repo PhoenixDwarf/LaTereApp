@@ -6,3 +6,24 @@ ion-title{
     font-size:60px;
     text-align: center;
 }
+#MainPic{
+    width: 90vw;
+    margin: 2rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.title{
+    color: #C5A961;
+}
+.text-frame{
+    font-size: 15px;
+    text-align: justify;
+    margin: 1rem;
+}

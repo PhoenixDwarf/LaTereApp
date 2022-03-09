@@ -12,7 +12,7 @@ export class ListCervezasGaseosasComponent{
     {
       name: 'Aguila',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Original']
     },
 
     {
@@ -48,7 +48,7 @@ export class ListCervezasGaseosasComponent{
     {
       name: 'BBC',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Honey Ale']
     },
 
     {
@@ -60,13 +60,13 @@ export class ListCervezasGaseosasComponent{
     {
       name: 'Budweiser',
       url: '',
-      ingredientes:['']
+      ingredientes:['- En lata (330 ml)']
     },
 
     {
-      name: 'Jarra de Refajo',
+      name: 'Heineken',
       url: '',
-      ingredientes:['']
+      ingredientes:['- En lata (330 ml)']
     },
     
   ];
@@ -75,25 +75,19 @@ export class ListCervezasGaseosasComponent{
     {
       name: 'Gaseosa 350',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Productos Postobón']
     },
 
     {
       name: 'Gaseosa friopack',
       url: '',
-      ingredientes:['']
-    },
-
-    {
-      name: 'Gaseosa friopack',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Gran bretaña ','- Sprite ','- Coca cola','- Cuatro','- Canada dry']
     },
 
     {
       name: 'Gaseosa 1,5 litros',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Productos Postobón']
     },
 
     
@@ -101,17 +95,31 @@ export class ListCervezasGaseosasComponent{
   list3:list[]=[
 
     {
-      name: 'Jugo en caja',
+      name: 'Jugo en caja (Hit)',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Mango','- Mora','- Durazno','- Lulo']
     },
 
     {
       name: 'Agua botella',
       url: '',
       ingredientes:['']
+    },
+
+    {
+      name: 'Hatsu',
+      url: '',
+      ingredientes:['- Blanco','- Rojo','- Amarillo','- Aguamarina']
     }
 
+  ]
+
+  list4:list[]=[
+      {
+        name: 'Jarra de Refajo',
+        url: '',
+        ingredientes:['- Para cinco personas']
+      }
   ]
 
 }
