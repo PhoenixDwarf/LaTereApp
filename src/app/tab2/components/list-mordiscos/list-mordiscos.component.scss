@@ -1,15 +1,21 @@
 .ion-text-wrap{
     text-align: left !important;
     font-size: smaller;
+    font-family: SourceSerif4 !important;
 }
 h4,h2,h5{
     text-align: center;
 }
 h5{
     color: #C5A961;
+    font-family: SupermercadoOne !important;
 }
 h2{
     color: #C5A961;
+    font-family: SupermercadoOne !important;
+}
+h4{
+    font-family: SourceSerif4 !important;
 }
 ion-img{
     height: 150px;
@@ -20,5 +26,5 @@ ion-img{
 }
 #title{
     font-size: 16px;
-    
+    font-family: SupermercadoOne !important;
 }

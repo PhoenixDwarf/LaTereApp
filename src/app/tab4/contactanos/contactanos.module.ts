@@ -8,12 +8,13 @@ import { ContactanosPageRoutingModule } from './contactanos-routing.module';
 
 import { ContactanosPage } from './contactanos.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ContactanosPageRoutingModule
+    ContactanosPageRoutingModule,
   ],
   declarations: [ContactanosPage]
 })

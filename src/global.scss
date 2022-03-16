@@ -25,7 +25,20 @@ ion-menu-toggle,ion-list{
 
 
 
+@font-face {   
+    font-family: 'PautaOne';    //title menu
+    src: url('../src/assets/fonts/PatuaOne-Regular.ttf');
+  }
 
+  @font-face {   
+    font-family: 'SourceSerif4';    //normal text
+    src: url('../src/assets/fonts/SourceSerif4-VariableFont_opsz\,wght.ttf');
+  }
+
+  @font-face {   
+    font-family: 'SupermercadoOne';   //hs titles
+    src: url('../src/assets/fonts/SupermercadoOne-Regular.ttf');
+  }
 
 
 
