@@ -10,6 +10,7 @@ import { SwiperComponent } from './components/swiper/swiper.component';
 import { CorteDelDiaComponent } from './components/corte-del-dia/corte-del-dia.component';
 import { RedesSocialesComponent } from './components/redes-sociales/redes-sociales.component';
 
+
 @NgModule({
   imports: [
     IonicModule,

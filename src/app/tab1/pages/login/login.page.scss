@@ -1,0 +1,57 @@
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.title{
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    text-align: center;
+}
+p{
+    font-family: SourceSerif4 !important; 
+    width: 100%;
+}
+ion-icon{
+    color: #C5A961;
+}
+#main-img{
+    width: 55vw;
+    margin-top: 5vh;
+}
+.inputs{
+    background-color: #ffffff;
+    width: 90vw;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #b1afaf;
+    font-family: SourceSerif4 !important; 
+}
+a{
+    color: #C5A961;
+    text-decoration: none;
+}
+#password-reminder{
+    text-align: end;
+    font-size: small;
+    margin-top: 5px;
+}
+#register-reminder{
+    font-size: small;
+    color: #8b8b8b;
+    text-align: center;
+}
+ion-button{
+    --background: #C5A961;
+    margin-top: 50px;
+}
+hr{
+    width: 100vw;
+}
+footer{
+    div{
+        position: absolute;
+        bottom: 0;
+    }
+}

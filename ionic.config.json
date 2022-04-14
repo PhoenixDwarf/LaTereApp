@@ -1,5 +1,7 @@
 {
   "name": "LaTereApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
