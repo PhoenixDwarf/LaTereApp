@@ -10,31 +10,35 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="padding">
-  <section class="flex">
-    <ion-img id="main-img" src="././assets/images/LogoPNG.png"></ion-img> 
-    <br><h2 class="title">Inicia Sesión</h2>
-    
-    <form action="">
+  <main>
 
-      <ion-input class=" inputs"  clearInput type="text" placeholder="Correo electrónico o número telefónico"></ion-input>
-      
-      <app-show-hide-password class="inputs">
-        <ion-input type="password" placeholder="Contraseña"></ion-input> 
-      </app-show-hide-password>
-
-      <p id="password-reminder"><a href="">¿Olvidaste la contraseña?</a></p>
-
-      <ion-button expand="block" id="login-button" type="submit">Iniciar sesión</ion-button>
-
-    </form>
-
-  </section>
   
-  <footer>
-    <div>
-      <hr>
-      <p id="register-reminder">¿Todavía no tienes una cuenta? <a href="">Registrarse</a></p>
-    </div>
-  </footer>
+    <section class="flex">
+      <ion-img id="main-img" src="././assets/images/LogoPNG.png"></ion-img> 
+      <br><h2 class="title">Inicia Sesión</h2>
+      
+      <form action="">
+
+        <ion-input class=" inputs"  clearInput type="text" placeholder="Correo electrónico o número telefónico"></ion-input>
+        
+        <app-show-hide-password class="inputs">
+          <ion-input type="password" placeholder="Contraseña"></ion-input> 
+        </app-show-hide-password>
+
+        <p id="password-reminder"><a href="">¿Olvidaste la contraseña?</a></p>
+
+        <ion-button expand="block" id="login-button" type="submit">Iniciar sesión</ion-button>
+
+      </form>
+
+    </section>
+    
+    <footer>
+      <div>
+        <hr>
+        <p id="register-reminder">¿Todavía no tienes una cuenta? <a routerLink="/register">Registrarse</a></p>
+      </div>
+    </footer>
+  </main>
   
 </ion-content>

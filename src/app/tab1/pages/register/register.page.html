@@ -1,9 +1,66 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content [fullscreen]="true" class="padding">
+  <section class="flex">
+    <ion-img id="main-img" src="././assets/images/LogoPNG.png"></ion-img> 
+    <br><h2 class="title">Registrar cuenta</h2>
+    
+    <form action="">
+
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Nombres"></ion-input>
+
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Apellidos"></ion-input>
+
+      <!--
+        <select name="" id="" class="inputs selector">
+        <option value="" class="selector-option">Tipo de documento</option>
+        <option value="" class="selector-option">Uno</option>
+        <option value="" class="selector-option">Dos</option>
+      </select>
+
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Número de documento"></ion-input>
+    -->
+
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Dirección"></ion-input>
+
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Barrio"></ion-input>
+
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Número telefónico"></ion-input>
+
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Correo electrónico"></ion-input>
+      
+      <app-show-hide-password class="inputs">
+        <ion-input type="password" placeholder="Contraseña"></ion-input> 
+      </app-show-hide-password>
+      <p id="password-reminder">La contraseña debe contener al menos 8 caracteres</p>
+      <p id="password-reminder-2"> alfanuméricos</p>
+      
+      
+
+      <ion-input type="password" placeholder="Volver a ingresar contraseña" class=" inputs"></ion-input> 
+  
+
+      <ion-button expand="block" id="login-button" type="submit">Crear cuenta</ion-button>
+
+    </form>
+
+  </section>
+  
+  <footer>
+    <div>
+      <hr>
+      <p id="register-reminder">¿Ya tienes una cuenta? <a routerLink="/login"> Inicia sesión</a></p>
+    </div>
+  </footer>
+  
 </ion-content>
