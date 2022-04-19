@@ -11,7 +11,7 @@ export class MenuComponent {
   menuOptions:MenuOptions[] =[
     {
       menuName:'Hamburguesas',
-      menuImage:'./././assets/images/Hamburguesa.jpg',
+      menuImage:'./././assets/images/Hamburguesa.png',
       menuUrl:'hamburguesas1',
       menuDescription: ''
     },
@@ -23,7 +23,7 @@ export class MenuComponent {
     },
     {
       menuName:'Platos a la Carta',
-      menuImage:'./././assets/images/Costilla.jpg',
+      menuImage:'./././assets/images/Costilla.png',
       menuUrl:'platos',
       menuDescription: ''
     },
@@ -41,31 +41,31 @@ export class MenuComponent {
     },
     {
       menuName:'Brochetas y Patacones',
-      menuImage:'./././assets/images/Patacon2.jpg', //FALTA IMAGEN
+      menuImage:'./././assets/images/Patacon2.png', //FALTA IMAGEN
       menuUrl:'brochetas',
       menuDescription: ''
     },
     {
       menuName:'Cervezas y Gaseosas',
-      menuImage:'./././assets/images/HamburguesaDePrueba.jpg', // FALTA IMAGEN
+      menuImage:'./././assets/images/Cerveza.png', // FALTA IMAGEN
       menuUrl:'cervezasygaseosas',
       menuDescription: ''
     },
     {
       menuName:'Jugos',
-      menuImage:'./././assets/images/HamburguesaDePrueba.jpg', // FALTA IMAGEN
+      menuImage:'./././assets/images/Jugos.png', // FALTA IMAGEN
       menuUrl:'jugos',
       menuDescription: ''
     },
     {
       menuName:'Cocteles',
-      menuImage:'./././assets/images/HamburguesaDePrueba.jpg', // FALTA IMAGEN
+      menuImage:'./././assets/images/Cocteles.png', // FALTA IMAGEN
       menuUrl:'cocteles',
       menuDescription: 'Disfrútalos en nuestro local'
     },
     {
       menuName:'Postres',
-      menuImage:'./././assets/images/HamburguesaDePrueba.jpg', // FALTA IMAGEN
+      menuImage:'./././assets/images/Postre.png', // FALTA IMAGEN
       menuUrl:'postres',
       menuDescription: 'Disfrútalos en nuestro local'
     }
