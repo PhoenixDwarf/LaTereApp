@@ -1,3 +1,11 @@
+ion-title{
+    text-align: center;
+    margin-right: 45px;
+}
+.logo{
+    font-size:60px;
+    text-align: center;
+}
 .flex{
     display: flex;
     align-items: center;
@@ -54,4 +62,33 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.error-message{
+    text-align: start;
+    font-size: small;
+    margin-top: 5px;
+    margin-left: 5px;
+    color: #a82727;
+}
+.is-invalid{
+    border: 0.5px solid #a82727;
+}
+.option-button{
+    --background: #e6c87d;
+    margin-top: 3px;
+    width: 100%;
+}
+.non-selected-button{
+    --background: #cfc7b0;
+    margin-top: 3px;
+    width: 100%;
+}
+.loginoptions{
+    
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

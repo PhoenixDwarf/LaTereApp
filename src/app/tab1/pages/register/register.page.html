@@ -15,44 +15,49 @@
     <ion-img id="main-img" src="../../../../assets/images/LogoPNG.png"></ion-img> 
     <br><h2 class="title">Registrar cuenta</h2>
     
-    <form action="">
+    <form [formGroup]="registerForm"  (ngSubmit)="getFormData()">
 
-      <ion-input class=" inputs"  clearInput type="text" placeholder="Nombres"></ion-input>
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Nombres" formControlName="name" [class.is-invalid]="registerForm.get('name').touched && registerForm.get('name').invalid"></ion-input>
+      <span class="error-message" *ngIf="registerForm.get('name').touched && registerForm.get('name').invalid">Este campo es requerido</span>
 
-      <ion-input class=" inputs"  clearInput type="text" placeholder="Apellidos"></ion-input>
-
-      <!--
-        <select name="" id="" class="inputs selector">
-        <option value="" class="selector-option">Tipo de documento</option>
-        <option value="" class="selector-option">Uno</option>
-        <option value="" class="selector-option">Dos</option>
-      </select>
-
-      <ion-input class=" inputs"  clearInput type="text" placeholder="Número de documento"></ion-input>
-    -->
-
-      <ion-input class=" inputs"  clearInput type="text" placeholder="Dirección"></ion-input>
-
-      <ion-input class=" inputs"  clearInput type="text" placeholder="Barrio"></ion-input>
-
-      <ion-input class=" inputs"  clearInput type="text" placeholder="Número telefónico"></ion-input>
-
-      <ion-input class=" inputs"  clearInput type="text" placeholder="Correo electrónico"></ion-input>
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Apellidos" formControlName="lastname" [class.is-invalid]="registerForm.get('lastname').touched && registerForm.get('lastname').invalid"></ion-input>
+      <span class="error-message" *ngIf="registerForm.get('lastname').touched && registerForm.get('lastname').invalid">Este campo es requerido</span>
       
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Dirección" formControlName="address" [class.is-invalid]="registerForm.get('address').touched && registerForm.get('address').invalid"></ion-input>
+      <span class="error-message" *ngIf="registerForm.get('address').touched && registerForm.get('address').invalid">Este campo es requerido</span>
+      
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Barrio" formControlName="neighborhood" [class.is-invalid]="registerForm.get('neighborhood').touched && registerForm.get('neighborhood').invalid"></ion-input>
+      <span class="error-message" *ngIf="registerForm.get('neighborhood').touched && registerForm.get('neighborhood').invalid">Este campo es requerido</span>
+      
+      <ion-input class=" inputs"  clearInput type="tel" placeholder="Número telefónico" formControlName="phone" [class.is-invalid]="registerForm.get('phone').touched && registerForm.get('phone').invalid"></ion-input>
+      <span class="error-message" *ngIf="registerForm.get('phone').touched && registerForm.get('phone').errors?.required">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('phone').touched && !registerForm.get('phone').errors?.required && registerForm.get('phone').invalid">El número ingresado no es válido</span>
+      
+      <ion-input class=" inputs"  clearInput type="text" placeholder="Correo electrónico" formControlName="email" [class.is-invalid]="registerForm.get('email').touched && registerForm.get('email').invalid"></ion-input>
+      <span class="error-message" *ngIf="registerForm.get('email').touched && registerForm.get('email').errors?.required">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('email').touched && !registerForm.get('email').errors?.required && registerForm.get('email').invalid">El correo no es válido</span>
+      
+      <p class="password-reminder">La contraseña debe contener al menos 8 caracteres</p>
       <app-show-hide-password class="inputs">
-        <ion-input type="password" placeholder="Contraseña"></ion-input> 
+        <ion-input type="password" name="password" placeholder="Contraseña" formControlName="password" [class.is-invalid]="registerForm.get('password').touched && registerForm.get('password').invalid"></ion-input> 
       </app-show-hide-password>
-      <p id="password-reminder">La contraseña debe contener al menos 8 caracteres</p>
-      <p id="password-reminder-2"> alfanuméricos</p>
+      <span class="error-message" *ngIf="registerForm.get('password').touched && registerForm.get('password').errors?.required">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('password').touched && registerForm.get('password').invalid && !registerForm.get('password').errors?.required" >La contraseña ingresada no es válida</span>
+      <span class="success-message" *ngIf="registerForm.get('password').touched && !registerForm.get('password').errors?.required && !registerForm.get('password').invalid">La contraseña es válida</span>
+     
       
+      <ion-input type="password" placeholder="Volver a ingresar contraseña" class=" inputs" formControlName="confimPassword" appConfirmEqualValidator="password"></ion-input> 
+      <span class="error-message" *ngIf="registerForm.get('confimPassword').touched && registerForm.get('confimPassword').errors?.required">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('confimPassword').touched && registerForm.get('confimPassword').errors?.notEqual">Las contraseñas no coinciden</span>
+      <span class="success-message" *ngIf="registerForm.get('confimPassword').touched && !registerForm.get('confimPassword').errors?.notEqual && !registerForm.get('confimPassword').errors?.required">Las contraseñas coinciden</span>
       
 
-      <ion-input type="password" placeholder="Volver a ingresar contraseña" class=" inputs"></ion-input> 
-  
+      <ion-button expand="block" id="login-button" type="submit" [disabled]="!registerForm.valid">Crear cuenta</ion-button>
 
-      <ion-button expand="block" id="login-button" type="submit">Crear cuenta</ion-button>
 
     </form>
+    <p class="finaltext">Al “crear cuenta” estas aceptando nuestra <a routerLink="privacy">política de tratamiento de datos y privacidad</a> </p>
+
 
   </section>
   

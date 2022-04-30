@@ -18,7 +18,7 @@ import { RedesSocialesComponent } from './components/redes-sociales/redes-social
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    SwiperModule
+    SwiperModule,
   ],
   declarations: [Tab1Page,SwiperComponent,CorteDelDiaComponent,RedesSocialesComponent]
 })

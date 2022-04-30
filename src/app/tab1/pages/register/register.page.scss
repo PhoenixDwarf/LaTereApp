@@ -38,16 +38,17 @@ a{
     color: #C5A961;
     text-decoration: none;
 }
-#password-reminder{
+.password-reminder{
     text-align: end;
     font-size: small;
-    margin-top: 5px;
+    margin-top: 20px;
 }
-#password-reminder-2{
+.password-reminder-2{
     text-align: end;
     font-size: small;
     margin-top: 5px;
     margin-top: -20px;
+    margin-bottom: -15px;
 }
 #register-reminder{
     font-size: small;
@@ -65,4 +66,28 @@ footer{
     div{
         bottom: 0;
     }
+}
+.is-invalid{
+    border: 0.5px solid #a82727;
+}
+
+.error-message{
+    text-align: start;
+    font-size: small;
+    margin-top: 5px;
+    margin-left: 5px;
+    color: #a82727;
+}
+.success-message{
+    text-align: start;
+    font-size: small;
+    margin-top: 5px;
+    margin-left: 5px;
+    color: #49c431;
+}
+.finaltext{
+    font-family: SourceSerif4 !important; 
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
 }

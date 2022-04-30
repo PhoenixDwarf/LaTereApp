@@ -3,8 +3,9 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
     </ion-buttons>
+    
     <ion-title>
-      
+      <ion-icon *ngIf="isUserLogged" class="logo" src="././assets/icon/LogoVector.svg"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,33 +13,106 @@
 <ion-content [fullscreen]="true" class="padding">
   <main>
 
-  
-    <section class="flex">
-      <ion-img id="main-img" src="../../../../assets/images/LogoPNG.png"></ion-img> 
-      <br><h2 class="title">Inicia Sesión</h2>
-      
-      <form action="">
+    <section class="flex" *ngIf="!isUserLogged">
 
-        <ion-input class=" inputs"  clearInput type="text" placeholder="Correo electrónico o número telefónico"></ion-input>
-        
+      <ion-img id="main-img" src="../../../../assets/images/LogoPNG.png"></ion-img>
+      <br>
+      <h2 class="title">Inicia Sesión</h2>
+
+      <div class="loginoptions">
+        <ion-button class="option-button" (click)="emailselected()" [class.non-selected-button]="!isemailselected">
+          Usar correo
+        </ion-button>
+        <ion-button class="option-button" (click)="phoneselected()" [class.non-selected-button]="!isphoneselected">
+          Usar telefono
+        </ion-button>
+
+      </div>
+
+      <form *ngIf="isemailselected" [formGroup]="loginFormEmail" (ngSubmit)="getEmailFormData()" class="animate__animated animate__fadeIn">
+
+        <ion-input class=" inputs" clearInput type="text" placeholder="Correo electrónico" formControlName="email"
+          [class.is-invalid]="loginFormEmail.get('email').touched && loginFormEmail.get('email').invalid"></ion-input>
+        <span class="error-message"
+          *ngIf="loginFormEmail.get('email').touched && loginFormEmail.get('email').errors?.required">
+          Este campo es requerido
+        </span>
+        <span class="error-message"
+          *ngIf="loginFormEmail.get('email').touched && !loginFormEmail.get('email').errors?.required && loginFormEmail.get('email').invalid">
+          El correo ingresado no es válido
+        </span>
+
         <app-show-hide-password class="inputs">
-          <ion-input type="password" placeholder="Contraseña"></ion-input> 
+          <ion-input type="password" placeholder="Contraseña" formControlName="password"
+            [class.is-invalid]="loginFormEmail.get('password').touched && loginFormEmail.get('password').invalid">
+          </ion-input>
         </app-show-hide-password>
+
+        <span class="error-message"
+          *ngIf="loginFormEmail.get('password').touched && loginFormEmail.get('password').errors?.required">
+          Este campo es requerido
+        </span>
+        <span class="error-message"
+          *ngIf="loginFormEmail.get('password').touched && loginFormEmail.get('password').invalid && !loginFormEmail.get('password').errors?.required">
+          La contraseña ingresada no es válida
+        </span>
 
         <p id="password-reminder"><a href="">¿Olvidaste la contraseña?</a></p>
 
-        <ion-button expand="block" id="login-button" type="submit">Iniciar sesión</ion-button>
+        <ion-button expand="block" id="login-button" type="submit" [disabled]="!loginFormEmail.valid">Iniciar sesión
+        </ion-button>
+
+      </form>
+
+      <form *ngIf="isphoneselected" [formGroup]="loginFormPhone" (ngSubmit)="getPhoneFormData()" class="animate__animated animate__fadeIn">
+
+        <ion-input class=" inputs" clearInput type="text" placeholder="Número telefónico" formControlName="phone"
+          [class.is-invalid]="loginFormPhone.get('phone').touched && loginFormPhone.get('phone').invalid"></ion-input>
+        <span class="error-message"
+          *ngIf="loginFormPhone.get('phone').touched && loginFormPhone.get('phone').errors?.required">
+          Este campo es requerido
+        </span>
+        <span class="error-message"
+          *ngIf="loginFormPhone.get('phone').touched && !loginFormPhone.get('phone').errors?.required && loginFormPhone.get('phone').invalid">
+          El número ingresado no es válido
+        </span>
+
+        <app-show-hide-password class="inputs">
+          <ion-input type="password" placeholder="Contraseña" formControlName="password"
+            [class.is-invalid]="loginFormPhone.get('password').touched && loginFormPhone.get('password').invalid">
+          </ion-input>
+        </app-show-hide-password>
+
+        <span class="error-message"
+          *ngIf="loginFormPhone.get('password').touched && loginFormPhone.get('password').errors?.required">
+          Este campo es requerido
+        </span>
+        <span class="error-message"
+          *ngIf="loginFormPhone.get('password').touched && loginFormPhone.get('password').invalid && !loginFormPhone.get('password').errors?.required">
+          La contraseña ingresada no es válida
+        </span>
+
+        <p id="password-reminder"><a href="">¿Olvidaste la contraseña?</a></p>
+
+        <ion-button expand="block" id="login-button" type="submit" [disabled]="!loginFormPhone.valid">Iniciar sesión
+        </ion-button>
 
       </form>
 
     </section>
-    
-    <footer>
+
+    <section class="flex">
+
+    </section>
+
+    <footer *ngIf="!isUserLogged">
       <div>
         <hr>
         <p id="register-reminder">¿Todavía no tienes una cuenta? <a routerLink="/register">Registrarse</a></p>
       </div>
     </footer>
   </main>
-  
+
+
+
 </ion-content>

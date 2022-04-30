@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Tab1Page } from './tab1.page';
 import { UbicanosPage } from '../tab4/ubicanos/ubicanos.page';
 import { PlatosPage } from '../tab2/platos/platos.page';
+import { PrivacidadPageModule } from '../tab4/privacidad/privacidad.module';
 
 const routes: Routes = [
   {

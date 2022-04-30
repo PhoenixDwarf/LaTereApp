@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: RegisterPage
   },
+  {
+    path: 'privacy',
+    loadChildren: () => import('../../../tab4/privacidad/privacidad.module').then( m => m.PrivacidadPageModule)
+  }
 ];
 
 @NgModule({
