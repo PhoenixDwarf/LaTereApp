@@ -48,7 +48,13 @@ a{
     font-size: small;
     margin-top: 5px;
     margin-top: -20px;
-    margin-bottom: -15px;
+    margin-bottom: -5px;
+}
+.password-reminder-3{
+    text-align: center;
+    font-size: small;
+    margin-top: 3px;
+    margin-bottom: -5px;
 }
 #register-reminder{
     font-size: small;
@@ -57,7 +63,7 @@ a{
 }
 ion-button{
     --background: #C5A961;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 hr{
     width: 100vw;
@@ -90,4 +96,26 @@ footer{
     text-align: center;
     font-size: 12px;
     margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+ion-toolbar{
+    --ion-background-color: #FBFBFB;
+}
+#userlogged h1{
+    text-align: center;
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    margin-top: 30px;
+}
+
+main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.text-center{
+    text-align: center;
+    color: #a74e4e;
 }

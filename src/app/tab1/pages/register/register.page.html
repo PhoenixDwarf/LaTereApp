@@ -11,24 +11,29 @@
 
 
 <ion-content [fullscreen]="true" class="padding">
-  <section class="flex">
-    <ion-img id="main-img" src="../../../../assets/images/LogoPNG.png"></ion-img> 
+  <main>
+  <section class="flex" *ngIf="!isUserLogged">
+    <ion-img id="main-img" src="../../../../assets/images/LogoPNGNEW.png"></ion-img> 
     <br><h2 class="title">Registrar cuenta</h2>
     
     <form [formGroup]="registerForm"  (ngSubmit)="getFormData()">
 
       <ion-input class=" inputs"  clearInput type="text" placeholder="Nombres" formControlName="name" [class.is-invalid]="registerForm.get('name').touched && registerForm.get('name').invalid"></ion-input>
-      <span class="error-message" *ngIf="registerForm.get('name').touched && registerForm.get('name').invalid">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('name').touched && registerForm.get('name').errors?.required">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('name').touched && registerForm.get('name').invalid && !registerForm.get('name').errors?.required" >El nombre ingresado es demasiado largo</span>
 
       <ion-input class=" inputs"  clearInput type="text" placeholder="Apellidos" formControlName="lastname" [class.is-invalid]="registerForm.get('lastname').touched && registerForm.get('lastname').invalid"></ion-input>
-      <span class="error-message" *ngIf="registerForm.get('lastname').touched && registerForm.get('lastname').invalid">Este campo es requerido</span>
-      
+      <span class="error-message" *ngIf="registerForm.get('lastname').touched && registerForm.get('lastname').errors?.required">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('lastname').touched && registerForm.get('lastname').invalid && !registerForm.get('lastname').errors?.required" >El apellido ingresado es demasiado largo</span>
+
       <ion-input class=" inputs"  clearInput type="text" placeholder="Dirección" formControlName="address" [class.is-invalid]="registerForm.get('address').touched && registerForm.get('address').invalid"></ion-input>
-      <span class="error-message" *ngIf="registerForm.get('address').touched && registerForm.get('address').invalid">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('address').touched && registerForm.get('address').errors?.required">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('address').touched && registerForm.get('address').invalid && !registerForm.get('address').errors?.required" >La dirección ingresada es demasiado larga</span>
       
       <ion-input class=" inputs"  clearInput type="text" placeholder="Barrio" formControlName="neighborhood" [class.is-invalid]="registerForm.get('neighborhood').touched && registerForm.get('neighborhood').invalid"></ion-input>
-      <span class="error-message" *ngIf="registerForm.get('neighborhood').touched && registerForm.get('neighborhood').invalid">Este campo es requerido</span>
-      
+      <span class="error-message" *ngIf="registerForm.get('neighborhood').touched && registerForm.get('neighborhood').errors?.required">Este campo es requerido</span>
+      <span class="error-message" *ngIf="registerForm.get('neighborhood').touched && registerForm.get('neighborhood').invalid && !registerForm.get('neighborhood').errors?.required" >El barrio ingresado es demasiado largo</span>
+
       <ion-input class=" inputs"  clearInput type="tel" placeholder="Número telefónico" formControlName="phone" [class.is-invalid]="registerForm.get('phone').touched && registerForm.get('phone').invalid"></ion-input>
       <span class="error-message" *ngIf="registerForm.get('phone').touched && registerForm.get('phone').errors?.required">Este campo es requerido</span>
       <span class="error-message" *ngIf="registerForm.get('phone').touched && !registerForm.get('phone').errors?.required && registerForm.get('phone').invalid">El número ingresado no es válido</span>
@@ -38,6 +43,7 @@
       <span class="error-message" *ngIf="registerForm.get('email').touched && !registerForm.get('email').errors?.required && registerForm.get('email').invalid">El correo no es válido</span>
       
       <p class="password-reminder">La contraseña debe contener al menos 8 caracteres</p>
+      <p class="password-reminder-2">y máximo 16.</p>
       <app-show-hide-password class="inputs">
         <ion-input type="password" name="password" placeholder="Contraseña" formControlName="password" [class.is-invalid]="registerForm.get('password').touched && registerForm.get('password').invalid"></ion-input> 
       </app-show-hide-password>
@@ -51,21 +57,39 @@
       <span class="error-message" *ngIf="registerForm.get('confimPassword').touched && registerForm.get('confimPassword').errors?.notEqual">Las contraseñas no coinciden</span>
       <span class="success-message" *ngIf="registerForm.get('confimPassword').touched && !registerForm.get('confimPassword').errors?.notEqual && !registerForm.get('confimPassword').errors?.required">Las contraseñas coinciden</span>
       
-
+      <p class="password-reminder text-center">¡Recuerda agregar información de recuperación de cuenta</p>
+      <p class="password-reminder-2 text-center">en tu perfil una vez registrada la cuenta!</p>
+      <p class="password-reminder-3">Te ayudara en caso de que olvides la contraseña.</p>
+      
       <ion-button expand="block" id="login-button" type="submit" [disabled]="!registerForm.valid">Crear cuenta</ion-button>
 
 
+      
+        
+
     </form>
-    <p class="finaltext">Al “crear cuenta” estas aceptando nuestra <a routerLink="privacy">política de tratamiento de datos y privacidad</a> </p>
-
-
+    <p class="finaltext">Al “crear cuenta” estas aceptando nuestra <a routerLink="privacy">política de tratamiento de datos y privacidad.</a> </p>
   </section>
+
+  <section class="flex" *ngIf="isUserLogged" id="userlogged">
+    <ion-img id="main-img" src="../../../../assets/images/LogoPNGNEW.png"></ion-img>
+    <h1>Ups, parece que ya has iniciado sesión.</h1>
+  </section>
+
   
-  <footer>
+  <footer *ngIf="!isUserLogged">
     <div>
       <hr>
       <p id="register-reminder">¿Ya tienes una cuenta? <a routerLink="/login"> Inicia sesión</a></p>
     </div>
   </footer>
+
+  <footer *ngIf="isUserLogged">
+    <div>
+      <hr>
+      <p id="register-reminder">¿Ya iniciaste sesión? Dirigirse a<a routerLink="/login"> Perfil</a></p>
+    </div>
+  </footer>
+</main>
   
 </ion-content>

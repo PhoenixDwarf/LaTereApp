@@ -6,8 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { RegisterPageRoutingModule } from './register-routing.module';
 import { RegisterPage } from './register.page';
-import { ShowHidePasswordComponent } from '../../components/show-hide-password/show-hide-password.component';
 import { ConfirmEqualValidatorDirective } from '../confirm-equal-validator.directive';
+import { ComponentsModule } from '../../components/components.module';
 
 
 @NgModule({
@@ -16,8 +16,9 @@ import { ConfirmEqualValidatorDirective } from '../confirm-equal-validator.direc
     FormsModule,
     IonicModule,
     RegisterPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule
   ],
-  declarations: [RegisterPage,ShowHidePasswordComponent,ConfirmEqualValidatorDirective]
+  declarations: [RegisterPage,ConfirmEqualValidatorDirective]
 })
 export class RegisterPageModule {}

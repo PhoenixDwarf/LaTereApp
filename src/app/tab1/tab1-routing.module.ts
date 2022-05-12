@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Tab1Page } from './tab1.page';
 import { UbicanosPage } from '../tab4/ubicanos/ubicanos.page';
-import { PlatosPage } from '../tab2/platos/platos.page';
-import { PrivacidadPageModule } from '../tab4/privacidad/privacidad.module';
 
 const routes: Routes = [
   {
@@ -15,16 +13,20 @@ const routes: Routes = [
     component: UbicanosPage,
   },
   {
-    path:'alacarta',
-    component: PlatosPage,
-  },
-  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'editprofile',
+    loadChildren: () => import('./pages/editprofile/editprofile.module').then( m => m.EditprofilePageModule)
+  },
+  {
+    path: 'editrestoreinfo',
+    loadChildren: () => import('./pages/editrestoreinfo/editrestoreinfo.module').then( m => m.EditrestoreinfoPageModule)
   }
 ];
 

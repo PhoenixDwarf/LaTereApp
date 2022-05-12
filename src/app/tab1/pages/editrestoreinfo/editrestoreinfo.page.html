@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-icon class="logo" src="././assets/icon/LogoVector.svg"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="padding">
+  <main>
+    <section class="ion-padding flex">
+      <h2 class="title">Información de recuperación</h2>
+      <article>
+        <div class="green-div" *ngIf="isThereASecurityQuiestion">
+          <p class="green-div-p1">¡Ya cuentas con una pregunta de seguridad configurada!</p>
+          <p class="green-div-p2">Si deseas actualizarla, selecciona una de las opciones abajo, ingresa la respuesta y presiona “actualizar respuesta de seguridad”</p>
+
+          <form [formGroup]="editinfoForm">
+
+            <select name="cars" id="cars" class="inputs" formControlName="selector">
+              <option value="volvo">¿Apellido de tu mejor amigo de infancia?</option>
+              <option value="saab">¿Cuál sería tu trabajo ideal?</option>
+              <option value="opel">¿En qué ciudad se conocieron tus padres?</option>
+              <option value="audi">¿Como se llama la primera playa a la que fuiste?</option>
+              <option value="audi">¿Como se llamaba tu maestro favorito en la escuela primaria?</option>
+              <option value="audi">¿Cuál fue la primera película que viste en el cine?</option>
+              <option value="audi">¿Como se llamaba tu primera mascota?</option>
+              <option value="audi">¿Dónde conociste a tu pareja?</option>
+              <option value="audi">¿En qué ciudad te gustaría jubilarte?</option>
+              <option value="audi">¿En qué barrio vivía su mejor amigo de infancia?</option>
+            </select>
+
+            <ion-input placeholder="Respuesta..." class="inputs" formControlName="data"></ion-input>
+            <span class="error-message" *ngIf="editinfoForm.get('data').touched && editinfoForm.get('data').errors?.required">Este campo es requerido</span>
+            <span class="error-message" *ngIf="editinfoForm.get('data').touched && editinfoForm.get('data').invalid && !editinfoForm.get('data').errors?.required" >La respuesta ingresado es demasiado largo</span>
+
+            <ion-button expand="block" id="login-button" type="submit" [disabled]="!editinfoForm.valid">
+              actualizar respuesta de seguridad
+            </ion-button>
+
+          </form>
+        </div>
+
+        <div class="red-div" *ngIf="!isThereASecurityQuiestion">
+          <p class="red-div-p1">¡Aún no cuentas con una pregunta de seguridad configurada!</p>
+          <p class="red-div-p2">Actualízala seleccionando una de las opciones de abajo, luego ingresa la respuesta y presiona “actualizar respuesta de seguridad”</p>
+
+          <form [formGroup]="editinfoForm">
+
+            <select name="cars" id="cars" class="inputs" formControlName="selector">
+              <option value="volvo">¿Apellido de tu mejor amigo de infancia?</option>
+              <option value="saab">¿Cuál sería tu trabajo ideal?</option>
+              <option value="opel">¿En qué ciudad se conocieron tus padres?</option>
+              <option value="audi">¿Como se llama la primera playa a la que fuiste?</option>
+              <option value="audi">¿Como se llamaba tu maestro favorito en la escuela primaria?</option>
+              <option value="audi">¿Cuál fue la primera película que viste en el cine?</option>
+              <option value="audi">¿Como se llamaba tu primera mascota?</option>
+              <option value="audi">¿Dónde conociste a tu pareja?</option>
+              <option value="audi">¿En qué ciudad te gustaría jubilarte?</option>
+              <option value="audi">¿En qué barrio vivía su mejor amigo de infancia?</option>
+            </select>
+
+            <ion-input placeholder="Respuesta..." class="inputs" formControlName="data"></ion-input>
+            <span class="error-message" *ngIf="editinfoForm.get('data').touched && editinfoForm.get('data').errors?.required">Este campo es requerido</span>
+            <span class="error-message" *ngIf="editinfoForm.get('data').touched && editinfoForm.get('data').invalid && !editinfoForm.get('data').errors?.required" >La respuesta ingresado es demasiado largo</span>
+
+            <ion-button expand="block" id="login-button" type="submit" [disabled]="!editinfoForm.valid">
+              actualizar respuesta de seguridad
+            </ion-button>
+            
+          </form>
+        </div>
+      </article>
+    </section>
+  </main>
+
+</ion-content>

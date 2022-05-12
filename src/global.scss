@@ -25,7 +25,7 @@ ion-menu-toggle,ion-list{
 
 
 
-@font-face {   
+  @font-face {   
     font-family: 'PautaOne';    //title menu
     src: url('../src/assets/fonts/PatuaOne-Regular.ttf');
   }
@@ -38,6 +38,11 @@ ion-menu-toggle,ion-list{
   @font-face {   
     font-family: 'SupermercadoOne';   //hs titles
     src: url('../src/assets/fonts/SupermercadoOne-Regular.ttf');
+  }
+
+  @font-face {   
+    font-family: 'DancingScript';    //title menu
+    src: url('../src/assets/fonts/DancingScript-VariableFont_wght.ttf');
   }
 
 

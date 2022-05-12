@@ -1,37 +1,93 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
-import { LoginUser } from '../interfaces/login.interface';
-import { DatabaseService } from '../../services/database.service';
+import { Router } from '@angular/router';
+
 import 'animate.css'
+
+import { DatabaseService } from '../../../services/database.service';
+import { CompleteUser } from '../interfaces/user.interface';
+import { list } from '../interfaces/login.interface';
+import { UserInteractionService } from '../../../services/user-interaction.service';
+
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit{
+export class LoginPage implements OnInit {
 
   ngOnInit() {
-    console.log("inicie")
+    this.UserInteractionService.editprofileUpdated$.subscribe( res => {
+      this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
+      this.fillList();
+    });
   }
-  
-  constructor(public alertController: AlertController, private DatabaseService: DatabaseService) { }
+
+  constructor(
+    public alertController: AlertController,
+    private DatabaseService: DatabaseService,
+    private UserInteractionService: UserInteractionService,
+    private Router: Router,
+  ) 
+  {
+    this.listValidatorDef();
+  }
 
   isphoneselected = false;
   isemailselected = false;
-  loginData: LoginUser;
-  isUserLogged = false;
+  list: list[];
+  loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
+  listValidator:boolean;
+  isEditprofileUpdated:boolean;
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Iniciar sesión',
-      subHeader: '',
-      message: 'Se ha iniciado sesión correctamente.',
-      buttons: ['OK']
-    });
-    await alert.present();
+  listValidatorDef(){
+    if (this.loginData != null) {
+      if (this.loginData.isadmin == false) {
+        this.fillList();
+        this.listValidator = true;
+      }
+      else {
+        this.listValidator = false;
+        this.fillList();
+      }
+    }
+  }
+
+
+  fillList() {
+    this.list = [
+      {
+        info: this.loginData.name,
+        tag: 'Nombres'
+      },
+      {
+        info: this.loginData.lastname,
+        tag: 'Apellidos'
+      },
+      {
+        info: this.loginData.address,
+        tag: 'Dirección'
+      },
+      {
+        info: this.loginData.neighborhood,
+        tag: 'Barrio'
+      },
+      {
+        info: this.loginData.phone,
+        tag: 'Número telefónico'
+      },
+      {
+        info: this.loginData.email,
+        tag: 'Correo electrónico'
+      }
+    ];
+  }
+
+  fillListADMIN() {
+    this.list = [];
   }
 
   async presentAlertError1() {
@@ -39,7 +95,7 @@ export class LoginPage implements OnInit{
       cssClass: 'my-custom-class',
       header: 'Iniciar sesión',
       subHeader: '',
-      message: 'No se ha reconocido el correo ingresado.',
+      message: 'No se ha reconocido el correo ingresado o la contraseña.',
       buttons: ['OK']
     });
     await alert.present();
@@ -50,7 +106,18 @@ export class LoginPage implements OnInit{
       cssClass: 'my-custom-class',
       header: 'Iniciar sesión',
       subHeader: '',
-      message: 'No se ha reconocido el número telefónico ingresado.',
+      message: 'No se ha reconocido el número telefónico ingresado o la contraseña.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  async presentAlertErrorNoInternet() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Iniciar sesión',
+      subHeader: '',
+      message: 'No cuentas con conexión a internet en este momento. Por favor intenta mas tarde.',
       buttons: ['OK']
     });
     await alert.present();
@@ -79,46 +146,104 @@ export class LoginPage implements OnInit{
 
   getEmailFormData() {
 
-    let email: string = this.loginFormEmail.get('email').value;
-    let password: string = this.loginFormEmail.get('password').value;
+    let netStatus: boolean = navigator.onLine;
+    if (netStatus == false) {
+      this.presentAlertErrorNoInternet();
+    }
+    else {
 
-    this.DatabaseService.logUserByEmail(email, password).subscribe({
-      next: (res) => {
-        if (res == null) {
-          this.presentAlertError1();
+      this.UserInteractionService.presentLoading('Verificando datos…');
+      let email: string = this.loginFormEmail.get('email').value;
+      let password: string = this.loginFormEmail.get('password').value;
+
+      this.DatabaseService.logUserByEmail(email, password).subscribe({
+        next: (res) => {
+          this.UserInteractionService.dismissLoading();
+          if (res == null) {
+            this.presentAlertError1();
+          }
+          else {
+            this.loginFormEmail.reset();
+            localStorage.setItem('LoggedUser', JSON.stringify(res));
+            this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
+            this.listValidatorDef();
+            this.UserInteractionService.presentToast("Se ha iniciado sesión correctamente")
+            this.UserInteractionService.loginUpdated$.emit(true);
+            this.Router.navigateByUrl('/');
+          }
+        },
+        error: (err) => {
+          this.UserInteractionService.dismissLoading();
+          console.log(err);
         }
-        else {
-          this.loginFormEmail.reset();
-          this.presentAlert();
-          this.isUserLogged = true;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+      })
+    }
   }
 
   getPhoneFormData() {
 
-    let phone: string = this.loginFormPhone.get('phone').value;
-    let password: string = this.loginFormPhone.get('password').value;
+    let netStatus: boolean = navigator.onLine;
+    if (netStatus == false) {
+      this.presentAlertErrorNoInternet();
+    }
+    else {
 
-    this.DatabaseService.logUserByPhone(phone, password).subscribe({
-      next: (res) => {
-        if (res == null) {
-          this.presentAlertError2();
+      this.UserInteractionService.presentLoading('Verificando datos…');
+
+      let phone: string = this.loginFormPhone.get('phone').value;
+      let password: string = this.loginFormPhone.get('password').value;
+
+      this.DatabaseService.logUserByPhone(phone, password).subscribe({
+        next: (res) => {
+          this.UserInteractionService.dismissLoading();
+          if (res == null) {
+            this.presentAlertError2();
+          }
+          else {
+            this.loginFormPhone.reset();
+            localStorage.setItem('LoggedUser', JSON.stringify(res));
+            this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
+            this.listValidatorDef();
+            this.UserInteractionService.presentToast("Se ha iniciado sesión correctamente");
+            this.UserInteractionService.loginUpdated$.emit(true);
+            this.Router.navigateByUrl('/');
+          }
+        },
+        error: (err) => {
+          this.UserInteractionService.dismissLoading();
+          console.log(err);
         }
-        else {
-          this.loginFormPhone.reset();
-          this.presentAlert();
-          this.isUserLogged = true;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
+      })
+    }
   }
+
+  async logout() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Cerrar sesión',
+      message: '¿Estás seguro que deseas cerrar sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        }, {
+          text: 'Cerrar sesión',
+          id: 'confirm-button',
+          handler: () => {
+            localStorage.removeItem('LoggedUser');
+            this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
+            this.UserInteractionService.loginUpdated$.emit(true);
+            this.UserInteractionService.presentToast("Se ha cerrado la sesión correctamente");
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  
 }
 

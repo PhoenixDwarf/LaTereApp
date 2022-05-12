@@ -16,13 +16,13 @@ export class ListComponent {
     },
 
     {
-      name: 'Ubícanos',
+      name: 'Ubícanos - (Próximamente)',
       icon: '././././assets/icon/ubicanosVector.svg',
       url: 'ubicanos'
     },
 
     {
-      name: 'Stickers',
+      name: 'Stickers - (Próximamente)',
       icon: '././././assets/icon/stickersVector.svg',
       url: 'stickers'
     },

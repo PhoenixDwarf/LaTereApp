@@ -1,0 +1,81 @@
+ion-title{
+    text-align: center;
+    margin-right: 45px;
+}
+.logo{
+    font-size:60px;
+    text-align: center;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+ion-toolbar{
+    --ion-background-color: #FBFBFB;
+}
+.title{
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    text-align: center;
+}
+p{
+    font-family: SourceSerif4 !important; 
+    width: 100%;
+}
+.green-div{
+    margin-top: 40px;
+}
+.red-div{
+    margin-top: 40px;
+}
+.green-div-p1{
+    background-color: #9ae996;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.green-div-p2{
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+}
+.red-div-p1{
+    background-color: #e9a096;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.red-div-p2{
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+}
+select{
+    width: 100%;
+    padding: 5px;
+}
+.inputs{
+    background-color: #ffffff;
+    width: 90vw;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #b1afaf;
+    font-family: SourceSerif4 !important; 
+}
+ion-button{
+    --background: #C5A961;
+    margin-top: 40px;
+}
+.error-message{
+    text-align: start;
+    font-size: small;
+    margin-top: 5px;
+    margin-left: 5px;
+    color: #a82727;
+}

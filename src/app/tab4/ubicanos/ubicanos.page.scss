@@ -6,3 +6,31 @@ ion-title{
     font-size:60px;
     text-align: center;
 }
+ion-toolbar{
+    --ion-background-color: #FBFBFB;
+}
+.title{
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    text-align: center;
+    margin-top: 20px;
+}
+.text-frame{
+    font-size: 15px;
+    margin: 1rem;
+    text-align: center;
+}
+p{
+    font-family: SourceSerif4 !important; 
+    width: 100%;
+}
+#main-img{
+    width: 55vw;
+    margin-top: 100px;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

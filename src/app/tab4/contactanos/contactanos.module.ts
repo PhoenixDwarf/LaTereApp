@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
 import { ContactanosPageRoutingModule } from './contactanos-routing.module';
 
@@ -16,6 +17,9 @@ import { ContactanosPage } from './contactanos.page';
     IonicModule,
     ContactanosPageRoutingModule,
   ],
-  declarations: [ContactanosPage]
+  declarations: [ContactanosPage],
+  providers: [
+    CallNumber
+  ]
 })
 export class ContactanosPageModule {}

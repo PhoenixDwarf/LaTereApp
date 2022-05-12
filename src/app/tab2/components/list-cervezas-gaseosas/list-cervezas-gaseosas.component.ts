@@ -18,31 +18,31 @@ export class ListCervezasGaseosasComponent{
     {
       name: 'Club Colombia',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Personal']
     },
 
     {
       name: 'Corona',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Personal']
     },
 
     {
       name: 'Smirnoff',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Personal']
     },
 
     {
       name: 'Stella Artois',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Personal']
     },
 
     {
       name: 'Coronita',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Personal (210ml)']
     },
 
     {
@@ -54,7 +54,7 @@ export class ListCervezasGaseosasComponent{
     {
       name: 'Redd’s',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Personal']
     },
 
     {
@@ -103,7 +103,7 @@ export class ListCervezasGaseosasComponent{
     {
       name: 'Agua botella',
       url: '',
-      ingredientes:['']
+      ingredientes:['- Sin gas','- Con gas']
     },
 
     {

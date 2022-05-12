@@ -6,3 +6,79 @@ ion-title{
     font-size:60px;
     text-align: center;
 }
+ion-toolbar{
+    --ion-background-color: #FBFBFB;
+}
+.title{
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    text-align: center;
+}
+.title2{
+    margin-top: 50px;
+}
+.final-p{
+    margin-top: 30px;
+}
+.text-frame{
+    font-size: 15px;
+    margin: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: -120px;
+}
+p{
+    font-family: SourceSerif4 !important; 
+    width: 100%;
+}
+.dev-images{
+    display: flex;
+}
+.dev-names{
+    display: flex;
+    justify-content:space-between;
+    width: 85%;
+    align-items: center;
+}
+.dev-names-p1{
+    width: 37%;
+    font-family: DancingScript !important; 
+    font-size: 20px;
+    //font-weight: bold;
+}
+.dev-names-p2{
+    width: 37%;
+    font-family: DancingScript !important; 
+    font-size: 20px;
+    //font-weight: bold;
+}
+.dev-names-p3{
+    width: 26%;
+    font-size: xx-large;
+    font-family: DancingScript !important; 
+}
+
+img{
+    width: 50%;
+}
+.uniagustiniana{
+    background-color: #C5A961;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.uniagustiniana img{
+    margin-left: -20px;
+}
+main{
+    height: 100%;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}

@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+      <ion-back-button defaultHref="tabs/tab1" routerLink="/tabs/tab1"></ion-back-button>
     </ion-buttons>
-    
+
     <ion-title>
-      <ion-icon *ngIf="isUserLogged" class="logo" src="././assets/icon/LogoVector.svg"></ion-icon>
+      <ion-icon *ngIf="loginData" class="logo" src="././assets/icon/LogoVector.svg"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,9 +13,9 @@
 <ion-content [fullscreen]="true" class="padding">
   <main>
 
-    <section class="flex" *ngIf="!isUserLogged">
+    <section class="flex" *ngIf="!loginData">
 
-      <ion-img id="main-img" src="../../../../assets/images/LogoPNG.png"></ion-img>
+      <ion-img id="main-img" src="../../../../assets/images/LogoPNGNEW.png"></ion-img>
       <br>
       <h2 class="title">Inicia Sesión</h2>
 
@@ -29,7 +29,8 @@
 
       </div>
 
-      <form *ngIf="isemailselected" [formGroup]="loginFormEmail" (ngSubmit)="getEmailFormData()" class="animate__animated animate__fadeIn">
+      <form *ngIf="isemailselected" [formGroup]="loginFormEmail" (ngSubmit)="getEmailFormData()"
+        class="animate__animated animate__fadeIn">
 
         <ion-input class=" inputs" clearInput type="text" placeholder="Correo electrónico" formControlName="email"
           [class.is-invalid]="loginFormEmail.get('email').touched && loginFormEmail.get('email').invalid"></ion-input>
@@ -41,9 +42,9 @@
           *ngIf="loginFormEmail.get('email').touched && !loginFormEmail.get('email').errors?.required && loginFormEmail.get('email').invalid">
           El correo ingresado no es válido
         </span>
-
+ 
         <app-show-hide-password class="inputs">
-          <ion-input type="password" placeholder="Contraseña" formControlName="password"
+          <ion-input class="inputs-2" type="password" placeholder="Contraseña" formControlName="password"
             [class.is-invalid]="loginFormEmail.get('password').touched && loginFormEmail.get('password').invalid">
           </ion-input>
         </app-show-hide-password>
@@ -64,7 +65,8 @@
 
       </form>
 
-      <form *ngIf="isphoneselected" [formGroup]="loginFormPhone" (ngSubmit)="getPhoneFormData()" class="animate__animated animate__fadeIn">
+      <form *ngIf="isphoneselected" [formGroup]="loginFormPhone" (ngSubmit)="getPhoneFormData()"
+        class="animate__animated animate__fadeIn">
 
         <ion-input class=" inputs" clearInput type="text" placeholder="Número telefónico" formControlName="phone"
           [class.is-invalid]="loginFormPhone.get('phone').touched && loginFormPhone.get('phone').invalid"></ion-input>
@@ -78,7 +80,7 @@
         </span>
 
         <app-show-hide-password class="inputs">
-          <ion-input type="password" placeholder="Contraseña" formControlName="password"
+          <ion-input class="inputs-2" type="password" placeholder="Contraseña" formControlName="password"
             [class.is-invalid]="loginFormPhone.get('password').touched && loginFormPhone.get('password').invalid">
           </ion-input>
         </app-show-hide-password>
@@ -101,11 +103,51 @@
 
     </section>
 
-    <section class="flex">
+    <!-- ----------------------When logged IN------------------------- -->
 
+    <section class="ion-padding" *ngIf="loginData">
+
+      <div class="ion-padding">
+        <div class="flex">
+          <ion-img src="./assets/icon/userVector.svg" slot="start"></ion-img>
+        </div>
+        <h3 class="ion-text-center">¡Bienvenido {{loginData.name}}!</h3>
+        <div *ngIf="loginData.isadmin == false">
+          <ion-item *ngFor="let item of list; let i=index" id="{{'i'+i}}">
+            <ion-label class="ion-text-wrap ion-padding" id="title">
+              {{ item.tag }}
+            </ion-label>
+            <ion-label class="ion-text-wrap">
+              <p>{{ item.info }}</p>
+            </ion-label>
+          </ion-item>
+        </div>
+        
+        <div class="profile-buttons-section">
+          <ion-button expand="block" class="profile-botton" id="profile-button-1" *ngIf="listValidator" routerLink="editprofile">
+            Editar perfil
+          </ion-button>
+          <ion-button expand="block" class="profile-botton" id="profile-button-1" *ngIf="listValidator" routerLink="editrestoreinfo">
+            Editar información de recuperación
+          </ion-button>
+          <ion-button expand="block" class="profile-botton" id="profile-button-2" *ngIf="listValidator">
+            Cambiar contraseña
+          </ion-button>
+          <ion-button expand="block" class="profile-botton" id="profile-button-3" (click)="logout()">
+            Cerrar sesión
+          </ion-button>
+        </div>
+      </div>
     </section>
 
-    <footer *ngIf="!isUserLogged">
+      <!-- EDITING PROFILE DATA SECTION -->
+
+
+
+
+   
+
+    <footer *ngIf="!loginData">
       <div>
         <hr>
         <p id="register-reminder">¿Todavía no tienes una cuenta? <a routerLink="/register">Registrarse</a></p>

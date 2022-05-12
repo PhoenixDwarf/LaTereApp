@@ -6,7 +6,7 @@
           <!--This needs extra CSS-->
           
           <ion-title id="main-title">
-            Ingresa a tu cuenta
+            Ingresa a tu cuenta 
           </ion-title>
           
         </ion-toolbar>
@@ -18,19 +18,19 @@
           <ion-menu-toggle auto-hide="true">
             <ion-item button routerLink="login" class="options">
               <ion-icon src="./assets/icon/userVector.svg" slot="start"></ion-icon>
-              Ingresar
+              {{ profileItem }}
             </ion-item>
           </ion-menu-toggle>
 
-          <ion-menu-toggle auto-hide="true">
-            <ion-item button routerLink="register">
+          <ion-menu-toggle auto-hide="true" *ngIf="checker">
+            <ion-item button routerLink="register" class="options">
               <ion-icon src="./assets/icon/registrarseVector.svg" slot="start"></ion-icon>
               Regístrate
             </ion-item>
           </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="true">
-            <ion-item button routerLink="tabs/tab1">
+            <ion-item button routerLink="tabs/tab1" class="options">
               <ion-icon src="./assets/icon/helpVector.svg" slot="start"></ion-icon>
               Ayuda
             </ion-item>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
 @Component({
   selector: 'app-contactanos',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactanosPage implements OnInit {
 
-  constructor() { }
+  constructor(private callNumber: CallNumber) { }
 
   ngOnInit() {
   }
 
+  makeCall(){
+    this.callNumber.callNumber("3228949288", true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
+  }
 }

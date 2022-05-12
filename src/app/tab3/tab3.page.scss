@@ -8,4 +8,51 @@ ion-title{
 }
 h1{
     text-align: center;
+    margin-bottom: 25px;
+}
+ion-toolbar{
+    --ion-background-color: #FBFBFB;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.title{
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    text-align: center;
+}
+.close-icon{
+    color: #a02a3a;
+}
+.close-button{
+    --background: none;
+}
+ion-card{
+    margin-top: 10px;
+}
+ion-item{
+    --background: linear-gradient(#FFF499, #ceba89);
+}
+ion-card-content{
+    background-color: #f8f1e1;
+}
+.money{
+    --background: #ece6d3;
+}
+ion-label{
+    font-family: SupermercadoOne !important;
+}
+ion-card-content{
+    font-family: SourceSerif4 !important; 
+}
+.confirm-button{
+    --background:#C5A961;
+    margin-top: 20px;
+}
+.cancel-button{
+    --background:#a02a3a;
+    margin-top: 20px;
 }
