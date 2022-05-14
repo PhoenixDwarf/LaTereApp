@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'editrestoreinfo',
     loadChildren: () => import('./pages/editrestoreinfo/editrestoreinfo.module').then( m => m.EditrestoreinfoPageModule)
+  },
+  {
+    path: 'changepass',
+    loadChildren: () => import('./pages/changepass/changepass.module').then( m => m.ChangepassPageModule)
   }
 ];
 

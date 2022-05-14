@@ -58,7 +58,7 @@
           La contraseña ingresada no es válida
         </span>
 
-        <p id="password-reminder"><a href="">¿Olvidaste la contraseña?</a></p>
+        <p id="password-reminder"><a routerLink="">¿Olvidaste la contraseña?</a></p>
 
         <ion-button expand="block" id="login-button" type="submit" [disabled]="!loginFormEmail.valid">Iniciar sesión
         </ion-button>
@@ -94,7 +94,7 @@
           La contraseña ingresada no es válida
         </span>
 
-        <p id="password-reminder"><a href="">¿Olvidaste la contraseña?</a></p>
+        <p id="password-reminder"><a routerLink="">¿Olvidaste la contraseña?</a></p>
 
         <ion-button expand="block" id="login-button" type="submit" [disabled]="!loginFormPhone.valid">Iniciar sesión
         </ion-button>
@@ -130,7 +130,7 @@
           <ion-button expand="block" class="profile-botton" id="profile-button-1" *ngIf="listValidator" routerLink="editrestoreinfo">
             Editar información de recuperación
           </ion-button>
-          <ion-button expand="block" class="profile-botton" id="profile-button-2" *ngIf="listValidator">
+          <ion-button expand="block" class="profile-botton" id="profile-button-2" *ngIf="listValidator" routerLink="changepass">
             Cambiar contraseña
           </ion-button>
           <ion-button expand="block" class="profile-botton" id="profile-button-3" (click)="logout()">
@@ -139,13 +139,6 @@
         </div>
       </div>
     </section>
-
-      <!-- EDITING PROFILE DATA SECTION -->
-
-
-
-
-   
 
     <footer *ngIf="!loginData">
       <div>

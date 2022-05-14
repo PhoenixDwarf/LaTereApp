@@ -18,6 +18,9 @@ export interface CompleteUser{
     name: string;
     password: string;
     phone: string;
+    securityq:string;
+    securityqnumber:number;
+    
 }
 
 export interface CompleteUserWithSecurityq{
@@ -31,4 +34,12 @@ export interface CompleteUserWithSecurityq{
     password: string;
     phone: string;
     securityq: string;
+}
+export interface UpdateSecurity{
+    securityNumber:number;
+    securityAnswer:string;
+}
+
+export interface ChangePass{
+    password:string;
 }

@@ -14,23 +14,23 @@
     <section class="ion-padding flex">
       <h2 class="title">Información de recuperación</h2>
       <article>
-        <div class="green-div" *ngIf="isThereASecurityQuiestion">
+        <div class="green-div" *ngIf="isThereAQuestionLet">
           <p class="green-div-p1">¡Ya cuentas con una pregunta de seguridad configurada!</p>
-          <p class="green-div-p2">Si deseas actualizarla, selecciona una de las opciones abajo, ingresa la respuesta y presiona “actualizar respuesta de seguridad”</p>
+          <p class="green-div-p2">Si no la recuerdas, o simplemente deseas actualizarla, selecciona una de las opciones abajo, ingresa la respuesta y presiona “actualizar respuesta de seguridad”</p>
 
-          <form [formGroup]="editinfoForm">
+          <form [formGroup]="editinfoForm" (ngSubmit)="updateRestoreInfo()">
 
             <select name="cars" id="cars" class="inputs" formControlName="selector">
-              <option value="volvo">¿Apellido de tu mejor amigo de infancia?</option>
-              <option value="saab">¿Cuál sería tu trabajo ideal?</option>
-              <option value="opel">¿En qué ciudad se conocieron tus padres?</option>
-              <option value="audi">¿Como se llama la primera playa a la que fuiste?</option>
-              <option value="audi">¿Como se llamaba tu maestro favorito en la escuela primaria?</option>
-              <option value="audi">¿Cuál fue la primera película que viste en el cine?</option>
-              <option value="audi">¿Como se llamaba tu primera mascota?</option>
-              <option value="audi">¿Dónde conociste a tu pareja?</option>
-              <option value="audi">¿En qué ciudad te gustaría jubilarte?</option>
-              <option value="audi">¿En qué barrio vivía su mejor amigo de infancia?</option>
+              <option value="1">¿Apellido de tu mejor amigo de infancia?</option>
+              <option value="2">¿Cuál sería tu trabajo ideal?</option>
+              <option value="3">¿En qué ciudad se conocieron tus padres?</option>
+              <option value="4">¿Como se llama la primera playa a la que fuiste?</option>
+              <option value="5">¿Como se llamaba tu maestro favorito en la escuela primaria?</option>
+              <option value="6">¿Cuál fue la primera película que viste en el cine?</option>
+              <option value="7">¿Como se llamaba tu primera mascota?</option>
+              <option value="8">¿Dónde conociste a tu pareja?</option>
+              <option value="9">¿En qué ciudad te gustaría jubilarte?</option>
+              <option value="10">¿En qué barrio vivía su mejor amigo de infancia?</option>
             </select>
 
             <ion-input placeholder="Respuesta..." class="inputs" formControlName="data"></ion-input>
@@ -44,23 +44,23 @@
           </form>
         </div>
 
-        <div class="red-div" *ngIf="!isThereASecurityQuiestion">
+        <div class="red-div" *ngIf="!isThereAQuestionLet">
           <p class="red-div-p1">¡Aún no cuentas con una pregunta de seguridad configurada!</p>
           <p class="red-div-p2">Actualízala seleccionando una de las opciones de abajo, luego ingresa la respuesta y presiona “actualizar respuesta de seguridad”</p>
 
-          <form [formGroup]="editinfoForm">
+          <form [formGroup]="editinfoForm" (ngSubmit)="updateRestoreInfo()">
 
             <select name="cars" id="cars" class="inputs" formControlName="selector">
-              <option value="volvo">¿Apellido de tu mejor amigo de infancia?</option>
-              <option value="saab">¿Cuál sería tu trabajo ideal?</option>
-              <option value="opel">¿En qué ciudad se conocieron tus padres?</option>
-              <option value="audi">¿Como se llama la primera playa a la que fuiste?</option>
-              <option value="audi">¿Como se llamaba tu maestro favorito en la escuela primaria?</option>
-              <option value="audi">¿Cuál fue la primera película que viste en el cine?</option>
-              <option value="audi">¿Como se llamaba tu primera mascota?</option>
-              <option value="audi">¿Dónde conociste a tu pareja?</option>
-              <option value="audi">¿En qué ciudad te gustaría jubilarte?</option>
-              <option value="audi">¿En qué barrio vivía su mejor amigo de infancia?</option>
+              <option value="1">¿Apellido de tu mejor amigo de infancia?</option>
+              <option value="2">¿Cuál sería tu trabajo ideal?</option>
+              <option value="3">¿En qué ciudad se conocieron tus padres?</option>
+              <option value="4">¿Como se llama la primera playa a la que fuiste?</option>
+              <option value="5">¿Como se llamaba tu maestro favorito en la escuela primaria?</option>
+              <option value="6">¿Cuál fue la primera película que viste en el cine?</option>
+              <option value="7">¿Como se llamaba tu primera mascota?</option>
+              <option value="8">¿Dónde conociste a tu pareja?</option>
+              <option value="9">¿En qué ciudad te gustaría jubilarte?</option>
+              <option value="10">¿En qué barrio vivía su mejor amigo de infancia?</option>
             </select>
 
             <ion-input placeholder="Respuesta..." class="inputs" formControlName="data"></ion-input>

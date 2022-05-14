@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-icon class="logo" src="././assets/icon/LogoVector.svg"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="padding">
+  <main>
+    <section class="ion-padding flex">
+      <h2 class="title">Cambiar contraseña</h2>
+      <div class="alert-div">
+        <p class="alert-div-p0" *ngIf="!iscurrentpassgood">Antes de que puedas cambiar tu contraseña, debemos verificar que seas el dueño de la cuenta.</p>
+        <p class="alert-div-p0" *ngIf="!iscurrentpassgood">Por favor ingresa tu contraseña actual.</p>
+        <p class="alert-div-p1 animate__animated animate__fadeIn" *ngIf="iscurrentpassgood">Estas a punto de cambiar tu contraseña, crea una nueva diferente a la actual y dificil de adivinar.</p>
+        <p class="alert-div-p2 animate__animated animate__fadeIn" *ngIf="iscurrentpassbad" >La contraseña que ingresaste no es la correcta.</p>
+        
+      </div>
+
+      <form [formGroup]="currentPassForm"  (ngSubmit)="checkPass()" *ngIf="!iscurrentpassgood">
+
+        <app-show-hide-password class="inputs">
+          <ion-input class="inputs-2" type="password" placeholder="Contraseña actual" formControlName="currentPassword"
+            [class.is-invalid]="currentPassForm.get('currentPassword').touched && currentPassForm.get('currentPassword').invalid">
+          </ion-input>
+        </app-show-hide-password>
+        
+        <ion-button expand="block" id="currentPassForm-form-button" type="submit" [disabled]="!currentPassForm.valid">Comprobar contraseña</ion-button>
+      </form>
+
+      
+      
+      <form [formGroup]="changePassForm"  (ngSubmit)="changePass()" *ngIf="iscurrentpassgood" class="animate__animated animate__fadeIn">
+        <p class="password-reminder">La contraseña debe contener al menos 8 caracteres</p>
+        <p class="password-reminder-2">y máximo 16.</p>
+
+        <app-show-hide-password class="inputs">
+          <ion-input type="password" name="password" placeholder="Nueva contraseña" formControlName="password"
+            [class.is-invalid]="changePassForm.get('password').touched && changePassForm.get('password').invalid">
+          </ion-input>
+        </app-show-hide-password>
+
+        <span class="error-message" *ngIf="changePassForm.get('password').touched && changePassForm.get('password').errors?.required">
+          Este campo es requerido</span>
+        <span class="error-message" *ngIf="changePassForm.get('password').touched && changePassForm.get('password').invalid && !changePassForm.get('password').errors?.required">
+          La contraseña ingresada no es válida</span>
+        <span class="success-message" *ngIf="changePassForm.get('password').touched && !changePassForm.get('password').errors?.required && !changePassForm.get('password').invalid">
+          La contraseña es válida</span>
+
+
+        <ion-input type="password" placeholder="Volver a ingresar contraseña" class=" inputs"formControlName="confimPassword" appConfirmEqualValidator="password"></ion-input>
+        
+        <span class="error-message" *ngIf="changePassForm.get('confimPassword').touched && changePassForm.get('confimPassword').errors?.required">
+          Este campo es requerido</span>
+        <span class="error-message" *ngIf="changePassForm.get('confimPassword').touched && changePassForm.get('confimPassword').errors?.notEqual">
+          Las contraseñas no coinciden</span>
+        <span class="success-message" *ngIf="changePassForm.get('confimPassword').touched && !changePassForm.get('confimPassword').errors?.notEqual && !changePassForm.get('confimPassword').errors?.required">
+          Las contraseñas coinciden</span>
+
+          <ion-button expand="block" id="form-button" type="submit" [disabled]="!changePassForm.valid">Cambiar contraseña</ion-button>
+      </form>
+
+    </section>
+  </main>
+</ion-content>

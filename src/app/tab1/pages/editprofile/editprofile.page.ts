@@ -5,7 +5,6 @@ import { AlertController } from '@ionic/angular';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { Router } from '@angular/router';
-import { waitForAsync } from '@angular/core/testing';
 import { __awaiter } from 'tslib';
 
 

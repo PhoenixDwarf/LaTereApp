@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { User, CompleteUser, CompleteUserWithSecurityq } from '../tab1/pages/interfaces/user.interface';
+import { User, CompleteUser, CompleteUserWithSecurityq, UpdateSecurity, ChangePass } from '../tab1/pages/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +36,16 @@ export class DatabaseService {
   findUser(id:number):Observable<CompleteUserWithSecurityq>{
     const url = `${this.apiUrl}/${this.apiKey}/searchID${id}`;
     return this.http.get<CompleteUserWithSecurityq>(url);
+  }
+
+  updateSecurityQuestion(objeto:UpdateSecurity, id:number):Observable<UpdateSecurity>{
+    const url = `${this.apiUrl}/${this.apiKey}/updateSecurityQuestion${id}`;
+    return this.http.put<UpdateSecurity>(url, objeto);
+  }
+
+  changePass(objeto:ChangePass, id:number):Observable<ChangePass>{
+    const url = `${this.apiUrl}/${this.apiKey}/changePass${id}`;
+    return this.http.put<ChangePass>(url, objeto);
   }
 
 }
