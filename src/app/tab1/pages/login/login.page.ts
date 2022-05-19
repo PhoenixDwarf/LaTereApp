@@ -115,7 +115,7 @@ export class LoginPage implements OnInit {
   async presentAlertErrorNoInternet() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Iniciar sesión',
+      header: 'Sin conexión',
       subHeader: '',
       message: 'No cuentas con conexión a internet en este momento. Por favor intenta mas tarde.',
       buttons: ['OK']
@@ -167,7 +167,7 @@ export class LoginPage implements OnInit {
             localStorage.setItem('LoggedUser', JSON.stringify(res));
             this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
             this.listValidatorDef();
-            this.UserInteractionService.presentToast("Se ha iniciado sesión correctamente")
+            this.UserInteractionService.presentToast("Se ha iniciado sesión correctamente");
             this.UserInteractionService.loginUpdated$.emit(true);
             this.Router.navigateByUrl('/');
           }

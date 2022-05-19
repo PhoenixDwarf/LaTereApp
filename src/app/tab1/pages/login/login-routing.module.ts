@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginPage } from './login.page';
-import { EditprofilePage } from '../editprofile/editprofile.page';
 
 const routes: Routes = [
   {
@@ -20,6 +19,10 @@ const routes: Routes = [
   {
     path: 'changepass',
     loadChildren: () => import ('../changepass/changepass.module').then(m => m.ChangepassPageModule)
+  },
+  {
+    path: 'forgotpass',
+    loadChildren: () => import ('../forgotpass/forgotpass.module').then(m => m.ForgotpassPageModule)
   }
 ];
 

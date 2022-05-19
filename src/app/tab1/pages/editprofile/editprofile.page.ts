@@ -54,7 +54,7 @@ export class EditprofilePage implements OnInit {
   async presentAlertErrorNoInternet() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Registrar Cuenta',
+      header: 'Sin conexión',
       subHeader: 'Cuenta existente',
       message: 'No cuentas con conexión a internet en este momento. Por favor intenta mas tarde.',
       buttons: ['OK']

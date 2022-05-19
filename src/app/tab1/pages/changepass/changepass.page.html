@@ -23,9 +23,8 @@
 
       <form [formGroup]="currentPassForm"  (ngSubmit)="checkPass()" *ngIf="!iscurrentpassgood">
 
-        <app-show-hide-password class="inputs">
-          <ion-input class="inputs-2" type="password" placeholder="Contraseña actual" formControlName="currentPassword"
-            [class.is-invalid]="currentPassForm.get('currentPassword').touched && currentPassForm.get('currentPassword').invalid">
+        <app-show-hide-password class="inputs" [class.is-invalid]="currentPassForm.get('currentPassword').touched && currentPassForm.get('currentPassword').invalid">
+          <ion-input class="inputs-2" type="password" placeholder="Contraseña actual" formControlName="currentPassword">
           </ion-input>
         </app-show-hide-password>
         
@@ -38,9 +37,8 @@
         <p class="password-reminder">La contraseña debe contener al menos 8 caracteres</p>
         <p class="password-reminder-2">y máximo 16.</p>
 
-        <app-show-hide-password class="inputs">
-          <ion-input type="password" name="password" placeholder="Nueva contraseña" formControlName="password"
-            [class.is-invalid]="changePassForm.get('password').touched && changePassForm.get('password').invalid">
+        <app-show-hide-password class="inputs" [class.is-invalid]="changePassForm.get('password').touched && changePassForm.get('password').invalid">
+          <ion-input type="password" name="password" placeholder="Nueva contraseña" formControlName="password">
           </ion-input>
         </app-show-hide-password>
 

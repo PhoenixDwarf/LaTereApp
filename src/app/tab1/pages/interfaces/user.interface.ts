@@ -43,3 +43,9 @@ export interface UpdateSecurity{
 export interface ChangePass{
     password:string;
 }
+
+export interface GetSecurity{
+    securityqnumber:number;
+    securityq:string;
+    id:number;
+}

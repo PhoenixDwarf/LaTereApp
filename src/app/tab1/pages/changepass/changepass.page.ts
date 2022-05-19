@@ -39,7 +39,7 @@ export class ChangepassPage implements OnInit {
   async presentAlertErrorNoInternet() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Registrar Cuenta',
+      header: 'Sin conexión',
       subHeader: 'Cuenta existente',
       message: 'No cuentas con conexión a internet en este momento. Por favor intenta mas tarde.',
       buttons: ['OK']
@@ -89,6 +89,7 @@ export class ChangepassPage implements OnInit {
     else {
       this.iscurrentpassgood = false;
       this.iscurrentpassbad = true;
+      this.UserInteractionService.presentToast("La contraseña que ingresaste no es la correcta");
     }
   }
 }

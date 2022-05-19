@@ -16,7 +16,7 @@ export class ListComponent {
     },
 
     {
-      name: 'Ubícanos - (Próximamente)',
+      name: 'Ubícanos',
       icon: '././././assets/icon/ubicanosVector.svg',
       url: 'ubicanos'
     },

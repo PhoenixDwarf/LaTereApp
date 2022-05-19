@@ -13,7 +13,7 @@ import { UbicanosPage } from './ubicanos.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    UbicanosPageRoutingModule
+    UbicanosPageRoutingModule,
   ],
   declarations: [UbicanosPage]
 })

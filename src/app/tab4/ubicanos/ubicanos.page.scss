@@ -31,6 +31,16 @@ p{
 .flex{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    text-align: center;
+    height: 100%;
+}
+.map-container{
+    width: 90%;
+    height: 100%;
+    border-radius: 10px;
+}
+.noScroll {
+    overflow: hidden;
 }

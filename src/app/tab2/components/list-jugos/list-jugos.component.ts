@@ -69,7 +69,7 @@ export class ListJugosComponent {
     {
       name: 'Frutos del Bosque',
       url: '',
-      ingredientes:['- Fresa','- Arandanos','- Mora','- Frambuesa','- Yogurth Natural']
+      ingredientes:['- Fresa','- Arandanos','- Mora','- Frambuesa','- Yogurt Natural']
     },
 
     {

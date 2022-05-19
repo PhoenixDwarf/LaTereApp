@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'changepass',
     loadChildren: () => import('./pages/changepass/changepass.module').then( m => m.ChangepassPageModule)
+  },
+  {
+    path: 'forgotpass',
+    loadChildren: () => import('./pages/forgotpass/forgotpass.module').then( m => m.ForgotpassPageModule)
   }
 ];
 

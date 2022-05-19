@@ -39,7 +39,7 @@ export class EditrestoreinfoPage implements OnInit {
   async presentAlertErrorNoInternet() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Iniciar sesión',
+      header: 'Sin conexión',
       subHeader: '',
       message: 'No cuentas con conexión a internet en este momento. Por favor intenta mas tarde.',
       buttons: ['OK']

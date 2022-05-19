@@ -65,7 +65,7 @@
 
             <ion-input placeholder="Respuesta..." class="inputs" formControlName="data"></ion-input>
             <span class="error-message" *ngIf="editinfoForm.get('data').touched && editinfoForm.get('data').errors?.required">Este campo es requerido</span>
-            <span class="error-message" *ngIf="editinfoForm.get('data').touched && editinfoForm.get('data').invalid && !editinfoForm.get('data').errors?.required" >La respuesta ingresado es demasiado largo</span>
+            <span class="error-message" *ngIf="editinfoForm.get('data').touched && editinfoForm.get('data').invalid && !editinfoForm.get('data').errors?.required" >La respuesta ingresada es demasiado largo</span>
 
             <ion-button expand="block" id="login-button" type="submit" [disabled]="!editinfoForm.valid">
               actualizar respuesta de seguridad

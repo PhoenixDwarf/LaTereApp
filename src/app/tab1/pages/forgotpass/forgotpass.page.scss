@@ -1,0 +1,172 @@
+ion-title{
+    text-align: center;
+    margin-right: 45px;
+}
+.logo{
+    font-size:60px;
+    text-align: center;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.title{
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    text-align: center;
+}
+p{
+    font-family: SourceSerif4 !important; 
+    width: 100%;
+}
+ion-icon{
+    color: #C5A961;
+}
+#main-img{
+    width: 55vw;
+    margin-top: 5vh;
+}
+.inputs{
+    background-color: #ffffff;
+    width: 90vw;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #b1afaf;
+    font-family: SourceSerif4 !important; 
+}
+.inputs-2{
+    font-family: SourceSerif4 !important; 
+}
+a{
+    color: #C5A961;
+    text-decoration: none;
+}
+#password-reminder{
+    text-align: end;
+    font-size: small;
+    margin-top: 5px;
+}
+#register-reminder{
+    font-size: small;
+    color: #8b8b8b;
+    text-align: center;
+}
+ion-button{
+    --background: #C5A961;
+    margin-top: 50px;
+}
+hr{
+    width: 100vw;
+}
+main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.error-message{
+    text-align: start;
+    font-size: small;
+    margin-top: 5px;
+    margin-left: 5px;
+    color: #a82727;
+}
+.success-message{
+    text-align: start;
+    font-size: small;
+    margin-top: 5px;
+    margin-left: 5px;
+    color: #49c431;
+}
+.is-invalid{
+    border: 0.5px solid #a82727;
+}
+.option-button{
+    --background: #e6c87d;
+    margin-top: 3px;
+    width: 100%;
+}
+.non-selected-button{
+    --background: #cfc7b0;
+    margin-top: 3px;
+    width: 100%;
+}
+.loginoptions{
+    
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.ion-text-wrap{
+    text-align: left !important;
+    font-size: smaller;
+    font-family: SourceSerif4 !important;
+}
+ion-img{
+    width: 30vw;
+}
+ion-item{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.ion-text-center{
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    margin-bottom: 30px;
+}
+ion-toolbar{
+    --ion-background-color: #FBFBFB;
+}
+.password-reminder{
+    text-align: center;
+    font-size: small;
+}
+.password-reminder-3{
+    text-align: center;
+}
+.password-reminder-2{
+    text-align: center;
+    font-size: small;
+    margin-top: -5px;
+}
+
+
+.password-reminder-pass{
+    text-align: end;
+    font-size: small;
+    margin-top: 20px;
+}
+.password-reminder-2-pass{
+    text-align: end;
+    font-size: small;
+    margin-top: 5px;
+    margin-top: -20px;
+    margin-bottom: -5px;
+}
+.bold{
+    color: #a82727;
+}
+.red-div-p1{
+    background-color: #e9a096;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.alert-div-p1{
+    background-color: #dee78a;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

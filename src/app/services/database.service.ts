@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { User, CompleteUser, CompleteUserWithSecurityq, UpdateSecurity, ChangePass } from '../tab1/pages/interfaces/user.interface';
+import { User, CompleteUser, CompleteUserWithSecurityq, UpdateSecurity, ChangePass, GetSecurity } from '../tab1/pages/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +46,16 @@ export class DatabaseService {
   changePass(objeto:ChangePass, id:number):Observable<ChangePass>{
     const url = `${this.apiUrl}/${this.apiKey}/changePass${id}`;
     return this.http.put<ChangePass>(url, objeto);
+  }
+
+  getSecurityQuestionByEmail(correo:string){
+    const url = `${this.apiUrl}/${this.apiKey}/getSecurityQuestionByEmail/${correo}`;
+    return this.http.get<GetSecurity>(url);
+  }
+
+  getSecurityQuestionByPhone(phone:string){
+    const url = `${this.apiUrl}/${this.apiKey}/getSecurityQuestionByPhone/${phone}`;
+    return this.http.get<GetSecurity>(url);
   }
 
 }

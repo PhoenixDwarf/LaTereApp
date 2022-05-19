@@ -6,8 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { RegisterPageRoutingModule } from './register-routing.module';
 import { RegisterPage } from './register.page';
-import { ConfirmEqualValidatorDirective } from '../confirm-equal-validator.directive';
 import { ComponentsModule } from '../../components/components.module';
+import { PagesModule } from '../pages.module';
 
 
 @NgModule({
@@ -17,8 +17,9 @@ import { ComponentsModule } from '../../components/components.module';
     IonicModule,
     RegisterPageRoutingModule,
     ReactiveFormsModule,
-    ComponentsModule
+    ComponentsModule,
+    PagesModule
   ],
-  declarations: [RegisterPage,ConfirmEqualValidatorDirective]
+  declarations: [RegisterPage]
 })
 export class RegisterPageModule {}

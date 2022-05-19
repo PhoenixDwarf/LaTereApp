@@ -1,0 +1,165 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1/login" routerLink="/login" (click)="resetPage()"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="padding">
+  <main>
+
+    <section class="flex">
+
+      <br>
+      <h2 class="title">Recuperar acceso</h2>
+
+      <div class="ion-padding flex" *ngIf="showFirstP">
+        <p class="password-reminder">Para poder recuperar el acceso a tu cuenta, esta debe tener una <span
+            class="bold">pregunta de seguridad</span> configurada.</p>
+        <p class="password-reminder-2">Ingresa la información solicitada abajo y contesta la pregunta de seguridad para
+          poder cambiar tu contraseña.</p>
+      </div>
+      <div class="ion-padding flex animate__animated animate__fadeIn" *ngIf="showQuestionSection">
+        <p class="password-reminder-2">Por favor responda a la siguiente pregunta de seguridad:</p>
+        <p class="password-reminder-3">{{temporalSecurityQ}}</p>
+      </div>
+
+      <div class="ion-padding flex animate__animated animate__fadeIn" *ngIf="showEmailAlert">
+        <p class="red-div-p1 animate__animated animate__fadeIn">La cuenta asociada al correo electrónico ingresado no
+          cuenta con una pregunta de seguridad configurada.</p>
+      </div>
+
+      <div class="ion-padding flex" *ngIf="showPhoneAlert">
+        <p class="red-div-p1 animate__animated animate__fadeIn">La cuenta asociada al número telefónico ingresado no
+          cuenta con una pregunta de seguridad configurada.</p>
+      </div>
+
+      <div class="ion-padding flex" *ngIf="showChangePass">
+        <p class="alert-div-p1 animate__animated animate__fadeIn">Estas a punto de cambiar tu contraseña, crea una nueva
+          que sea segura y dificil de adivinar.</p>
+      </div>
+
+
+
+      <div class="loginoptions" *ngIf="showOptions">
+        <ion-button class="option-button" (click)="emailselected()" [class.non-selected-button]="!isemailselected">
+          Usar correo
+        </ion-button>
+        <ion-button class="option-button" (click)="phoneselected()" [class.non-selected-button]="!isphoneselected">
+          Usar telefono
+        </ion-button>
+      </div>
+
+
+
+      <!-- FORMS -->
+
+
+      <form *ngIf="isemailselected && !showQuestionSection" [formGroup]="loginFormEmail"
+        (ngSubmit)="getSecurityByEmail()" class="animate__animated animate__fadeIn">
+
+        <ion-input class=" inputs" clearInput type="text" placeholder="Correo electrónico" formControlName="email"
+          [class.is-invalid]="loginFormEmail.get('email').touched && loginFormEmail.get('email').invalid">
+        </ion-input>
+        <span class="error-message"
+          *ngIf="loginFormEmail.get('email').touched && loginFormEmail.get('email').errors?.required">
+          Este campo es requerido
+        </span>
+        <span class="error-message"
+          *ngIf="loginFormEmail.get('email').touched && !loginFormEmail.get('email').errors?.required && loginFormEmail.get('email').invalid">
+          El correo ingresado no es válido
+        </span>
+
+        <ion-button expand="block" type="submit" [disabled]="!loginFormEmail.valid">Consultar
+          pregunta de seguridad
+        </ion-button>
+
+      </form>
+
+      <form *ngIf="isphoneselected && !showQuestionSection" [formGroup]="loginFormPhone"
+        (ngSubmit)="getSecurityByPhone()" class="animate__animated animate__fadeIn">
+
+        <ion-input class=" inputs" clearInput type="text" placeholder="Número telefónico" formControlName="phone"
+          [class.is-invalid]="loginFormPhone.get('phone').touched && loginFormPhone.get('phone').invalid">
+        </ion-input>
+        <span class="error-message"
+          *ngIf="loginFormPhone.get('phone').touched && loginFormPhone.get('phone').errors?.required">
+          Este campo es requerido
+        </span>
+        <span class="error-message"
+          *ngIf="loginFormPhone.get('phone').touched && !loginFormPhone.get('phone').errors?.required && loginFormPhone.get('phone').invalid">
+          El número ingresado no es válido
+        </span>
+
+        <ion-button expand="block" type="submit" [disabled]="!loginFormPhone.valid">Consultar
+          pregunta de seguridad
+        </ion-button>
+
+      </form>
+
+      <form [formGroup]="answerForm" (ngSubmit)="checkAnswer()" *ngIf="showQuestionSection"
+        class="animate__animated animate__fadeIn">
+
+        <ion-input placeholder="Respuesta..." class="inputs" formControlName="insertedAnswer" clearInput
+        [class.is-invalid]="answerForm.get('insertedAnswer').touched && answerForm.get('insertedAnswer').invalid"></ion-input>
+        <span class="error-message"
+          *ngIf="answerForm.get('insertedAnswer').touched && answerForm.get('insertedAnswer').errors?.required">Este
+          campo es requerido</span>
+        <span class="error-message"
+          *ngIf="answerForm.get('insertedAnswer').touched && answerForm.get('insertedAnswer').invalid && !answerForm.get('insertedAnswer').errors?.required">La
+          respuesta ingresada es demasiado largo</span>
+
+        <ion-button expand="block" type="submit" [disabled]="!answerForm.valid">
+          Validar respuesta
+        </ion-button>
+      </form>
+
+      <!--CHANGE PASS FORM-->
+
+      <form [formGroup]="changePassForm" (ngSubmit)="changePass()" *ngIf="showChangePass"
+        class="animate__animated animate__fadeIn">
+        <p class="password-reminder-pass">La contraseña debe contener al menos 8 caracteres</p>
+        <p class="password-reminder-2-pass">y máximo 16.</p>
+
+        <app-show-hide-password class="inputs" [class.is-invalid]="changePassForm.get('password').touched && changePassForm.get('password').invalid">
+          <ion-input type="password" name="password" placeholder="Nueva contraseña" formControlName="password">
+          </ion-input>
+        </app-show-hide-password>
+
+        <span class="error-message"
+          *ngIf="changePassForm.get('password').touched && changePassForm.get('password').errors?.required">
+          Este campo es requerido</span>
+        <span class="error-message"
+          *ngIf="changePassForm.get('password').touched && changePassForm.get('password').invalid && !changePassForm.get('password').errors?.required">
+          La contraseña ingresada no es válida</span>
+        <span class="success-message"
+          *ngIf="changePassForm.get('password').touched && !changePassForm.get('password').errors?.required && !changePassForm.get('password').invalid">
+          La contraseña es válida</span>
+
+
+        <ion-input type="password" placeholder="Volver a ingresar contraseña" class=" inputs"
+          formControlName="confimPassword" appConfirmEqualValidator="password"
+          [class.is-invalid]="changePassForm.get('confimPassword').touched && changePassForm.get('confimPassword').invalid"></ion-input>
+
+        <span class="error-message"
+          *ngIf="changePassForm.get('confimPassword').touched && changePassForm.get('confimPassword').errors?.required">
+          Este campo es requerido</span>
+        <span class="error-message"
+          *ngIf="changePassForm.get('confimPassword').touched && changePassForm.get('confimPassword').errors?.notEqual">
+          Las contraseñas no coinciden</span>
+        <span class="success-message"
+          *ngIf="changePassForm.get('confimPassword').touched && !changePassForm.get('confimPassword').errors?.notEqual && !changePassForm.get('confimPassword').errors?.required">
+          Las contraseñas coinciden</span>
+
+        <ion-button expand="block" type="submit" [disabled]="!changePassForm.valid">Cambiar contraseña
+        </ion-button>
+      </form>
+
+
+    </section>
+  </main>
+</ion-content>
