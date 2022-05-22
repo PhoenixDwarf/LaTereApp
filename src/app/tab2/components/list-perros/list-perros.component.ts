@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { UserInteractionService } from 'src/app/services/user-interaction.service';
+import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
 
 @Component({
@@ -8,31 +11,72 @@ import { list } from '../../interfaces/tab2.interface';
 })
 export class ListPerrosComponent {
 
+  constructor(
+    private UserInteractionService: UserInteractionService,
+    public alertController: AlertController,
+  ) 
+  {
+  }
 
   list:list[] = [
     {
       name: 'Queso hierbas',
-      url: '',
-      ingredientes:['- Cerdo','- Tomates Parrillados','- Queso Mozzarella','- Albahaca']
+      ingredientes:['- Cerdo','- Tomates Parrillados','- Queso Mozzarella','- Albahaca'],
+      price: 11000,
     },
 
     {
       name: 'Pollo Miel',
-      url: '',
-      ingredientes:['- Pollo','- Guacamole','- Alioli Picante'] 
+      ingredientes:['- Pollo','- Guacamole','- Alioli Picante'],
+      price: 10500,
     },
 
     {
       name: 'Chilli Cheese Dog',
-      url: '',
-      ingredientes:['- Res','- Cerdo','- Chili de Carne','- Queso Cheddar','- Suero','- Jalapeños'] 
+      ingredientes:['- Res','- Cerdo','- Chili de Carne','- Queso Cheddar','- Suero','- Jalapeños'],
+      price: 14000,
     },
 
     {
       name: 'Bratwurtst',
-      url: '',
-      ingredientes:['- Cerdo','- Chucrut','- Mostaza','- Salsa Mil Teres'] 
+      ingredientes:['- Cerdo','- Chucrut','- Mostaza','- Salsa Mil Teres'],
+      price: 12000,
     }
     
   ];
+
+  async perros( id:number) {
+    let order: Order;
+    const name: string = this.list[id].name;
+    const price: number = this.list[id].price;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class AlitasAlert',
+      header: `¿Agregar ${name} al pedido?`,
+      message: ``,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          id: 'confirm-button',
+          handler: () => {
+              order = {
+                name: name,
+                price: price,
+              };
+              console.log(order);
+              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+          }
+        }
+      ],
+    });
+
+    await alert.present();
+  }
 }

@@ -1,4 +1,7 @@
 import { Component} from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { UserInteractionService } from 'src/app/services/user-interaction.service';
+import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
 
 @Component({
@@ -8,59 +11,61 @@ import { list } from '../../interfaces/tab2.interface';
 })
 export class ListJugosComponent {
 
+  constructor(
+    private UserInteractionService: UserInteractionService,
+    public alertController: AlertController,
+  ) 
+  {
+
+  }
+
   list:list[] = [
     {
       name: 'Piña con hierbabuena',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 6000
     },
 
     {
       name: 'Feijoa , Flor de Jamaica, Jengibre',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 6000
     },
 
     {
       name: 'Fresa con Naranja',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 6000
     },
 
     {
       name: 'Fresa con Maracuya',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 6000
     },
 
     {
       name: 'Limonada Natural',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 4500
     },
 
     {
       name: 'Limonada Cerezada',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 6000
     },
 
     {
       name: 'Limonada de Fresa',
-      url: '',
-      ingredientes:['']
-    },
-
-    {
-      name: 'Jarra de Limonada',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 6000
     },
 
     {
       name: 'Malteadas',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 8000
     }
   ];
 
@@ -68,40 +73,40 @@ export class ListJugosComponent {
   list2:list[] = [
     {
       name: 'Frutos del Bosque',
-      url: '',
-      ingredientes:['- Fresa','- Arandanos','- Mora','- Frambuesa','- Yogurt Natural']
+      ingredientes:['- Fresa','- Arandanos','- Mora','- Frambuesa','- Yogurt Natural'],
+      price: 8000
     },
 
     {
       name: 'Mango, Banano y Yogurt',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 8000
     },
 
     {
       name: 'Mango y Banano',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 8000
     }
   ];
 
   list3:list[]=[
     {
       name: 'Maracuya',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 5500
     },
 
     {
       name: 'Fresa',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 5500
     },
 
     {
       name: 'Guanabana',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 5500
     },
   ];
 
@@ -109,27 +114,154 @@ export class ListJugosComponent {
   list4:list[]=[
     {
       name: 'Maracuya',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 4000
     },
 
     {
       name: 'Fresa',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 4000
     },
 
     {
       name: 'Mango',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 4000
     },
 
     {
       name: 'Guanabana',
-      url: '',
-      ingredientes:['']
+      ingredientes:['- Personal'],
+      price: 4000
     }
     
   ];
+
+
+  // Alert inputs //
+
+  async onzas( id:number) {
+    let order: Order;
+    const name: string = this.list[id].name;
+    const price: number = this.list[id].price;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class AlitasAlert',
+      header: `¿Agregar ${name} al pedido?`,
+      message: ``,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          id: 'confirm-button',
+          handler: () => {
+              order = {
+                name: name,
+                price: price,
+              };
+              console.log(order);
+              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+          }
+        }
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async leche( id:number) {
+    let order: Order;
+    const name: string = this.list3[id].name;
+    const price: number = this.list3[id].price;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class AlitasAlert',
+      header: `¿Agregar ${name} al pedido?`,
+      message: ``,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          id: 'confirm-button',
+          handler: () => {
+              order = {
+                name: name,
+                price: price,
+              };
+              console.log(order);
+              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+          }
+        }
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async agua( id:number) {
+    let order: Order;
+    const name: string = this.list4[id].name;
+    const price: number = this.list4[id].price;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class AlitasAlert',
+      header: `¿Agregar ${name} al pedido?`,
+      message: ``,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          id: 'confirm-button',
+          handler: () => {
+              order = {
+                name: name,
+                price: price,
+              };
+              console.log(order);
+              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+          }
+        }
+      ],
+    });
+
+    await alert.present();
+  }
+
+  showAlert( id:number ){
+    const name = this.list2[id].name;
+    this.presentAlertError(name);
+  }
+
+  async presentAlertError(name: string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: `Disfrútalo presencialmente`,
+      subHeader: '¡Ups!',
+      message: `Por motivos de calidad, nuestro Smoothie <strong> ${name} </strong> está disponible únicamente en nuestro local.`,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
 }
+
+

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { UserInteractionService } from 'src/app/services/user-interaction.service';
+import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
 
 @Component({
@@ -8,29 +11,37 @@ import { list } from '../../interfaces/tab2.interface';
 })
 export class ListMordiscosComponent{
 
+  constructor(
+    private UserInteractionService: UserInteractionService,
+    public alertController: AlertController,
+  ) 
+  {
+
+  }
+
   list:list[] = [
     {
       name: 'Patacón en Salsa de Guacamole',
-      url: '',
-      ingredientes:['- 2 Patacones','- Guacamole','- Chips de Papas','- Queso Americano','- Alioli']
+      ingredientes:['- 2 Patacones','- Guacamole','- Chips de Papas','- Queso Americano','- Alioli'],
+      price: 9000
     },
 
     {
       name: 'Tabla de Papa Criolla y Chorizos',
-      url: '',
-      ingredientes:['- Papa Criolla en Alioli de Tomates Secos','- Chorizo','- Longaniza'] 
+      ingredientes:['- Papa Criolla en Alioli de Tomates Secos','- Chorizo','- Longaniza'],
+      price: 11000
     },
 
     {
       name: 'Mini Empanadas',
-      url: '',
-      ingredientes:['- 3 Mini Empanadas Acompañas de Alioli'] 
+      ingredientes:['- 3 Mini Empanadas Acompañas de Alioli'],
+      price: 9000
     },
 
     {
       name: 'Papas Chicharrón',
-      url: '',
-      ingredientes:['- Papas en Casco','- Salsa de Queso','- Bites de Chicharrón'] 
+      ingredientes:['- Papas en Casco','- Salsa de Queso','- Bites de Chicharrón'],
+      price: 10000
     },
     
   ];
@@ -39,28 +50,98 @@ export class ListMordiscosComponent{
   list2:list[] = [
     {
       name: 'La Niña de Tere',
-      url: '',
-      ingredientes:['- Carne de Res Desmechada','- Piña en Trozos']
+      ingredientes:['- Carne de Res Desmechada','- Piña en Trozos'],
+      price: 17000
     },
 
     {
       name: 'La Sobrina',
-      url: '',
-      ingredientes:['- Pollo Desmechado'] 
+      ingredientes:['- Pollo Desmechado'],
+      price: 16000
     },
 
     {
       name: 'La Nana de Tere',
-      url: '',
-      ingredientes:['- Carne de Res Desmechada'] 
+      ingredientes:['- Carne de Res Desmechada'],
+      price: 16500
     },
 
     {
       name: 'La Señora Tere',
-      url: '',
-      ingredientes:['- Carne de Res Desmechada','- Pollo Desmechado'] 
+      ingredientes:['- Carne de Res Desmechada','- Pollo Desmechado'],
+      price: 17000
     },
     
   ];
+
+  async mordiscos( id:number) {
+    let order: Order;
+    const name: string = this.list[id].name;
+    const price: number = this.list[id].price;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class AlitasAlert',
+      header: `¿Agregar ${name} al pedido?`,
+      message: ``,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          id: 'confirm-button',
+          handler: () => {
+              order = {
+                name: name,
+                price: price,
+              };
+              console.log(order);
+              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+          }
+        }
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async mazorcadas( id:number) {  
+    let order: Order;
+    const name: string = this.list2[id].name;
+    const price: number = this.list2[id].price;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class AlitasAlert',
+      header: `¿Agregar ${name} al pedido?`,
+      message: ``,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          id: 'confirm-button',
+          handler: () => {
+              order = {
+                name: name,
+                price: price,
+              };
+              console.log(order);
+              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+          }
+        }
+      ],
+    });
+
+    await alert.present();
+  }
 
 }

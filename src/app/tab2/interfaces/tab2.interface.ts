@@ -7,6 +7,7 @@ export interface MenuOptions{
 
   export interface list{
     name:string;
-    url:string;
-    ingredientes:string[]
+    ingredientes:string[];
+    price:number;
+    price2?:number;
   }

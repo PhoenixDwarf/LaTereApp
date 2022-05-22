@@ -4,19 +4,13 @@
 
 <h5 class="ion-text-center">Cervezas</h5><br>
 
-<ion-item routerLink="{{ item.url }}" *ngFor="let item of list; let i=index" id="{{'i'+i}}">
-  <ion-label class="ion-text-wrap ion-padding" id="title">
-    {{ item.name }}
-  </ion-label>
-  <ion-label class="ion-text-wrap">
-    <p *ngFor="let item2 of item.ingredientes">{{item2}}</p> 
-  </ion-label>
-</ion-item>
-
-<ion-item *ngFor="let item of list4; let i=index" id="{{'i'+i}}">
-  <ion-label class="ion-text-wrap ion-padding" id="title">
-    {{ item.name }} <span class="local">(Disfrútala en local)</span>
-  </ion-label>
+<ion-item (click)="cervezas(i)" *ngFor="let item of list; let i=index" id="{{'i'+i}}">
+  <div class="left-container">
+    <ion-label class="ion-text-wrap ion-padding" id="title">
+      {{ item.name }}
+    </ion-label>
+    <p class="price">${{ item.price | number }}</p>
+  </div>
   <ion-label class="ion-text-wrap">
     <p *ngFor="let item2 of item.ingredientes">{{item2}}</p> 
   </ion-label>
@@ -25,10 +19,13 @@
 
 <h5 class="ion-text-center">Gaseosas</h5><br>
 
-<ion-item routerLink="{{ itemb.url }}" *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
-  <ion-label class="ion-text-wrap ion-padding" id="title">
-    {{ itemb.name }}
-  </ion-label>
+<ion-item (click)="gaseosas(i)" *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}">
+  <div class="left-container">
+    <ion-label class="ion-text-wrap ion-padding" id="title">
+      {{ itemb.name }}
+    </ion-label>
+    <p class="price">${{ itemb.price | number }}</p>
+  </div>
   <ion-label class="ion-text-wrap">
     <p *ngFor="let item2 of itemb.ingredientes">{{item2}}</p> 
   </ion-label>
@@ -37,10 +34,13 @@
 
 <h5 class="ion-text-center">Otros</h5><br>
 
-<ion-item routerLink="{{ itemc.url }}" *ngFor="let itemc of list3; let i=index" id="{{'i'+i}}">
-  <ion-label class="ion-text-wrap ion-padding" id="title">
-    {{ itemc.name }}
-  </ion-label>
+<ion-item (click)="otros(i)" *ngFor="let itemc of list3; let i=index" id="{{'i'+i}}">
+  <div class="left-container">
+    <ion-label class="ion-text-wrap ion-padding" id="title">
+      {{ itemc.name }}
+    </ion-label>
+    <p class="price">${{ itemc.price | number }}</p>
+  </div>
   <ion-label class="ion-text-wrap">
     <p *ngFor="let item2 of itemc.ingredientes">{{item2}}</p> 
   </ion-label>

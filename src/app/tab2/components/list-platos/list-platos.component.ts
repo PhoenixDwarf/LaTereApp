@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { UserInteractionService } from 'src/app/services/user-interaction.service';
+import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
 
 @Component({
@@ -8,67 +11,110 @@ import { list } from '../../interfaces/tab2.interface';
 })
 export class ListPlatosComponent {
 
+  constructor(
+    private UserInteractionService: UserInteractionService,
+    public alertController: AlertController,
+  ) 
+  {
+
+  }
+
   list:list[] = [
     {
       name: 'Lomo de Res Tere (300 grs)',
-      url: '',
-      ingredientes:['- Mantequilla de Tocineta','- Hierbas']
+      ingredientes:['- Mantequilla de Tocineta','- Hierbas'],
+      price: 23000
     },
 
     {
       name: 'Chata de res Tere (300 grs)',
-      url: '',
-      ingredientes:['Ahumada y a la parrilla con chimichurri y salsa de la casa'] 
+      ingredientes:['Ahumada y a la parrilla con chimichurri y salsa de la casa'],
+      price: 22500
     },
 
     {
       name: 'Pechuga de Pollo',
-      url: '',
-      ingredientes:['A la parrilla o gratinada'] 
+      ingredientes:['A la parrilla o gratinada'],
+      price: 21500
     },
 
     {
       name: 'Costilla de Cerdo BBQ (400 g)',
-      url: '',
-      ingredientes:['Ahumadas, y a la parrilla con salsa BBQ dulce o picante de la casa'] 
+      ingredientes:['Ahumadas, y a la parrilla con salsa BBQ dulce o picante de la casa'],
+      price: 24000
     },
 
     {
       name: 'Chuleta Valluna (300 g)',
-      url: '',
-      ingredientes:['Lomo de cerdo empanizado con especias de la casa'] 
+      ingredientes:['Lomo de cerdo empanizado con especias de la casa'],
+      price: 23000
     },
 
     {
       name: 'Corte de Temporada (350g)',
-      url: '',
-      ingredientes:['A la parrilla (selección del día)'] 
+      ingredientes:['A la parrilla (selección del día)'],
+      price: 30000
     },
 
     {
       name: 'Mojarra de la Casa (600g)',
-      url: '',
-      ingredientes:['Pesca del vecino empanizada con especias de la casa'] 
+      ingredientes:['Pesca del vecino empanizada con especias de la casa'],
+      price: 24000
     },
 
     {
       name: 'Trucha Tere (400g)',
-      url: '',
-      ingredientes:['Pesca del lago, a la parrilla, al ajillo'] 
+      ingredientes:['Pesca del lago, a la parrilla, al ajillo'],
+      price: 25000
     },
 
     {
       name: 'Parrillada de Doña Tere',
-      url: '',
-      ingredientes:['- Papa criolla','- Pechuga de Pollo','- Ternera Ahumada','- Chorizo','- Longaniza','- Alioli de Aguacate'] 
+      ingredientes:['- Papa criolla','- Pechuga de Pollo','- Ternera Ahumada','- Chorizo','- Longaniza','- Alioli de Aguacate'],
+      price: 25000
     },
 
     {
       name: 'Lomo de Cerdo',
-      url: '',
-      ingredientes:['Mantequilla de tocineta y hierbas'] 
+      ingredientes:['Mantequilla de tocineta y hierbas'],
+      price: 24000
     },
     
   ];
+
+  async platos( id:number) {
+    let order: Order;
+    const name: string = this.list[id].name;
+    const price: number = this.list[id].price;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class AlitasAlert',
+      header: `¿Agregar ${name} al pedido?`,
+      message: ``,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          id: 'confirm-button',
+          handler: () => {
+              order = {
+                name: name,
+                price: price,
+              };
+              console.log(order);
+              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+          }
+        }
+      ],
+    });
+
+    await alert.present();
+  }
 
 }

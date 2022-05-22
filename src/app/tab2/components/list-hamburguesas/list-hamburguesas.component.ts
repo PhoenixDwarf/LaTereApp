@@ -1,4 +1,7 @@
 import { Component} from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { UserInteractionService } from 'src/app/services/user-interaction.service';
+import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
 
 
@@ -9,50 +12,91 @@ import { list } from '../../interfaces/tab2.interface';
 })
 export class ListHamburguesasComponent {
 
+  constructor(
+    private UserInteractionService: UserInteractionService,
+    public alertController: AlertController,
+  ) 
+  {
+
+  }
+
   list:list[] = [
     {
       name: 'Tere Master',
-      url: '',
-      ingredientes:['- Carne de Res 125g','- Carne Desmechada','- Cebolla Encurtida','- Queso Americano','- Lechuga Fresca','- Alioli']
+      ingredientes:['- Carne de Res 125g','- Carne Desmechada','- Cebolla Encurtida','- Queso Americano','- Lechuga Fresca','- Alioli'],
+      price: 15900,
     },
 
     {
       name: 'Cheeseburguer',
-      url: '',
-      ingredientes:['- Carne de Res 125g','- Queso Cheddar','- Pepinillos','- Lechuga Fresca','- Tomate','- Cebolla','- Alioli'] 
+      ingredientes:['- Carne de Res 125g','- Queso Cheddar','- Pepinillos','- Lechuga Fresca','- Tomate','- Cebolla','- Alioli'],
+      price: 13900,
     },
 
     {
       name: 'Bacon Cheeseburguer',
-      url: '',
-      ingredientes:['- Carne de Res 125g','- Tocineta','- Queso Cheddar','- Pepinillos','- Lechuga Fresca','- Tomate','- Cebolla','- Alioli'] 
+      ingredientes:['- Carne de Res 125g','- Tocineta','- Queso Cheddar','- Pepinillos','- Lechuga Fresca','- Tomate','- Cebolla','- Alioli'],
+      price: 14900,
     },
 
     {
       name: 'California Burguer',
-      url: '',
-      ingredientes:['- Carne de Res 125g','- Guacamole Fresco','- Queso Mozzarella','- Tocineta','- Alioli'] 
+      ingredientes:['- Carne de Res 125g','- Guacamole Fresco','- Queso Mozzarella','- Tocineta','- Alioli'],
+      price: 13900,
     },
 
     {
       name: 'BBQ Burguer',
-      url: '',
-      ingredientes:['- Carne de Res 125g','- Salsa BBQ (Dulce o Picante)','- Queso Mozzarella','- Pepinillos','- Cebolla Frita','- Alioli'] 
+      ingredientes:['- Carne de Res 125g','- Salsa BBQ (Dulce o Picante)','- Queso Mozzarella','- Pepinillos','- Cebolla Frita','- Alioli'],
+      price: 15000,
     },
 
     {
       name: 'Classic Burguer',
-      url: '',
-      ingredientes:['- Carne de Res 125g','- Queso Cheddar','- Lechuga Fresca','- Cebolla Encurtida','- Tomate',] 
+      ingredientes:['- Carne de Res 125g','- Queso Cheddar','- Lechuga Fresca','- Cebolla Encurtida','- Tomate',],
+      price: 9900,
     },
 
     {
       name: 'Big Master',
-      url: '',
-      ingredientes:['- Carne de Res 250g','- Cebolla Encurtida','- Queso Americano','- Lechuga Fresca','- Alioli'] 
+      ingredientes:['- Carne de Res 250g','- Cebolla Encurtida','- Queso Americano','- Lechuga Fresca','- Alioli'],
+      price: 18500,
     },
     
   ];
 
+  async hamburguers( id:number) {
+    let order: Order;
+    const name: string = this.list[id].name;
+    const price: number = this.list[id].price;
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class AlitasAlert',
+      header: `¿Agregar ${name} al pedido?`,
+      message: ``,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Agregar',
+          id: 'confirm-button',
+          handler: () => {
+              order = {
+                name: name,
+                price: price,
+              };
+              console.log(order);
+              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+          }
+        }
+      ],
+    });
 
+    await alert.present();
+  }
 }
