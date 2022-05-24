@@ -2,75 +2,79 @@
   <ion-toolbar>
     <ion-menu-button slot="start"></ion-menu-button>
     <ion-title>
-      <ion-icon class="logo" src="././assets/icon/LogoVector.svg"></ion-icon> 
+      <ion-icon class="logo" src="././assets/icon/LogoVector.svg"></ion-icon>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-  <ion-content [fullscreen]="true" class="flex">
-    
-    <h1 class="title">Tu pedido:</h1>
-    <section class="flex">
-      
-      <ion-card>
-        <ion-item>
-          <ion-icon slot="start" name="fast-food-outline"></ion-icon>
-          <ion-label>Hamburguesa - Tere Master</ion-label>
-          <ion-icon slot="end" name="close-circle-outline" class="close-icon"></ion-icon>
-        </ion-item>
-      
-        <ion-card-content>
-          - Carne de Res 125g, - Carne Desmechada, - Cebolla Encurtida, - Queso Americano, - Lechuga Fresca, - Alioli
-        </ion-card-content>
+<ion-content [fullscreen]="true" class="flex">
 
-        <ion-item class="money">
-          <ion-icon slot="start" name="cash-outline"></ion-icon>
-          <ion-label>$25.000</ion-label>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-icon slot="start" name="fast-food-outline"></ion-icon>
-          <ion-label>Hamburguesa - Tere Master</ion-label>
-          <ion-icon slot="end" name="close-circle-outline" class="close-icon"></ion-icon>
-        </ion-item>
-      
-        <ion-card-content>
-          - Carne de Res 125g, - Carne Desmechada, - Cebolla Encurtida, - Queso Americano, - Lechuga Fresca, - Alioli
-        </ion-card-content>
-
-        <ion-item class="money">
-          <ion-icon slot="start" name="cash-outline"></ion-icon>
-          <ion-label>$25.000</ion-label>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-icon slot="start" name="fast-food-outline"></ion-icon>
-          <ion-label>Hamburguesa - Tere Master</ion-label>
-          <ion-icon slot="end" name="close-circle-outline" class="close-icon"></ion-icon>
-        </ion-item>
-      
-        <ion-card-content>
-          - Carne de Res 125g, - Carne Desmechada, - Cebolla Encurtida, - Queso Americano, - Lechuga Fresca, - Alioli
-        </ion-card-content>
-
-        <ion-item class="money">
-          <ion-icon slot="start" name="cash-outline"></ion-icon>
-          <ion-label>$25.000</ion-label>
-        </ion-item>
-      </ion-card>
-
-      <div class="buttons">
-        <ion-button class="confirm-button">Confirmar pedido</ion-button>
-        <ion-button class="cancel-button">Cancelar pedido</ion-button>
+  <section>
+    <main class="flex">
+      <div *ngIf="arrayPedido.length == 0" class="flex animate__animated animate__fadeIn">
+        <img src="../../assets/images/Cart.PNG" alt="exp" id="main-img">
+        <h1 class="title">¡UPS!</h1>
+        <div class="flex text-frame">
+          <p class="main-p">Aun no has agregado ningún producto a tu pedido. Descubre todo lo que tenemos para ti en el
+            <a routerLink="/tabs/tab2">menú.</a></p>
+        </div>
       </div>
-      
 
-    </section>
+      <h1 class="title" *ngIf="arrayPedido.length !== 0">Tu pedido:</h1>
 
-  </ion-content>
+      <div class="listdivs" *ngIf="!isthereOrder">
+        <ion-card *ngFor="let item of arrayPedido; let i = index" id="{{'id'+i}}">
+          <ion-item>
+            <ion-icon slot="start" name="fast-food-outline"></ion-icon>
+            <ion-label>{{item.name}}</ion-label>
+            <ion-icon slot="end" name="close-circle-outline" class="close-icon" (click)="removeItem(i)"></ion-icon>
+          </ion-item>
+          <ion-card-content *ngIf="item.options">
+            {{item.options}}
+          </ion-card-content>
+          <ion-item class="money">
+            <ion-icon slot="start" name="cash-outline"></ion-icon>
+            <ion-label>${{item.price | number}}</ion-label>
+          </ion-item>
+        </ion-card>
+      </div>
 
+
+      <div class="listdivs" *ngIf="isthereOrder">
+        <ion-card *ngFor="let item of arrayPedido; let i = index" id="{{'id'+i}}">
+          <ion-item>
+            <ion-icon slot="start" name="fast-food-outline"></ion-icon>
+            <ion-label>{{item.name}}</ion-label>
+          </ion-item>
+          <ion-card-content *ngIf="item.options">
+            {{item.options}}
+          </ion-card-content>
+          <ion-item class="money">
+            <ion-icon slot="start" name="cash-outline"></ion-icon>
+            <ion-label>${{item.price | number}}</ion-label>
+          </ion-item>
+        </ion-card>
+      </div>
+    </main>
+
+    <footer *ngIf="arrayPedido.length !== 0" class="ion-padding">
+      <ion-card-content class="footer-content">
+        <span>TOTAL:</span>
+        <span>${{totalPrice | number}}</span>
+      </ion-card-content>
+      <p class="lastp" *ngIf="!isthereOrder">Antes de confirmar tu pedido, por favor verifica que tu dirección este
+        actualizada en tu <a routerLink="/login">perfil</a> y que cuentes con sencillo con el que pagarle a nuestro
+        repartidor.</p>
+      <p class="green-div-p1" *ngIf="isthereOrder">Hemos recibido tu pedido, por favor espera mientras hacemos magia en
+        la cocina. Te notificaremos cuando tu pedido se encuentre en camino.</p>
+      <div class="buttons" *ngIf="!isthereOrder">
+        <ion-button class="confirm-button" (click)="submitOrder()">Confirmar pedido</ion-button>
+        <ion-button class="cancel-button" (click)="cancelOrder()">Cancelar pedido</ion-button>
+      </div>
+
+    </footer>
+
+  </section>
+
+</ion-content>

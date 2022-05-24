@@ -16,6 +16,7 @@ export class ChangepassPage implements OnInit {
   loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
   iscurrentpassgood: boolean;
   iscurrentpassbad: boolean = false;
+  networkState: boolean;
 
   constructor(
     public alertController: AlertController,
@@ -25,6 +26,9 @@ export class ChangepassPage implements OnInit {
 
 
   ngOnInit() {
+    this.UserInteractionService.network$.subscribe((res) => {
+      this.networkState = res;
+    });
   }
 
   changePassForm = new FormGroup({
@@ -54,8 +58,7 @@ export class ChangepassPage implements OnInit {
     }
     else {
 
-      let netStatus: boolean = navigator.onLine;
-      if (netStatus == false) {
+      if (this.networkState == false) {
         this.presentAlertErrorNoInternet();
       }
       else {

@@ -16,7 +16,6 @@ ion-toolbar{
 .flex{
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
 .title{
@@ -32,6 +31,7 @@ ion-toolbar{
 }
 ion-card{
     margin-top: 10px;
+    width: 85%;
 }
 ion-item{
     --background: linear-gradient(#FFF499, #ceba89);
@@ -55,4 +55,62 @@ ion-card-content{
 .cancel-button{
     --background:#a02a3a;
     margin-top: 20px;
+}
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.buttons{
+    display: flex; 
+}
+.buttons ion-button {
+    width: 50%;
+}
+.footer-content{
+    border-radius: 5px;
+    background-color:#d3ceb0;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: SourceSerif4 !important; 
+    font-size:medium;
+}
+
+.lastp{
+    text-align: center;
+    font-size: small;
+    margin-top: 20px;
+    font-family: SourceSerif4 !important; 
+}
+a{
+    color: #C5A961;
+    text-decoration: none;
+}
+#main-img{
+    width: 55vw;
+    margin-top: 100px;
+    margin-left: -20px;
+}
+.text-frame{
+    font-size: 15px;
+    margin: 1rem;
+    text-align: center;
+}
+.green-div-p1{
+    background-color: #e4e3b0;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: small;
+    margin: 1rem;
+    font-family: SourceSerif4 !important; 
+}
+.listdivs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
 }

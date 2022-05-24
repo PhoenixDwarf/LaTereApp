@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
 import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
@@ -14,6 +15,7 @@ export class ListPlatosComponent {
   constructor(
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
+    private OrdersService: OrdersService
   ) 
   {
 
@@ -107,7 +109,7 @@ export class ListPlatosComponent {
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }

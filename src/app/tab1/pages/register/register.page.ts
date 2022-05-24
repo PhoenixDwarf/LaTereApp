@@ -19,6 +19,7 @@ export class RegisterPage implements OnInit {
   data: User;
   loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
   isUserLogged = false;
+  networkState: boolean;
 
   constructor(public alertController: AlertController, private DatabaseService: DatabaseService, private UserInteractionService: UserInteractionService, private Router:Router) {
 
@@ -30,6 +31,9 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
+    this.UserInteractionService.network$.subscribe((res) => {
+      this.networkState = res;
+    });
   }
 
   async presentAlert() {
@@ -77,8 +81,7 @@ export class RegisterPage implements OnInit {
   })
 
   getFormData() {
-    let netStatus: boolean = navigator.onLine;
-    if (netStatus == false) {
+    if (this.networkState == false) {
       this.presentAlertErrorNoInternet();
     }
     else {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
 import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
@@ -14,6 +15,7 @@ export class ListMordiscosComponent{
   constructor(
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
+    private OrdersService: OrdersService
   ) 
   {
 
@@ -49,25 +51,25 @@ export class ListMordiscosComponent{
 
   list2:list[] = [
     {
-      name: 'La Niña de Tere',
+      name: 'Mazorcada La Niña de Tere',
       ingredientes:['- Carne de Res Desmechada','- Piña en Trozos'],
       price: 17000
     },
 
     {
-      name: 'La Sobrina',
+      name: 'Mazorcada La Sobrina de Tere',
       ingredientes:['- Pollo Desmechado'],
       price: 16000
     },
 
     {
-      name: 'La Nana de Tere',
+      name: 'Mazorcada La Nana de Tere',
       ingredientes:['- Carne de Res Desmechada'],
       price: 16500
     },
 
     {
-      name: 'La Señora Tere',
+      name: 'Mazorcada La Señora Tere',
       ingredientes:['- Carne de Res Desmechada','- Pollo Desmechado'],
       price: 17000
     },
@@ -99,7 +101,7 @@ export class ListMordiscosComponent{
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }
@@ -134,7 +136,7 @@ export class ListMordiscosComponent{
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }

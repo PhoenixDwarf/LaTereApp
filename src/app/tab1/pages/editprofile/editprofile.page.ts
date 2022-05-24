@@ -25,6 +25,7 @@ export class EditprofilePage implements OnInit {
 
   data: User;
   loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
+  networkState: boolean;
 
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -63,8 +64,7 @@ export class EditprofilePage implements OnInit {
   }
 
   getFormData() {
-    let netStatus: boolean = navigator.onLine;
-    if (netStatus == false) {
+    if (this.networkState == false) {
       this.presentAlertErrorNoInternet();
     }
     else {
@@ -100,7 +100,9 @@ export class EditprofilePage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.UserInteractionService.network$.subscribe((res) => {
+      this.networkState = res;
+    });
   }
 
 

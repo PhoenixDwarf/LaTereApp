@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
 import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
@@ -14,6 +15,7 @@ export class ListJugosComponent {
   constructor(
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
+    private OrdersService: OrdersService
   ) 
   {
 
@@ -21,49 +23,49 @@ export class ListJugosComponent {
 
   list:list[] = [
     {
-      name: 'Piña con hierbabuena',
+      name: 'Jugo Piña con hierbabuena',
       ingredientes:['- Personal'],
       price: 6000
     },
 
     {
-      name: 'Feijoa , Flor de Jamaica, Jengibre',
+      name: 'Jugo Feijoa , Flor de Jamaica, Jengibre',
       ingredientes:['- Personal'],
       price: 6000
     },
 
     {
-      name: 'Fresa con Naranja',
+      name: 'Jugo Fresa con Naranja',
       ingredientes:['- Personal'],
       price: 6000
     },
 
     {
-      name: 'Fresa con Maracuya',
+      name: 'Jugo Fresa con Maracuya',
       ingredientes:['- Personal'],
       price: 6000
     },
 
     {
-      name: 'Limonada Natural',
+      name: 'Jugo Limonada Natural',
       ingredientes:['- Personal'],
       price: 4500
     },
 
     {
-      name: 'Limonada Cerezada',
+      name: 'Jugo Limonada Cerezada',
       ingredientes:['- Personal'],
       price: 6000
     },
 
     {
-      name: 'Limonada de Fresa',
+      name: 'Jugo Limonada de Fresa',
       ingredientes:['- Personal'],
       price: 6000
     },
 
     {
-      name: 'Malteadas',
+      name: 'Jugo Malteadas',
       ingredientes:['- Personal'],
       price: 8000
     }
@@ -92,19 +94,19 @@ export class ListJugosComponent {
 
   list3:list[]=[
     {
-      name: 'Maracuya',
+      name: 'Jugo en leche Maracuya',
       ingredientes:['- Personal'],
       price: 5500
     },
 
     {
-      name: 'Fresa',
+      name: 'Jugo en leche Fresa',
       ingredientes:['- Personal'],
       price: 5500
     },
 
     {
-      name: 'Guanabana',
+      name: 'Jugo en leche Guanabana',
       ingredientes:['- Personal'],
       price: 5500
     },
@@ -113,25 +115,25 @@ export class ListJugosComponent {
 
   list4:list[]=[
     {
-      name: 'Maracuya',
+      name: 'Jugo en agua Maracuya',
       ingredientes:['- Personal'],
       price: 4000
     },
 
     {
-      name: 'Fresa',
+      name: 'Jugo en agua Fresa',
       ingredientes:['- Personal'],
       price: 4000
     },
 
     {
-      name: 'Mango',
+      name: 'Jugo en agua Mango',
       ingredientes:['- Personal'],
       price: 4000
     },
 
     {
-      name: 'Guanabana',
+      name: 'Jugo en agua Guanabana',
       ingredientes:['- Personal'],
       price: 4000
     }
@@ -166,7 +168,7 @@ export class ListJugosComponent {
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }
@@ -201,7 +203,7 @@ export class ListJugosComponent {
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }
@@ -236,7 +238,7 @@ export class ListJugosComponent {
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
 import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
@@ -19,6 +20,7 @@ export class ListBrochetasComponent {
   constructor(
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
+    private OrdersService: OrdersService
   ) {
 
   }
@@ -27,19 +29,19 @@ export class ListBrochetasComponent {
 
   list: list[] = [
     {
-      name: 'El Niño de Tere',
+      name: 'Brocheta El Niño de Tere',
       ingredientes: ['- 1 Proteína (res, pollo o cerdo)'],
       price: 17000
     },
 
     {
-      name: 'El Sobrino',
+      name: 'Brocheta El Sobrino',
       ingredientes: ['- 2 Proteínas (mixto)'],
       price: 17500
     },
 
     {
-      name: 'El Tata de Tere',
+      name: 'Brocheta El Tata de Tere',
       ingredientes: ['- 3 Proteínas (mixto)'],
       price: 18000
     }
@@ -47,19 +49,19 @@ export class ListBrochetasComponent {
 
   list2: list[] = [
     {
-      name: 'Tere Con Carne',
+      name: 'Patacon Tere Con Carne',
       ingredientes: ['- Desmechada'],
       price: 21000
     },
 
     {
-      name: 'Nana Tere',
+      name: 'Patacon Nana Tere',
       ingredientes: ['- Pollo'],
       price: 20500
     },
 
     {
-      name: 'Tata de Tere',
+      name: 'Patacon Tata de Tere',
       ingredientes: ['- Carne y Pollo'],
       price: 21500
     }
@@ -132,7 +134,7 @@ export class ListBrochetasComponent {
                 price: price,
                 options: res
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
             }
             else {
@@ -214,7 +216,7 @@ export class ListBrochetasComponent {
                   price: price,
                   options: this.array2proteins
                 };
-                console.log(order);
+                this.OrdersService.newOrder$.emit(order);
                 this.array2proteins = [];
                 this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
                 // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
@@ -303,7 +305,7 @@ export class ListBrochetasComponent {
                   price: price,
                   options: this.array3proteins
                 };
-                console.log(order);
+                this.OrdersService.newOrder$.emit(order);
                 this.array3proteins = [];
                 this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
                 // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
@@ -347,7 +349,7 @@ export class ListBrochetasComponent {
               name: name,
               price: price,
             };
-            console.log(order);
+            this.OrdersService.newOrder$.emit(order);
             this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }

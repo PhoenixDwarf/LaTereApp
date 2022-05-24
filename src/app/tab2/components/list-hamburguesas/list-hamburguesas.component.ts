@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
 import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
@@ -15,6 +16,7 @@ export class ListHamburguesasComponent {
   constructor(
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
+    private OrdersService: OrdersService
   ) 
   {
 
@@ -22,19 +24,19 @@ export class ListHamburguesasComponent {
 
   list:list[] = [
     {
-      name: 'Tere Master',
+      name: 'Tere Master Burguer',
       ingredientes:['- Carne de Res 125g','- Carne Desmechada','- Cebolla Encurtida','- Queso Americano','- Lechuga Fresca','- Alioli'],
       price: 15900,
     },
 
     {
-      name: 'Cheeseburguer',
+      name: 'Cheese Burguer',
       ingredientes:['- Carne de Res 125g','- Queso Cheddar','- Pepinillos','- Lechuga Fresca','- Tomate','- Cebolla','- Alioli'],
       price: 13900,
     },
 
     {
-      name: 'Bacon Cheeseburguer',
+      name: 'Bacon Cheese Burguer',
       ingredientes:['- Carne de Res 125g','- Tocineta','- Queso Cheddar','- Pepinillos','- Lechuga Fresca','- Tomate','- Cebolla','- Alioli'],
       price: 14900,
     },
@@ -58,7 +60,7 @@ export class ListHamburguesasComponent {
     },
 
     {
-      name: 'Big Master',
+      name: 'Big Master Burguer',
       ingredientes:['- Carne de Res 250g','- Cebolla Encurtida','- Queso Americano','- Lechuga Fresca','- Alioli'],
       price: 18500,
     },
@@ -90,7 +92,7 @@ export class ListHamburguesasComponent {
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }

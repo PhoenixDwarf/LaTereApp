@@ -1,21 +1,32 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserInteractionService {
+export class UserInteractionService implements OnInit{
 
   editprofileUpdated$ = new EventEmitter<boolean>();
   loginUpdated$ = new EventEmitter<boolean>();
 
+  network$ = new EventEmitter<boolean>();
+
   isLoading = false;
 
 
-  constructor(public toastController: ToastController, public loadingController: LoadingController){}
+  constructor(
+    public toastController: ToastController, 
+    public loadingController: LoadingController
+    )
+    {
+      
+    }
+
+    ngOnInit() {
+    }
+
   async presentToast(receivedMsg:string) {  
     const toast = await this.toastController.create({
       message: receivedMsg,

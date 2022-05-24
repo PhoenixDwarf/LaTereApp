@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 import 'animate.css'
 
 import { DatabaseService } from '../../../services/database.service';
+import { UserInteractionService } from '../../../services/user-interaction.service';
 import { CompleteUser } from '../interfaces/user.interface';
 import { list } from '../interfaces/login.interface';
-import { UserInteractionService } from '../../../services/user-interaction.service';
 
 
 
@@ -20,19 +20,23 @@ import { UserInteractionService } from '../../../services/user-interaction.servi
 export class LoginPage implements OnInit {
 
   ngOnInit() {
-    this.UserInteractionService.editprofileUpdated$.subscribe( res => {
-      this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
-      this.fillList();
+    this.UserInteractionService.editprofileUpdated$.subscribe(res => {
+    this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
+    this.fillList();
+    });
+
+    this.UserInteractionService.network$.subscribe((res) => {
+    this.networkState = res;
     });
   }
+
 
   constructor(
     public alertController: AlertController,
     private DatabaseService: DatabaseService,
     private UserInteractionService: UserInteractionService,
     private Router: Router,
-  ) 
-  {
+  ) {
     this.listValidatorDef();
   }
 
@@ -40,10 +44,11 @@ export class LoginPage implements OnInit {
   isemailselected = false;
   list: list[];
   loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
-  listValidator:boolean;
-  isEditprofileUpdated:boolean;
+  listValidator: boolean;
+  isEditprofileUpdated: boolean;
+  networkState:boolean;
 
-  listValidatorDef(){
+  listValidatorDef() {
     if (this.loginData != null) {
       if (this.loginData.isadmin == false) {
         this.fillList();
@@ -146,8 +151,7 @@ export class LoginPage implements OnInit {
 
   getEmailFormData() {
 
-    let netStatus: boolean = navigator.onLine;
-    if (netStatus == false) {
+    if (this.networkState == false) {
       this.presentAlertErrorNoInternet();
     }
     else {
@@ -182,8 +186,7 @@ export class LoginPage implements OnInit {
 
   getPhoneFormData() {
 
-    let netStatus: boolean = navigator.onLine;
-    if (netStatus == false) {
+    if (this.networkState == false) {
       this.presentAlertErrorNoInternet();
     }
     else {
@@ -244,6 +247,6 @@ export class LoginPage implements OnInit {
     });
     await alert.present();
   }
-  
+
 }
 

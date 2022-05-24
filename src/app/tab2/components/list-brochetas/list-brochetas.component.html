@@ -9,9 +9,9 @@
 
 <ion-item *ngFor="let item of list; let i=index" id="{{'i'+i}}" (click)="mainFunction(i)">
   <div class="left-container">
-    <ion-label class="ion-text-wrap ion-padding" id="title">
+    <div class="ion-text-wrap ion-padding" id="title">
       {{ item.name }}
-    </ion-label>
+    </div>
     <p class="price">${{ item.price | number }}</p>
   </div>
   <ion-label class="ion-text-wrap">
@@ -24,9 +24,9 @@
 
 <ion-item *ngFor="let itemb of list2; let i=index" id="{{'i'+i}}" (click)="patacones(i)">
   <div class="left-container">
-    <ion-label class="ion-text-wrap ion-padding" id="title">
+    <div class="ion-text-wrap ion-padding" id="title">
       {{ itemb.name }}
-    </ion-label>
+    </div>
     <p class="price">${{ itemb.price | number }}</p>
   </div>
   

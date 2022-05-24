@@ -25,9 +25,13 @@ export class EditrestoreinfoPage implements OnInit {
   objeto:UpdateSecurity;
   loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
   isThereAQuestionLet:boolean;
+  networkState: boolean;
 
 
   ngOnInit() {
+    this.UserInteractionService.network$.subscribe((res) => {
+      this.networkState = res;
+    });
   }
 
   editinfoForm = new FormGroup({
@@ -48,8 +52,7 @@ export class EditrestoreinfoPage implements OnInit {
   }
   //LOGIC IS MISSING
   updateRestoreInfo() {
-    let netStatus: boolean = navigator.onLine;
-    if (netStatus == false) {
+    if (this.networkState == false) {
       this.presentAlertErrorNoInternet();
     }
     else{

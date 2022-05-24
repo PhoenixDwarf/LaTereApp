@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
 import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
@@ -14,6 +15,7 @@ export class ListCervezasGaseosasComponent{
   constructor(
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
+    private OrdersService: OrdersService
   ) 
   {
 
@@ -136,7 +138,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio1',
       type: 'radio',
       label: '- Mango',
-      value: 'Mango',
+      value: ' Mango',
       handler: () => {
       },
     },
@@ -144,7 +146,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio2',
       type: 'radio',
       label: '- Mora',
-      value: 'Mora',
+      value: ' Mora',
       handler: () => {
       }
     },
@@ -152,7 +154,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio3',
       type: 'radio',
       label: '- Durazno',
-      value: 'Durazno',
+      value: ' Durazno',
       handler: () => {
       }
     },
@@ -160,7 +162,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio3',
       type: 'radio',
       label: '- Lulo',
-      value: 'Lulo',
+      value: ' Lulo',
       handler: () => {
       }
     }
@@ -170,7 +172,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio1',
       type: 'radio',
       label: '- Blanco',
-      value: 'Blanco',
+      value: ' Blanco',
       handler: () => {
       },
     },
@@ -178,7 +180,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio2',
       type: 'radio',
       label: '- Rojo',
-      value: 'Rojo',
+      value: ' Rojo',
       handler: () => {
       }
     },
@@ -186,7 +188,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio3',
       type: 'radio',
       label: '- Amarillo',
-      value: 'Amarillo',
+      value: ' Amarillo',
       handler: () => {
       }
     },
@@ -194,7 +196,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio3',
       type: 'radio',
       label: '- Aguamarina',
-      value: 'Aguamarina',
+      value: ' Aguamarina',
       handler: () => {
       }
     }
@@ -204,7 +206,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio1',
       type: 'radio',
       label: '- Sin gas',
-      value: 'Sin gas',
+      value: ' Sin gas',
       handler: () => {
       },
     },
@@ -212,7 +214,7 @@ export class ListCervezasGaseosasComponent{
       name: 'radio2',
       type: 'radio',
       label: '- Con gas',
-      value: 'Con gas',
+      value: ' Con gas',
       handler: () => {
       }
     }
@@ -246,7 +248,7 @@ export class ListCervezasGaseosasComponent{
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }
@@ -281,7 +283,7 @@ export class ListCervezasGaseosasComponent{
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }
@@ -319,7 +321,7 @@ export class ListCervezasGaseosasComponent{
                     price: price,
                     options: res
                   };
-                  console.log(order);
+                  this.OrdersService.newOrder$.emit(order);
                   this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
                   // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
               }
@@ -356,7 +358,7 @@ export class ListCervezasGaseosasComponent{
                     price: price,
                     options: res
                   };
-                  console.log(order);
+                  this.OrdersService.newOrder$.emit(order);
                   this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
                   // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
               }
@@ -393,7 +395,7 @@ export class ListCervezasGaseosasComponent{
                     price: price,
                     options: res
                   };
-                  console.log(order);
+                  this.OrdersService.newOrder$.emit(order);
                   this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
                   // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
               }

@@ -22,7 +22,7 @@ export class ForgotpassPage implements OnInit {
 
   isphoneselected = false;
   isemailselected = false;
-
+  networkState: boolean;
   showEmailAlert: boolean = false;
   showPhoneAlert: boolean = false;
   showFirstP: boolean = true;
@@ -90,6 +90,9 @@ export class ForgotpassPage implements OnInit {
 
 
   ngOnInit() {
+    this.UserInteractionService.network$.subscribe((res) => {
+      this.networkState = res;
+    });
   }
 
 
@@ -123,8 +126,7 @@ export class ForgotpassPage implements OnInit {
 
   getSecurityByEmail() {
 
-    let netStatus: boolean = navigator.onLine;
-    if (netStatus == false) {
+    if (this.networkState == false) {
       this.presentAlertErrorNoInternet();
     }
     else {
@@ -166,8 +168,7 @@ export class ForgotpassPage implements OnInit {
 
   getSecurityByPhone() {
 
-    let netStatus: boolean = navigator.onLine;
-    if (netStatus == false) {
+    if (this.networkState == false) {
       this.presentAlertErrorNoInternet();
     }
     else {
@@ -268,8 +269,7 @@ export class ForgotpassPage implements OnInit {
   }
 
   changePass() {
-    let netStatus: boolean = navigator.onLine;
-    if (netStatus == false) {
+    if (this.networkState == false) {
       this.presentAlertErrorNoInternet();
     }
     else {

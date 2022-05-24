@@ -2,12 +2,12 @@
 <ion-img src="../../../../assets/images/AlitasListnew.png"></ion-img>
 <h4>Selecciona las alitas que desees añadir a tu pedido</h4><br>
 
-<ion-item *ngFor="let item of list; let i=index" id="{{'i'+i}}" (click)="mainFunction(i)" >
+<ion-item *ngFor="let item of list; let i=index" id="{{'i'+i}}" (click)="mainFunction(i)" routerDirection="tabs/tab3">
   <div class="left-container">
-    <ion-label class="ion-text-wrap ion-padding" id="{{'l'+i}}">
+    <div class="ion-text-wrap ion-padding" id="{{'l'+i}}" class="title">
       {{ item.name }}
-    </ion-label>
-      <p class="price" id="{{'p'+i}}">${{ item.price | number }}</p>
+    </div>
+    <p class="price" id="{{'p'+i}}">${{ item.price | number }}</p>
   </div>
   <ion-label class="ion-text-wrap">
     <p *ngFor="let item2 of item.ingredientes">{{item2}}</p> 

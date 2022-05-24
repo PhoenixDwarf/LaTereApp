@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Network } from '@ionic-native/network/ngx';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserInteractionService } from './services/user-interaction.service';
 import { CompleteUser } from './tab1/pages/interfaces/user.interface';
@@ -12,15 +13,20 @@ export class AppComponent implements OnInit {
 
   loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
 
-  profileItem:string;
+  profileItem: string;
 
-  checker:boolean;
+  checker: boolean;
 
-  constructor(private UserInteractionService: UserInteractionService) {
+  disconnectSubscription: any;
+  connectSubscription: any;
+
+  constructor(private UserInteractionService: UserInteractionService,
+    private network: Network
+  ) {
     this.fillMenuItems();
   }
 
-  fillMenuItems(){
+  fillMenuItems() {
     if (this.loginData != null) {
       if (this.loginData.isadmin == false) {
         this.profileItem = 'Perfil';
@@ -29,7 +35,7 @@ export class AppComponent implements OnInit {
         this.profileItem = 'Perfil - ADMIN';
         this.checker = false;
       }
-    } 
+    }
     else {
       this.profileItem = 'Ingresar';
       this.checker = true;
@@ -37,9 +43,28 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.UserInteractionService.loginUpdated$.subscribe( res => {
-     this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
-     this.fillMenuItems();
-   })
+    this.UserInteractionService.loginUpdated$.subscribe(res => {
+      this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
+      this.fillMenuItems();
+    });
+
+    this.networkDisconnect();
+    this.networkConnect();
+
   }
+
+  networkDisconnect() {
+    this.disconnectSubscription = this.network.onDisconnect().subscribe(async () => {
+      this.UserInteractionService.network$.emit(false);
+      this.UserInteractionService.presentToast('Sin acceso a internet.');
+    });
+  }
+
+  networkConnect() {
+    this.connectSubscription = this.network.onConnect().subscribe(() => {
+    this.UserInteractionService.network$.emit(true);
+    this.UserInteractionService.presentToast('Acceso a internet recuperado.');
+    });
+  }
+
 }

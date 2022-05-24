@@ -4,6 +4,7 @@ import { UserInteractionService } from 'src/app/services/user-interaction.servic
 import { CompleteUser } from 'src/app/tab1/pages/interfaces/user.interface';
 import { list } from '../../interfaces/tab2.interface';
 import { Order } from '../../../tab3/interfaces';
+import { OrdersService } from '../../../services/orders.service';
 
 @Component({
   selector: 'app-list-alitas',
@@ -13,13 +14,14 @@ import { Order } from '../../../tab3/interfaces';
 export class ListAlitasComponent implements OnInit {
   loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
 
-  array16sauces:string[] = [];
+  array16sauces: string[] = [];
 
-  array24sauces:string[] = [];
+  array24sauces: string[] = [];
 
   constructor(
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
+    private OrdersService: OrdersService
   ) {
   }
 
@@ -28,19 +30,19 @@ export class ListAlitasComponent implements OnInit {
 
   list: list[] = [
     {
-      name: '8 Piezas (una salsa)',
+      name: 'Alitas 8 Piezas (una salsa)',
       ingredientes: ['- BBQ Miel', '- Buffalo', '- Honey Master', '- Jalapeño Master', '- Thai Oriental'],
       price: 13000
     },
 
     {
-      name: '16 Piezas (dos salsas)',
+      name: 'Alitas 16 Piezas (dos salsas)',
       ingredientes: ['- BBQ Miel', '- Buffalo', '- Honey Master', '- Jalapeño Master', '- Thai Oriental'],
       price: 23000
     },
 
     {
-      name: '24 Piezas (tres salsas)',
+      name: 'Alitas 24 Piezas (tres salsas)',
       ingredientes: ['- BBQ Miel', '- Buffalo', '- Honey Master', '- Jalapeño Master', '- Thai Oriental'],
       price: 33000
     }
@@ -54,13 +56,13 @@ export class ListAlitasComponent implements OnInit {
     else if (identifier == 1) {
       this.twoOptions();
     }
-    else{
+    else {
       this.threeOptions();
     }
 
   }
 
-   // START ALERTS INPUTS //
+  // START ALERTS INPUTS //
 
   async oneOption() {
     let order: Order;
@@ -75,7 +77,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio1',
           type: 'radio',
           label: '- BBQ Miel',
-          value: 'BBQ Miel',
+          value: ' BBQ Miel',
           handler: () => {
           },
         },
@@ -83,7 +85,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio2',
           type: 'radio',
           label: '- Buffalo',
-          value: 'Buffalo',
+          value: ' Buffalo',
           handler: () => {
           }
         },
@@ -91,7 +93,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio3',
           type: 'radio',
           label: '- Honey Master',
-          value: 'Honey Master',
+          value: ' Honey Master',
           handler: () => {
           }
         },
@@ -99,7 +101,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio4',
           type: 'radio',
           label: '- Jalapeño Master',
-          value: 'Jalapeño Master',
+          value: ' Jalapeño Master',
           handler: () => {
           }
         },
@@ -107,7 +109,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio5',
           type: 'radio',
           label: '- Thai Oriental',
-          value: 'Thai Oriental',
+          value: ' Thai Oriental',
           handler: () => {
           }
         }
@@ -120,23 +122,18 @@ export class ListAlitasComponent implements OnInit {
           id: 'cancel-button',
           handler: () => {
           }
-        }, 
+        },
         {
           text: 'Agregar',
           id: 'confirm-button',
           handler: (res) => {
-            if(res !== undefined){
-              order = { 
-                name: name,
-                price: price,
-                options: res
-              };
-              console.log(order);
-              this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
-            }
-            else{
-              this.presentAlertError(name);
-            }
+            order = {
+              name: name,
+              price: price,
+              options: res
+            };
+            this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+            this.OrdersService.newOrder$.emit(order);
           }
         }
       ],
@@ -146,14 +143,14 @@ export class ListAlitasComponent implements OnInit {
   }
 
 
-  async twoOptions( index?:number ) {
+  async twoOptions(index?: number) {
     let counter = index | 0;
     let order: Order;
     let message: string = '';
 
-    if(counter == 0){
+    if (counter == 0) {
       message = `Por favor selecciona la <strong> primera </strong> salsa que desees recibir.`;
-    }else{
+    } else {
       message = `Por favor selecciona la <strong> segunda </strong> salsa que desees recibir.`;
     }
 
@@ -168,7 +165,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio1',
           type: 'radio',
           label: '- BBQ Miel',
-          value: 'BBQ Miel',
+          value: ' BBQ Miel',
           handler: () => {
           },
         },
@@ -176,7 +173,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio2',
           type: 'radio',
           label: '- Buffalo',
-          value: 'Buffalo',
+          value: ' Buffalo',
           handler: () => {
           }
         },
@@ -184,7 +181,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio3',
           type: 'radio',
           label: '- Honey Master',
-          value: 'Honey Master',
+          value: ' Honey Master',
           handler: () => {
           }
         },
@@ -192,7 +189,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio4',
           type: 'radio',
           label: '- Jalapeño Master',
-          value: 'Jalapeño Master',
+          value: ' Jalapeño Master',
           handler: () => {
           }
         },
@@ -200,7 +197,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio5',
           type: 'radio',
           label: '- Thai Oriental',
-          value: 'Thai Oriental',
+          value: ' Thai Oriental',
           handler: () => {
           }
         }
@@ -213,31 +210,30 @@ export class ListAlitasComponent implements OnInit {
           cssClass: 'secondary',
           id: 'cancel-button',
           handler: () => {
-              this.array16sauces = [];
+            this.array16sauces = [];
           }
         }, {
           text: 'Agregar',
           id: 'confirm-button',
-          handler: (res:string) => {
-            if(res !== undefined){
+          handler: (res: string) => {
+            if (res !== undefined) {
               counter++;
               this.array16sauces.push(res);
-              if(counter !== 2){
+              if (counter !== 2) {
                 this.twoOptions(counter);
               }
-              else{
-                order = { 
+              else {
+                order = {
                   name: name,
                   price: price,
                   options: this.array16sauces
                 };
-                console.log(order);
                 this.array16sauces = [];
                 this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
-                // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
+                this.OrdersService.newOrder$.emit(order);
               }
             }
-            else{
+            else {
               this.presentAlertError(name);
               this.array16sauces = [];
             }
@@ -249,17 +245,17 @@ export class ListAlitasComponent implements OnInit {
     await alert.present();
   }
 
-  async threeOptions( index?:number ) {
+  async threeOptions(index?: number) {
     let counter = index | 0;
     let order: Order;
     let message: string = '';
 
-    if(counter == 0){
+    if (counter == 0) {
       message = `Por favor selecciona la <strong> primera </strong> salsa que desees recibir.`;
-    }else if(counter == 1){
+    } else if (counter == 1) {
       message = `Por favor selecciona la <strong> segunda </strong> salsa que desees recibir.`;
     }
-    else{
+    else {
       message = `Por favor selecciona la <strong> tercera </strong> salsa que desees recibir.`;
     }
 
@@ -274,7 +270,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio1',
           type: 'radio',
           label: '- BBQ Miel',
-          value: 'BBQ Miel',
+          value: ' BBQ Miel',
           handler: () => {
           },
         },
@@ -282,7 +278,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio2',
           type: 'radio',
           label: '- Buffalo',
-          value: 'Buffalo',
+          value: ' Buffalo',
           handler: () => {
           }
         },
@@ -290,7 +286,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio3',
           type: 'radio',
           label: '- Honey Master',
-          value: 'Honey Master',
+          value: ' Honey Master',
           handler: () => {
           }
         },
@@ -298,7 +294,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio4',
           type: 'radio',
           label: '- Jalapeño Master',
-          value: 'Jalapeño Master',
+          value: ' Jalapeño Master',
           handler: () => {
           }
         },
@@ -306,7 +302,7 @@ export class ListAlitasComponent implements OnInit {
           name: 'radio5',
           type: 'radio',
           label: '- Thai Oriental',
-          value: 'Thai Oriental',
+          value: ' Thai Oriental',
           handler: () => {
           }
         }
@@ -319,31 +315,30 @@ export class ListAlitasComponent implements OnInit {
           cssClass: 'secondary',
           id: 'cancel-button',
           handler: () => {
-              this.array24sauces = [];
+            this.array24sauces = [];
           }
         }, {
           text: 'Agregar',
           id: 'confirm-button',
-          handler: (res:string) => {
-            if(res !== undefined){
+          handler: (res: string) => {
+            if (res !== undefined) {
               counter++;
               this.array24sauces.push(res);
-              if(counter !== 3){
+              if (counter !== 3) {
                 this.threeOptions(counter);
               }
-              else{
-                order = { 
+              else {
+                order = {
                   name: name,
                   price: price,
                   options: this.array24sauces
                 };
-                console.log(order);
                 this.array24sauces = [];
                 this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
-                // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
+                this.OrdersService.newOrder$.emit(order);
               }
             }
-            else{
+            else {
               this.presentAlertError(name);
               this.array24sauces = [];
             }
@@ -366,7 +361,7 @@ export class ListAlitasComponent implements OnInit {
     }
   }
 
-  async presentAlertError( name:string ) {
+  async presentAlertError(name: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: `Agregar ${name} al pedido`,

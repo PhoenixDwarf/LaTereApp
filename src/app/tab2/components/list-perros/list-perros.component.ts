@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { OrdersService } from 'src/app/services/orders.service';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
 import { Order } from 'src/app/tab3/interfaces';
 import { list } from '../../interfaces/tab2.interface';
@@ -14,31 +15,32 @@ export class ListPerrosComponent {
   constructor(
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
+    private OrdersService: OrdersService
   ) 
   {
   }
 
   list:list[] = [
     {
-      name: 'Queso hierbas',
+      name: 'Perro Queso hierbas',
       ingredientes:['- Cerdo','- Tomates Parrillados','- Queso Mozzarella','- Albahaca'],
       price: 11000,
     },
 
     {
-      name: 'Pollo Miel',
+      name: 'Perro Pollo Miel',
       ingredientes:['- Pollo','- Guacamole','- Alioli Picante'],
       price: 10500,
     },
 
     {
-      name: 'Chilli Cheese Dog',
+      name: 'Perro Chilli Cheese Dog',
       ingredientes:['- Res','- Cerdo','- Chili de Carne','- Queso Cheddar','- Suero','- Jalapeños'],
       price: 14000,
     },
 
     {
-      name: 'Bratwurtst',
+      name: 'Perro Bratwurtst',
       ingredientes:['- Cerdo','- Chucrut','- Mostaza','- Salsa Mil Teres'],
       price: 12000,
     }
@@ -70,7 +72,7 @@ export class ListPerrosComponent {
                 name: name,
                 price: price,
               };
-              console.log(order);
+              this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
           }
         }
