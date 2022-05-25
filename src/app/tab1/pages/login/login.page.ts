@@ -9,6 +9,7 @@ import { DatabaseService } from '../../../services/database.service';
 import { UserInteractionService } from '../../../services/user-interaction.service';
 import { CompleteUser } from '../interfaces/user.interface';
 import { list } from '../interfaces/login.interface';
+import { OrderToSubmit } from 'src/app/tab3/interfaces';
 
 
 
@@ -47,6 +48,7 @@ export class LoginPage implements OnInit {
   listValidator: boolean;
   isEditprofileUpdated: boolean;
   networkState:boolean;
+  ordersArray:OrderToSubmit[] =[];
 
   listValidatorDef() {
     if (this.loginData != null) {
@@ -57,10 +59,41 @@ export class LoginPage implements OnInit {
       else {
         this.listValidator = false;
         this.fillList();
+        this.getOrders();
       }
     }
   }
 
+  getOrders(){
+    this.UserInteractionService.presentLoading('Verificando datos…');
+        this.DatabaseService.getOrders().subscribe({
+          next: (res) => {
+            this.UserInteractionService.dismissLoading();
+            res.map((res) => {
+              this.ordersArray.push(res);
+            });
+          },
+          error: (err) => {
+            this.UserInteractionService.dismissLoading();
+            console.log(err);
+          }
+        });
+  }
+
+  getProducts(phone:string, index:number){
+    this.UserInteractionService.presentLoading('Verificando datos…');
+    this.DatabaseService.getProducts(phone).subscribe({
+      next: (res) => {
+        this.UserInteractionService.dismissLoading();
+        this.ordersArray[index].products = res;
+        console.log(this.ordersArray);
+      },
+      error: (err) => {
+        this.UserInteractionService.dismissLoading();
+        console.log(err);
+      }
+    });
+  }
 
   fillList() {
     this.list = [
@@ -93,6 +126,52 @@ export class LoginPage implements OnInit {
 
   fillListADMIN() {
     this.list = [];
+  }
+
+  async cancelOrder( phone:string, index:number ) { 
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: `Cancelar pedido`,
+      subHeader: '',
+      message: '¿Estas seguro que deseas cancelar el pedido?',
+      buttons: [
+        {
+          text: 'Atras',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Cancelar',
+          id: 'confirm-button',
+          handler: () => {
+            this.UserInteractionService.presentLoading('Verificando datos…');
+            this.DatabaseService.deletelOrder(phone).subscribe({
+              next: () => {
+                this.DatabaseService.deletProducts(phone).subscribe({
+                  next: () => {
+                    this.UserInteractionService.dismissLoading();
+                    this.UserInteractionService.presentToast('El pedido ha sido cancelado');
+                    this.ordersArray.splice(index,1);
+                  },
+                  error: (err) => {
+                    this.UserInteractionService.dismissLoading();
+                    console.log(err);
+                  }
+                })
+              },
+              error: (err) => {
+                this.UserInteractionService.dismissLoading();
+                console.log(err);
+              }
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   async presentAlertError1() {

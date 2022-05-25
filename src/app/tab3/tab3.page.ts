@@ -36,9 +36,7 @@ export class Tab3Page implements OnInit {
   ngOnInit() {
     this.OrdersService.newOrder$.subscribe((res) => {
       this.OrdersService.isThereOrder$.emit(true);
-      res.userPhone = this.loginData.phone;
-      const updatedRes = res;
-      this.arrayPedido.push(updatedRes);
+      this.arrayPedido.push(res);
       this.totalPrice = (this.totalPrice + res.price);
     });
     this.UserInteractionService.network$.subscribe((res) => {
@@ -167,6 +165,7 @@ export class Tab3Page implements OnInit {
             this.DatabaseService.addOrder(orderToSubmit).subscribe({
               next: () => {
                 orderToSubmit.products.map((res)=>{
+                  res.userPhone = this.loginData.phone;
                   this.DatabaseService.addProduct(res).subscribe({
                     next: () => {
                     },

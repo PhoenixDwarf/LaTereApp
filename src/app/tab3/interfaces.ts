@@ -2,10 +2,13 @@ export interface Order{
     name:  string;
     price: number;
     options: string[];
+    option1?: string;
+    option2?: string;
+    option3?: string;
     userPhone?: string;
 }
 export interface OrderToSubmit{
-    products: Order[];
+    products?: Order[];
     totalprice: number;
     userName: string;
     userLastname:string;

@@ -71,5 +71,21 @@ export class DatabaseService {
     return this.http.post<Order>(url, objeto);
   }
 
-  
+  getOrders():Observable<OrderToSubmit[]>{
+    const url = `${this.apiUrl}/${this.apiKey}/orders`;
+    return this.http.get<OrderToSubmit[]>(url);
+  }
+  getProducts( userPhone:string ):Observable<Order[]>{
+    const url = `${this.apiUrl}/${this.apiKey}/productsID${userPhone}`;
+    return this.http.get<Order[]>(url);
+  }
+
+  deletelOrder( userPhone:string ):Observable<any>{
+    const url = `${this.apiUrl}/${this.apiKey}/deleteOrder${userPhone}`;
+    return this.http.delete<any>(url);
+  }
+  deletProducts( userPhone:string ):Observable<any>{
+    const url = `${this.apiUrl}/${this.apiKey}/deleteProducts${userPhone}`;
+    return this.http.delete<any>(url);
+  }
 }

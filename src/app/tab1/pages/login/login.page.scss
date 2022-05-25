@@ -140,3 +140,23 @@ ion-item{
 ion-toolbar{
     --ion-background-color: #FBFBFB;
 }
+.order-flex{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.flex-admin{
+    display: flex;
+    flex-direction: column;
+}
+.div-orders{
+    background-color: #dad0d0;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.cancelar-pedido{
+    --background: #a02a3a;
+}

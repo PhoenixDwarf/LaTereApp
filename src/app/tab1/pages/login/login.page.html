@@ -137,6 +137,72 @@
             Cerrar sesión
           </ion-button>
         </div>
+
+        <!-- admin section -->
+
+      <div class="admin-section ion-pading" *ngIf="!listValidator">
+        <article class="flex-admin">
+          <div class="order-flex">
+            <p>Pedidos pendientes:</p>
+            <p>{{ordersArray.length}}</p>
+          </div>
+
+          <div *ngFor="let item of ordersArray; let i=index" class="div-orders">
+            <div class="order-flex">
+              <p>Cliente: </p>
+              <p>{{item.userName}} {{item.userLastname}}</p>
+            </div>
+            <div class="order-flex">
+              <p>Teléfono: </p>
+              <p>{{item.userPhone}}</p>
+            </div>
+            <div class="order-flex">
+              <p>Dirección: </p>
+              <p>{{item.userAddress}}</p>
+            </div>
+            <div class="order-flex">
+              <p>Barrio: </p>
+              <p>{{item.userNeighborhood}}</p>
+            </div>
+            <div class="order-flex">
+              <p>Comentarios: </p>
+              <p>{{item.userComments}}</p>
+            </div>
+            <div class="order-flex">
+              <p>Precio Total: </p>
+              <p>{{item.totalprice | number}}</p>
+            </div>
+            <ion-button expand="block" (click)="getProducts(item.userPhone,i)">Ver pedido</ion-button>
+            <div class="div-orders" *ngFor="let item2 of ordersArray[i].products; let i2 = index">
+              <div class="order-flex">
+                <p>Producto {{i2+1}}: </p>
+                <p>{{item2.name}}</p>
+              </div>
+              <div class="order-flex">
+                <p>Opcion 1: </p>
+                <p>{{item2.option1}}</p>
+              </div>
+              <div class="order-flex">
+                <p>Opcion 2: </p>
+                <p>{{item2.option2}}</p>
+              </div>
+              <div class="order-flex">
+                <p>Opcion 3: </p>
+                <p>{{item2.option3}}</p>
+              </div>
+              <div class="order-flex">
+                <p>Precio: </p>
+                <p>{{item2.price}}</p>
+              </div>
+              
+            </div>
+            <ion-button expand="block" (click)="cancelOrder(item.userPhone,i)" class="cancelar-pedido">Cancelar pedido</ion-button>
+          </div>
+        </article>
+        
+      </div>
+
+
       </div>
     </section>
 
