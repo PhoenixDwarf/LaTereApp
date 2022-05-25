@@ -9,4 +9,5 @@ export class OrdersService {
   constructor() { }
 
   newOrder$ = new EventEmitter<Order>();
+  isThereOrder$ = new EventEmitter<boolean>();
 }

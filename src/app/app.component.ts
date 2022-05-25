@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Network } from '@ionic-native/network/ngx';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { UserInteractionService } from './services/user-interaction.service';
 import { CompleteUser } from './tab1/pages/interfaces/user.interface';
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
   connectSubscription: any;
 
   constructor(private UserInteractionService: UserInteractionService,
-    private network: Network
+    private network: Network,
+    private ScreenOrientation: ScreenOrientation
   ) {
     this.fillMenuItems();
   }
@@ -50,7 +51,6 @@ export class AppComponent implements OnInit {
 
     this.networkDisconnect();
     this.networkConnect();
-
   }
 
   networkDisconnect() {
@@ -66,5 +66,4 @@ export class AppComponent implements OnInit {
     this.UserInteractionService.presentToast('Acceso a internet recuperado.');
     });
   }
-
 }

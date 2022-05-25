@@ -130,7 +130,7 @@ export class ListAlitasComponent implements OnInit {
             order = {
               name: name,
               price: price,
-              options: res
+              options: [res,'','']
             };
             this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
             this.OrdersService.newOrder$.emit(order);
@@ -223,6 +223,7 @@ export class ListAlitasComponent implements OnInit {
                 this.twoOptions(counter);
               }
               else {
+                this.array16sauces.push('');
                 order = {
                   name: name,
                   price: price,

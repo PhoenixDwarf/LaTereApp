@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInteractionService } from '../services/user-interaction.service';
-import { Order } from './interfaces';
+import { Order, OrderToSubmit } from './interfaces';
 import { OrdersService } from '../services/orders.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { CompleteUser } from '../tab1/pages/interfaces/user.interface';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-tab3',
@@ -18,6 +20,7 @@ export class Tab3Page implements OnInit {
     private OrdersService: OrdersService,
     private Router: Router,
     public alertController: AlertController,
+    private DatabaseService: DatabaseService
   ) { }
 
   loginData: CompleteUser = JSON.parse(localStorage.getItem('LoggedUser'));
@@ -26,10 +29,16 @@ export class Tab3Page implements OnInit {
   networkState: boolean;
   isthereOrder: boolean = false;
 
+  commentForm = new FormGroup({
+    comment: new FormControl('', [Validators.required, Validators.maxLength(80)]),
+  });
+
   ngOnInit() {
     this.OrdersService.newOrder$.subscribe((res) => {
-      console.log('Esta es la respuesta: ', res);
-      this.arrayPedido.push(res);
+      this.OrdersService.isThereOrder$.emit(true);
+      res.userPhone = this.loginData.phone;
+      const updatedRes = res;
+      this.arrayPedido.push(updatedRes);
       this.totalPrice = (this.totalPrice + res.price);
     });
     this.UserInteractionService.network$.subscribe((res) => {
@@ -42,6 +51,9 @@ export class Tab3Page implements OnInit {
     this.totalPrice = (this.totalPrice - this.arrayPedido[id].price);
     this.UserInteractionService.presentToast(`Se ha removido ${this.arrayPedido[id].name} del pedido. `);
     this.arrayPedido.splice(id, 1);
+    if (this.arrayPedido.length == 0) {
+      this.OrdersService.isThereOrder$.emit(false);
+    }
   }
 
 
@@ -66,6 +78,7 @@ export class Tab3Page implements OnInit {
           handler: () => {
             this.arrayPedido = [];
             this.totalPrice = 0;
+            this.OrdersService.isThereOrder$.emit(false);
           }
         }
       ],
@@ -87,7 +100,16 @@ export class Tab3Page implements OnInit {
     }
   }
 
-
+  async successOrder() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirmar pedido',
+      subHeader: '',
+      message: 'Hemos recibido tu pedido con exito.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
   async presentAlertErrorNoInternet() {
     const alert = await this.alertController.create({
@@ -130,12 +152,37 @@ export class Tab3Page implements OnInit {
           text: 'Confirmar',
           id: 'confirm-button',
           handler: () => {
-            const orderToSubmit = [{
+            this.UserInteractionService.presentLoading('Verificando datos…');
+            const orderToSubmit: OrderToSubmit = {
               products: this.arrayPedido,
-              totalprice: this.totalPrice
-            }]
-            console.log(orderToSubmit);
-            this.isthereOrder = true; 
+              totalprice: this.totalPrice,
+              userName: this.loginData.name,
+              userLastname: this.loginData.lastname,
+              userPhone: this.loginData.phone,
+              userAddress: this.loginData.address,
+              userNeighborhood: this.loginData.neighborhood,
+              userComments: this.commentForm.get('comment').value,
+            }
+            this.isthereOrder = true;
+            this.DatabaseService.addOrder(orderToSubmit).subscribe({
+              next: () => {
+                orderToSubmit.products.map((res)=>{
+                  this.DatabaseService.addProduct(res).subscribe({
+                    next: () => {
+                    },
+                    error: (err) => {
+                      console.log(err);
+                    }
+                  });
+                });
+                this.commentForm.reset();
+                this.UserInteractionService.dismissLoading();
+                this.successOrder();
+              },
+              error: (err) => {
+                console.log(err);
+              }
+            }); 
           }
         }
       ],

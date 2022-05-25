@@ -1,0 +1,37 @@
+ion-title{
+    text-align: center;
+    margin-right: 45px;
+}
+.logo{
+    font-size:60px;
+    text-align: center;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+ion-toolbar{
+    --ion-background-color: #FBFBFB;
+}
+main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.title{
+    font-family: SupermercadoOne !important;
+    color: #C5A961;
+    text-align: center;
+}
+.main-text p{
+    text-align: justify;
+    margin-top: 5px;
+    margin-bottom: 50px;
+    font-family: SourceSerif4 !important; 
+}
+.title2{
+    font-family: SupermercadoOne !important;
+}

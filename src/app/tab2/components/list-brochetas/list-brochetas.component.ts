@@ -132,7 +132,7 @@ export class ListBrochetasComponent {
               order = {
                 name: name,
                 price: price,
-                options: res
+                options: [res,'','']
               };
               this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
@@ -211,6 +211,7 @@ export class ListBrochetasComponent {
                 this.twoOptions(counter);
               }
               else {
+                this.array2proteins.push('');
                 order = {
                   name: name,
                   price: price,
@@ -348,6 +349,7 @@ export class ListBrochetasComponent {
             order = {
               name: name,
               price: price,
+              options: ['','','']
             };
             this.OrdersService.newOrder$.emit(order);
             this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);

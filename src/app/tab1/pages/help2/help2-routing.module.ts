@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { Help2Page } from './help2.page';
 import { YoutubeVideoPlayer } from '@awesome-cordova-plugins/youtube-video-player/ngx';
-import { UbicanosPage } from './ubicanos.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: UbicanosPage
+    component: Help2Page
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [YoutubeVideoPlayer]
+  providers: [
+    YoutubeVideoPlayer,
+  ]
 })
-export class UbicanosPageRoutingModule {}
+export class Help2PageRoutingModule {}

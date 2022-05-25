@@ -6,6 +6,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
   providers: [
     Network,
+    ScreenOrientation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

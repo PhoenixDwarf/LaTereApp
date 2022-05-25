@@ -100,6 +100,7 @@ export class ListMordiscosComponent{
               order = {
                 name: name,
                 price: price,
+                options: ['','','']
               };
               this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
@@ -135,6 +136,7 @@ export class ListMordiscosComponent{
               order = {
                 name: name,
                 price: price,
+                options: ['','','']
               };
               this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);

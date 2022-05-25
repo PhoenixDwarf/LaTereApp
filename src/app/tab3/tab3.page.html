@@ -17,7 +17,8 @@
         <h1 class="title">¡UPS!</h1>
         <div class="flex text-frame">
           <p class="main-p">Aun no has agregado ningún producto a tu pedido. Descubre todo lo que tenemos para ti en el
-            <a routerLink="/tabs/tab2">menú.</a></p>
+            <a routerLink="/tabs/tab2">menú.</a>
+          </p>
         </div>
       </div>
 
@@ -30,7 +31,7 @@
             <ion-label>{{item.name}}</ion-label>
             <ion-icon slot="end" name="close-circle-outline" class="close-icon" (click)="removeItem(i)"></ion-icon>
           </ion-item>
-          <ion-card-content *ngIf="item.options">
+          <ion-card-content *ngIf="item.options[0] != ''">
             {{item.options}}
           </ion-card-content>
           <ion-item class="money">
@@ -47,7 +48,7 @@
             <ion-icon slot="start" name="fast-food-outline"></ion-icon>
             <ion-label>{{item.name}}</ion-label>
           </ion-item>
-          <ion-card-content *ngIf="item.options">
+          <ion-card-content *ngIf="item.options[0] != ''">
             {{item.options}}
           </ion-card-content>
           <ion-item class="money">
@@ -68,10 +69,15 @@
         repartidor.</p>
       <p class="green-div-p1" *ngIf="isthereOrder">Hemos recibido tu pedido, por favor espera mientras hacemos magia en
         la cocina. Te notificaremos cuando tu pedido se encuentre en camino.</p>
-      <div class="buttons" *ngIf="!isthereOrder">
-        <ion-button class="confirm-button" (click)="submitOrder()">Confirmar pedido</ion-button>
+
+      <form [formGroup]="commentForm" (ngSubmit)="submitOrder()" *ngIf="!isthereOrder">
+        <ion-input class=" inputs" clearInput type="text" placeholder="Comentarios" formControlName="comment">
+        </ion-input>
+      <div class="buttons">
+        <ion-button class="confirm-button" type="submit">Confirmar pedido</ion-button>
         <ion-button class="cancel-button" (click)="cancelOrder()">Cancelar pedido</ion-button>
       </div>
+    </form>
 
     </footer>
 

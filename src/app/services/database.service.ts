@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { User, CompleteUser, CompleteUserWithSecurityq, UpdateSecurity, ChangePass, GetSecurity } from '../tab1/pages/interfaces/user.interface';
+import { Order, OrderToSubmit } from '../tab3/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -58,4 +59,17 @@ export class DatabaseService {
     return this.http.get<GetSecurity>(url);
   }
 
+  // new ones
+
+  addOrder(objeto:OrderToSubmit):Observable<OrderToSubmit>{
+    const url = `${this.apiUrl}/${this.apiKey}/addOrder`;
+    return this.http.post<OrderToSubmit>(url, objeto);
+  }
+
+  addProduct(objeto:Order):Observable<Order>{
+    const url = `${this.apiUrl}/${this.apiKey}/addProduct`;
+    return this.http.post<Order>(url, objeto);
+  }
+
+  
 }

@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1" routerLink="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      <ion-icon class="logo" src="././assets/icon/LogoVector.svg"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="padding">
+  <main>
+    <section class="flex ion-padding">
+      <div>
+        <h1 class="title">Ayuda</h1>
+        <h4 class="title">Videos de ayuda</h4>
+      </div>
+
+      <div *ngFor="let item of listVideos" class="item" (click)="playVideo(item.id)">
+        <h5 class="title2">{{item.title}}</h5>
+        <img src="../../../../assets/images/VideoPlaceholder.PNG" alt="{{item.title}}">
+      </div>
+
+    </section>
+  </main>
+</ion-content>
