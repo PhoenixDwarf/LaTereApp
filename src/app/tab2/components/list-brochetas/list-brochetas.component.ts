@@ -82,283 +82,298 @@ export class ListBrochetasComponent {
   }
 
   async oneOption() {
-    let order: Order;
-    const name: string = this.list[0].name;
-    const price: number = this.list[0].price;
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class AlitasAlert',
-      header: `¿Agregar ${name} al pedido?`,
-      message: `Por favor selecciona la proteína deseas.`,
-      inputs: [
-        {
-          name: 'radio1',
-          type: 'radio',
-          label: '- Res',
-          value: 'Res',
-          handler: () => {
+    if (localStorage.getItem('PendingOrder') == 'true') {
+      this.thereIsOrder();
+    } else {
+      let order: Order;
+      const name: string = this.list[0].name;
+      const price: number = this.list[0].price;
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class AlitasAlert',
+        header: `¿Agregar ${name} al pedido?`,
+        message: `Por favor selecciona la proteína deseas.`,
+        inputs: [
+          {
+            name: 'radio1',
+            type: 'radio',
+            label: '- Res',
+            value: 'Res',
+            handler: () => {
+            },
           },
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          label: '- Pollo',
-          value: 'Pollo',
-          handler: () => {
+          {
+            name: 'radio2',
+            type: 'radio',
+            label: '- Pollo',
+            value: 'Pollo',
+            handler: () => {
+            }
+          },
+          {
+            name: 'radio3',
+            type: 'radio',
+            label: '- Cerdo',
+            value: 'Cerdo',
+            handler: () => {
+            }
           }
-        },
-        {
-          name: 'radio3',
-          type: 'radio',
-          label: '- Cerdo',
-          value: 'Cerdo',
-          handler: () => {
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+            }
+          },
+          {
+            text: 'Agregar',
+            id: 'confirm-button',
+            handler: (res) => {
+              if (res !== undefined) {
+                order = {
+                  name: name,
+                  price: price,
+                  options: [res, '', '']
+                };
+                this.OrdersService.newOrder$.emit(order);
+                this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+              }
+              else {
+                this.presentAlertError(name);
+              }
+            }
           }
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
+        ],
+      });
+
+      await alert.present();
+    }
+  }
+
+  async twoOptions(index?: number) {
+    if (localStorage.getItem('PendingOrder') == 'true') {
+      this.thereIsOrder();
+    } else {
+      let counter = index | 0;
+      let order: Order;
+      let message: string = '';
+
+      if (counter == 0) {
+        message = `Por favor selecciona la <strong> primera </strong> proteína deseas en tu brocheta.`;
+      } else {
+        message = `Por favor selecciona la <strong> segunda </strong> proteína deseas en tu brocheta.`;
+      }
+
+      const name: string = this.list[1].name;
+      const price: number = this.list[1].price;
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class AlitasAlert',
+        header: `¿Agregar ${name} al pedido?`,
+        message: message,
+        inputs: [
+          {
+            name: 'radio1',
+            type: 'radio',
+            label: '- Res',
+            value: 'Res',
+            handler: () => {
+            },
+          },
+          {
+            name: 'radio2',
+            type: 'radio',
+            label: '- Pollo',
+            value: 'Pollo',
+            handler: () => {
+            }
+          },
+          {
+            name: 'radio3',
+            type: 'radio',
+            label: '- Cerdo',
+            value: 'Cerdo',
+            handler: () => {
+            }
           }
-        },
-        {
-          text: 'Agregar',
-          id: 'confirm-button',
-          handler: (res) => {
-            if (res !== undefined) {
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+              this.array2proteins = [];
+            }
+          }, {
+            text: 'Agregar',
+            id: 'confirm-button',
+            handler: (res: string) => {
+              if (res !== undefined) {
+                counter++;
+                this.array2proteins.push(res);
+                if (counter !== 2) {
+                  this.twoOptions(counter);
+                }
+                else {
+                  this.array2proteins.push('');
+                  order = {
+                    name: name,
+                    price: price,
+                    options: this.array2proteins
+                  };
+                  this.OrdersService.newOrder$.emit(order);
+                  this.array2proteins = [];
+                  this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+                  // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
+                }
+              }
+              else {
+                this.presentAlertError(name);
+                this.array2proteins = [];
+              }
+            }
+          }
+        ],
+      });
+
+      await alert.present();
+    }
+  }
+
+  async threeOptions(index?: number) {
+    if (localStorage.getItem('PendingOrder') == 'true') {
+      this.thereIsOrder();
+    } else {
+      let counter = index | 0;
+      let order: Order;
+      let message: string = '';
+
+      if (counter == 0) {
+        message = `Por favor selecciona la <strong> primera </strong> proteína deseas en tu brocheta.`;
+      } else if (counter == 1) {
+        message = `Por favor selecciona la <strong> segunda </strong> proteína deseas en tu brocheta.`;
+      }
+      else {
+        message = `Por favor selecciona la <strong> tercera </strong> proteína deseas en tu brocheta.`;
+      }
+
+      const name: string = this.list[2].name;
+      const price: number = this.list[2].price;
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class AlitasAlert',
+        header: `¿Agregar ${name} al pedido?`,
+        message: message,
+        inputs: [
+          {
+            name: 'radio1',
+            type: 'radio',
+            label: '- Res',
+            value: 'Res',
+            handler: () => {
+            },
+          },
+          {
+            name: 'radio2',
+            type: 'radio',
+            label: '- Pollo',
+            value: 'Pollo',
+            handler: () => {
+            }
+          },
+          {
+            name: 'radio3',
+            type: 'radio',
+            label: '- Cerdo',
+            value: 'Cerdo',
+            handler: () => {
+            }
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+              this.array3proteins = [];
+            }
+          }, {
+            text: 'Agregar',
+            id: 'confirm-button',
+            handler: (res: string) => {
+              if (res !== undefined) {
+                counter++;
+                this.array3proteins.push(res);
+                if (counter !== 3) {
+                  this.threeOptions(counter);
+                }
+                else {
+                  order = {
+                    name: name,
+                    price: price,
+                    options: this.array3proteins
+                  };
+                  this.OrdersService.newOrder$.emit(order);
+                  this.array3proteins = [];
+                  this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+                  // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
+                }
+              }
+              else {
+                this.presentAlertError(name);
+                this.array3proteins = [];
+              }
+            }
+          }
+        ],
+      });
+
+      await alert.present();
+    }
+  }
+
+  async patacones(id: number) {
+    if (localStorage.getItem('PendingOrder') == 'true') {
+      this.thereIsOrder();
+    } else {
+      let order: Order;
+      const name: string = this.list2[id].name;
+      const price: number = this.list2[id].price;
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class AlitasAlert',
+        header: `¿Agregar ${name} al pedido?`,
+        message: ``,
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+            }
+          },
+          {
+            text: 'Agregar',
+            id: 'confirm-button',
+            handler: () => {
               order = {
                 name: name,
                 price: price,
-                options: [res,'','']
+                options: ['', '', '']
               };
               this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
             }
-            else {
-              this.presentAlertError(name);
-            }
           }
-        }
-      ],
-    });
+        ],
+      });
 
-    await alert.present();
-  }
-
-  async twoOptions(index?: number) {
-    let counter = index | 0;
-    let order: Order;
-    let message: string = '';
-
-    if (counter == 0) {
-      message = `Por favor selecciona la <strong> primera </strong> proteína deseas en tu brocheta.`;
-    } else {
-      message = `Por favor selecciona la <strong> segunda </strong> proteína deseas en tu brocheta.`;
+      await alert.present();
     }
-
-    const name: string = this.list[1].name;
-    const price: number = this.list[1].price;
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class AlitasAlert',
-      header: `¿Agregar ${name} al pedido?`,
-      message: message,
-      inputs: [
-        {
-          name: 'radio1',
-          type: 'radio',
-          label: '- Res',
-          value: 'Res',
-          handler: () => {
-          },
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          label: '- Pollo',
-          value: 'Pollo',
-          handler: () => {
-          }
-        },
-        {
-          name: 'radio3',
-          type: 'radio',
-          label: '- Cerdo',
-          value: 'Cerdo',
-          handler: () => {
-          }
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
-            this.array2proteins = [];
-          }
-        }, {
-          text: 'Agregar',
-          id: 'confirm-button',
-          handler: (res: string) => {
-            if (res !== undefined) {
-              counter++;
-              this.array2proteins.push(res);
-              if (counter !== 2) {
-                this.twoOptions(counter);
-              }
-              else {
-                this.array2proteins.push('');
-                order = {
-                  name: name,
-                  price: price,
-                  options: this.array2proteins
-                };
-                this.OrdersService.newOrder$.emit(order);
-                this.array2proteins = [];
-                this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
-                // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
-              }
-            }
-            else {
-              this.presentAlertError(name);
-              this.array2proteins = [];
-            }
-          }
-        }
-      ],
-    });
-
-    await alert.present();
-  }
-
-  async threeOptions(index?: number) {
-    let counter = index | 0;
-    let order: Order;
-    let message: string = '';
-
-    if (counter == 0) {
-      message = `Por favor selecciona la <strong> primera </strong> proteína deseas en tu brocheta.`;
-    } else if (counter == 1) {
-      message = `Por favor selecciona la <strong> segunda </strong> proteína deseas en tu brocheta.`;
-    }
-    else {
-      message = `Por favor selecciona la <strong> tercera </strong> proteína deseas en tu brocheta.`;
-    }
-
-    const name: string = this.list[2].name;
-    const price: number = this.list[2].price;
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class AlitasAlert',
-      header: `¿Agregar ${name} al pedido?`,
-      message: message,
-      inputs: [
-        {
-          name: 'radio1',
-          type: 'radio',
-          label: '- Res',
-          value: 'Res',
-          handler: () => {
-          },
-        },
-        {
-          name: 'radio2',
-          type: 'radio',
-          label: '- Pollo',
-          value: 'Pollo',
-          handler: () => {
-          }
-        },
-        {
-          name: 'radio3',
-          type: 'radio',
-          label: '- Cerdo',
-          value: 'Cerdo',
-          handler: () => {
-          }
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
-            this.array3proteins = [];
-          }
-        }, {
-          text: 'Agregar',
-          id: 'confirm-button',
-          handler: (res: string) => {
-            if (res !== undefined) {
-              counter++;
-              this.array3proteins.push(res);
-              if (counter !== 3) {
-                this.threeOptions(counter);
-              }
-              else {
-                order = {
-                  name: name,
-                  price: price,
-                  options: this.array3proteins
-                };
-                this.OrdersService.newOrder$.emit(order);
-                this.array3proteins = [];
-                this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
-                // En lugar de hacer esto deberia llamar un servicio que envie este objeto a pedidos
-              }
-            }
-            else {
-              this.presentAlertError(name);
-              this.array3proteins = [];
-            }
-          }
-        }
-      ],
-    });
-
-    await alert.present();
-  }
-
-  async patacones(id: number) {
-
-    let order: Order;
-    const name:string = this.list2[id].name;
-    const price:number = this.list2[id].price;
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class AlitasAlert',
-      header: `¿Agregar ${name} al pedido?`,
-      message: ``,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Agregar',
-          id: 'confirm-button',
-          handler: () => {
-            order = {
-              name: name,
-              price: price,
-              options: ['','','']
-            };
-            this.OrdersService.newOrder$.emit(order);
-            this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
-          }
-        }
-      ],
-    });
-
-    await alert.present();
   }
   // ERROR FUNCTIONS //
 
@@ -368,6 +383,16 @@ export class ListBrochetasComponent {
       header: `Agregar ${name} al pedido`,
       subHeader: '¡Ups!',
       message: 'Recuerda seleccionar una proteína.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+  async thereIsOrder() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: `No se puede agregar el producto al pedido.`,
+      subHeader: '¡Ups!',
+      message: 'Parece que ya tienes un pedido confirmado. Si deseas realizar un cambio en tu pedido de último momento, por favor comunícate con nosotros a nuestra línea telefónica.',
       buttons: ['OK']
     });
     await alert.present();

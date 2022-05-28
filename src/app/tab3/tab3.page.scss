@@ -79,7 +79,7 @@ section{
 
 .lastp{
     text-align: center;
-    font-size: small;
+    font-size: 15px;
     margin-top: 20px;
     font-family: SourceSerif4 !important; 
 }
@@ -99,11 +99,13 @@ a{
 }
 .green-div-p1{
     background-color: #e4e3b0;
-    text-align: center;
+    text-align: justify;
     border-radius: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size: small;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 15px;
     margin: 1rem;
     font-family: SourceSerif4 !important; 
 }

@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UserInteractionService } from 'src/app/services/user-interaction.service';
@@ -16,242 +16,253 @@ export class ListJugosComponent {
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
     private OrdersService: OrdersService
-  ) 
-  {
+  ) {
 
   }
 
-  list:list[] = [
+  list: list[] = [
     {
       name: 'Jugo Piña con hierbabuena',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 6000
     },
 
     {
       name: 'Jugo Feijoa , Flor de Jamaica, Jengibre',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 6000
     },
 
     {
       name: 'Jugo Fresa con Naranja',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 6000
     },
 
     {
       name: 'Jugo Fresa con Maracuya',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 6000
     },
 
     {
       name: 'Jugo Limonada Natural',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 4500
     },
 
     {
       name: 'Jugo Limonada Cerezada',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 6000
     },
 
     {
       name: 'Jugo Limonada de Fresa',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 6000
     },
 
     {
       name: 'Jugo Malteadas',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 8000
     }
   ];
 
 
-  list2:list[] = [
+  list2: list[] = [
     {
       name: 'Frutos del Bosque',
-      ingredientes:['- Fresa','- Arandanos','- Mora','- Frambuesa','- Yogurt Natural'],
+      ingredientes: ['- Fresa', '- Arandanos', '- Mora', '- Frambuesa', '- Yogurt Natural'],
       price: 8000
     },
 
     {
       name: 'Mango, Banano y Yogurt',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 8000
     },
 
     {
       name: 'Mango y Banano',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 8000
     }
   ];
 
-  list3:list[]=[
+  list3: list[] = [
     {
       name: 'Jugo en leche Maracuya',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 5500
     },
 
     {
       name: 'Jugo en leche Fresa',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 5500
     },
 
     {
       name: 'Jugo en leche Guanabana',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 5500
     },
   ];
 
 
-  list4:list[]=[
+  list4: list[] = [
     {
       name: 'Jugo en agua Maracuya',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 4000
     },
 
     {
       name: 'Jugo en agua Fresa',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 4000
     },
 
     {
       name: 'Jugo en agua Mango',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 4000
     },
 
     {
       name: 'Jugo en agua Guanabana',
-      ingredientes:['- Personal'],
+      ingredientes: ['- Personal'],
       price: 4000
     }
-    
+
   ];
 
 
   // Alert inputs //
 
-  async onzas( id:number) {
-    let order: Order;
-    const name: string = this.list[id].name;
-    const price: number = this.list[id].price;
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class AlitasAlert',
-      header: `¿Agregar ${name} al pedido?`,
-      message: ``,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Agregar',
-          id: 'confirm-button',
-          handler: () => {
+  async onzas(id: number) {
+    if (localStorage.getItem('PendingOrder') == 'true') {
+      this.thereIsOrder();
+    } else {
+      let order: Order;
+      const name: string = this.list[id].name;
+      const price: number = this.list[id].price;
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class AlitasAlert',
+        header: `¿Agregar ${name} al pedido?`,
+        message: ``,
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+            }
+          },
+          {
+            text: 'Agregar',
+            id: 'confirm-button',
+            handler: () => {
               order = {
                 name: name,
                 price: price,
-                options: ['','','']
+                options: ['', '', '']
               };
               this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+            }
           }
-        }
-      ],
-    });
+        ],
+      });
 
-    await alert.present();
+      await alert.present();
+    }
   }
 
-  async leche( id:number) {
-    let order: Order;
-    const name: string = this.list3[id].name;
-    const price: number = this.list3[id].price;
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class AlitasAlert',
-      header: `¿Agregar ${name} al pedido?`,
-      message: ``,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Agregar',
-          id: 'confirm-button',
-          handler: () => {
+  async leche(id: number) {
+    if (localStorage.getItem('PendingOrder') == 'true') {
+      this.thereIsOrder();
+    } else {
+      let order: Order;
+      const name: string = this.list3[id].name;
+      const price: number = this.list3[id].price;
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class AlitasAlert',
+        header: `¿Agregar ${name} al pedido?`,
+        message: ``,
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+            }
+          },
+          {
+            text: 'Agregar',
+            id: 'confirm-button',
+            handler: () => {
               order = {
                 name: name,
                 price: price,
-                options: ['','','']
+                options: ['', '', '']
               };
               this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+            }
           }
-        }
-      ],
-    });
+        ],
+      });
 
-    await alert.present();
+      await alert.present();
+    }
   }
 
-  async agua( id:number) {
-    let order: Order;
-    const name: string = this.list4[id].name;
-    const price: number = this.list4[id].price;
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class AlitasAlert',
-      header: `¿Agregar ${name} al pedido?`,
-      message: ``,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Agregar',
-          id: 'confirm-button',
-          handler: () => {
+  async agua(id: number) {
+    if (localStorage.getItem('PendingOrder') == 'true') {
+      this.thereIsOrder();
+    } else {
+      let order: Order;
+      const name: string = this.list4[id].name;
+      const price: number = this.list4[id].price;
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class AlitasAlert',
+        header: `¿Agregar ${name} al pedido?`,
+        message: ``,
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+            }
+          },
+          {
+            text: 'Agregar',
+            id: 'confirm-button',
+            handler: () => {
               order = {
                 name: name,
                 price: price,
-                options: ['','','']
+                options: ['', '', '']
               };
               this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+            }
           }
-        }
-      ],
-    });
+        ],
+      });
 
-    await alert.present();
+      await alert.present();
+    }
   }
 
-  showAlert( id:number ){
+  showAlert(id: number) {
     const name = this.list2[id].name;
     this.presentAlertError(name);
   }
@@ -266,7 +277,16 @@ export class ListJugosComponent {
     });
     await alert.present();
   }
-
+  async thereIsOrder() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: `No se puede agregar el producto al pedido.`,
+      subHeader: '¡Ups!',
+      message: 'Parece que ya tienes un pedido confirmado. Si deseas realizar un cambio en tu pedido de último momento, por favor comunícate con nosotros a nuestra línea telefónica.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 }
 
 

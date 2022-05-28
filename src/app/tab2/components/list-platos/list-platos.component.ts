@@ -16,108 +16,120 @@ export class ListPlatosComponent {
     private UserInteractionService: UserInteractionService,
     public alertController: AlertController,
     private OrdersService: OrdersService
-  ) 
-  {
+  ) {
 
   }
 
-  list:list[] = [
+  list: list[] = [
     {
       name: 'Lomo de Res Tere (300 grs)',
-      ingredientes:['- Mantequilla de Tocineta','- Hierbas'],
+      ingredientes: ['- Mantequilla de Tocineta', '- Hierbas'],
       price: 23000
     },
 
     {
       name: 'Chata de res Tere (300 grs)',
-      ingredientes:['Ahumada y a la parrilla con chimichurri y salsa de la casa'],
+      ingredientes: ['Ahumada y a la parrilla con chimichurri y salsa de la casa'],
       price: 22500
     },
 
     {
       name: 'Pechuga de Pollo',
-      ingredientes:['A la parrilla o gratinada'],
+      ingredientes: ['A la parrilla o gratinada'],
       price: 21500
     },
 
     {
       name: 'Costilla de Cerdo BBQ (400 g)',
-      ingredientes:['Ahumadas, y a la parrilla con salsa BBQ dulce o picante de la casa'],
+      ingredientes: ['Ahumadas, y a la parrilla con salsa BBQ dulce o picante de la casa'],
       price: 24000
     },
 
     {
       name: 'Chuleta Valluna (300 g)',
-      ingredientes:['Lomo de cerdo empanizado con especias de la casa'],
+      ingredientes: ['Lomo de cerdo empanizado con especias de la casa'],
       price: 23000
     },
 
     {
       name: 'Corte de Temporada (350g)',
-      ingredientes:['A la parrilla (selección del día)'],
+      ingredientes: ['A la parrilla (selección del día)'],
       price: 30000
     },
 
     {
       name: 'Mojarra de la Casa (600g)',
-      ingredientes:['Pesca del vecino empanizada con especias de la casa'],
+      ingredientes: ['Pesca del vecino empanizada con especias de la casa'],
       price: 24000
     },
 
     {
       name: 'Trucha Tere (400g)',
-      ingredientes:['Pesca del lago, a la parrilla, al ajillo'],
+      ingredientes: ['Pesca del lago, a la parrilla, al ajillo'],
       price: 25000
     },
 
     {
       name: 'Parrillada de Doña Tere',
-      ingredientes:['- Papa criolla','- Pechuga de Pollo','- Ternera Ahumada','- Chorizo','- Longaniza','- Alioli de Aguacate'],
+      ingredientes: ['- Papa criolla', '- Pechuga de Pollo', '- Ternera Ahumada', '- Chorizo', '- Longaniza', '- Alioli de Aguacate'],
       price: 25000
     },
 
     {
       name: 'Lomo de Cerdo',
-      ingredientes:['Mantequilla de tocineta y hierbas'],
+      ingredientes: ['Mantequilla de tocineta y hierbas'],
       price: 24000
     },
-    
+
   ];
 
-  async platos( id:number) {
-    let order: Order;
-    const name: string = this.list[id].name;
-    const price: number = this.list[id].price;
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class AlitasAlert',
-      header: `¿Agregar ${name} al pedido?`,
-      message: ``,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          id: 'cancel-button',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Agregar',
-          id: 'confirm-button',
-          handler: () => {
+  async platos(id: number) {
+    if (localStorage.getItem('PendingOrder') == 'true') {
+      this.thereIsOrder();
+    } else {
+      let order: Order;
+      const name: string = this.list[id].name;
+      const price: number = this.list[id].price;
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class AlitasAlert',
+        header: `¿Agregar ${name} al pedido?`,
+        message: ``,
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            id: 'cancel-button',
+            handler: () => {
+            }
+          },
+          {
+            text: 'Agregar',
+            id: 'confirm-button',
+            handler: () => {
               order = {
                 name: name,
                 price: price,
-                options: ['','','']
+                options: ['', '', '']
               };
               this.OrdersService.newOrder$.emit(order);
               this.UserInteractionService.presentToast(`¡Se ha agregado ${name} al pedido con éxito!`);
+            }
           }
-        }
-      ],
-    });
+        ],
+      });
 
+      await alert.present();
+    }
+  }
+  async thereIsOrder() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: `No se puede agregar el producto al pedido.`,
+      subHeader: '¡Ups!',
+      message: 'Parece que ya tienes un pedido confirmado. Si deseas realizar un cambio en tu pedido de último momento, por favor comunícate con nosotros a nuestra línea telefónica.',
+      buttons: ['OK']
+    });
     await alert.present();
   }
-
 }

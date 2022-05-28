@@ -17,7 +17,7 @@
       <br>
       <h2 class="title">Registrar cuenta</h2>
 
-      <form [formGroup]="registerForm" (ngSubmit)="getFormData()" class="animate__animated animate__fadeIn">
+      <form [formGroup]="registerForm" (ngSubmit)="getFormData()" class="animate__animated animate__fadeIn form">
 
         <ion-input class=" inputs" clearInput type="text" placeholder="Nombres" formControlName="name"
           [class.is-invalid]="registerForm.get('name').touched && registerForm.get('name').invalid"></ion-input>
@@ -74,8 +74,10 @@
           *ngIf="registerForm.get('email').touched && !registerForm.get('email').errors?.required && registerForm.get('email').invalid">El
           correo no es válido</span>
 
-        <p class="password-reminder">La contraseña debe contener al menos 8 caracteres</p>
-        <p class="password-reminder-2">y máximo 16.</p>
+        <div class="ion-padding password-div">
+          <p class="password-reminder">La contraseña debe contener al menos 8 caracteres y máximo 16. También deberá contener por lo menos una letra en mayúscula, una letra en minúscula, un número y alguno de los siguientes caracteres especiales ( !@#$%^& ).</p>
+        </div>
+        
         <app-show-hide-password class="inputs" [class.is-invalid]="registerForm.get('password').touched && registerForm.get('password').invalid">
           <ion-input type="password" name="password" placeholder="Contraseña" formControlName="password">
           </ion-input>

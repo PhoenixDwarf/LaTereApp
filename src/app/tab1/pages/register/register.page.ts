@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import { DatabaseService } from '../../../services/database.service';
 import { CompleteUser, User } from '../interfaces/user.interface';
+import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 
 
 @Component({
@@ -76,7 +77,7 @@ export class RegisterPage implements OnInit {
     neighborhood: new FormControl('', [Validators.required, Validators.maxLength(40)]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[0-9]\d*$/)]),
     email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/), Validators.maxLength(60)]),
-    password: new FormControl('', [Validators.minLength(8), Validators.required, Validators.maxLength(16)]),
+    password: new FormControl('', [ Validators.required, Validators.maxLength(16), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}')]),
     confimPassword: new FormControl('', Validators.required)
   })
 
