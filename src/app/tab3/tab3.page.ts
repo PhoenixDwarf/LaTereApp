@@ -34,10 +34,10 @@ export class Tab3Page implements OnInit {
   });
 
   ngOnInit() {
+    this.UserInteractionService.presentLoading('Verificando datos…');
     this.OrdersService.newOrder$.subscribe((res) => {
       this.OrdersService.isThereOrder$.emit(true);
       this.arrayPedido.push(res);
-      console.log(this.arrayPedido);
       this.totalPrice = (this.totalPrice + res.price);
     });
     this.UserInteractionService.network$.subscribe((res) => {
@@ -49,6 +49,7 @@ export class Tab3Page implements OnInit {
       this.checkOrdersInLogin();
     });
     this.checkOrdersInLogin();
+    this.UserInteractionService.dismissLoading();
     this.Router.navigateByUrl('tabs/tab1');
   }
 
