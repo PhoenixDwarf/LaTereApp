@@ -255,7 +255,7 @@ export class ForgotpassPage implements OnInit {
   }
 
   checkAnswer() {
-    if (this.answerForm.get('insertedAnswer').value == this.temporalSecurityAnswer) {
+    if (String(this.answerForm.get('insertedAnswer').value).toLocaleLowerCase() == this.temporalSecurityAnswer) {
       this.UserInteractionService.presentToast("Respuesta correcta");
       this.showChangePass = true;
       this.showQuestionSection = false;

@@ -17,6 +17,7 @@ export class ChangepassPage implements OnInit {
   iscurrentpassgood: boolean;
   iscurrentpassbad: boolean = false;
   networkState: boolean;
+  userCurrentPass: string | undefined;
 
   constructor(
     public alertController: AlertController,
@@ -29,6 +30,17 @@ export class ChangepassPage implements OnInit {
     this.UserInteractionService.network$.subscribe((res) => {
       this.networkState = res;
     });
+    this.UserInteractionService.presentLoading('Un momento por favor...');
+    this.DatabaseService.findUser(this.loginData.id).subscribe({
+      next: (res) => {
+        this.userCurrentPass = res.password;
+        this.UserInteractionService.dismissLoading();
+      },
+      error: (err) => {
+        console.log(err);
+        this.UserInteractionService.dismissLoading();
+      }
+    })
   }
 
   changePassForm = new FormGroup({
@@ -53,7 +65,7 @@ export class ChangepassPage implements OnInit {
 
 
   changePass() {
-    if (this.changePassForm.get('confimPassword').value == this.loginData.password) {
+    if (this.changePassForm.get('confimPassword').value == this.userCurrentPass) {
       this.UserInteractionService.presentToast('La contraseña ingresada debe ser distinta a la actual');
     }
     else {
@@ -85,7 +97,7 @@ export class ChangepassPage implements OnInit {
   checkPass() {
 
     let currentPass = this.currentPassForm.get('currentPassword').value;
-    if (currentPass == this.loginData.password) {
+    if (currentPass == this.userCurrentPass) {
       this.iscurrentpassgood = true;
       this.iscurrentpassbad = false;
     }
