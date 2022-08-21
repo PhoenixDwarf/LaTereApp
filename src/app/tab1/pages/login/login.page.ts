@@ -247,6 +247,8 @@ export class LoginPage implements OnInit {
           }
           else {
             this.loginFormEmail.reset();
+            res.password = null;
+            res.securityq = null;
             localStorage.setItem('LoggedUser', JSON.stringify(res));
             this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
             this.listValidatorDef();
@@ -283,6 +285,8 @@ export class LoginPage implements OnInit {
           }
           else {
             this.loginFormPhone.reset();
+            res.password = null;
+            res.securityq = null;
             localStorage.setItem('LoggedUser', JSON.stringify(res));
             this.loginData = JSON.parse(localStorage.getItem('LoggedUser'));
             this.listValidatorDef();

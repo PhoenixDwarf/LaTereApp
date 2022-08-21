@@ -81,7 +81,9 @@ export class EditprofilePage implements OnInit {
       this.DatabaseService.updateUser(this.data, this.loginData.id).subscribe({
         next: async() => {
             const awaiter = this.DatabaseService.findUser(this.loginData.id).toPromise().then((res)=>{
-            localStorage.setItem('LoggedUser', JSON.stringify(res));
+              res.password = null;
+              res.securityq = null;
+              localStorage.setItem('LoggedUser', JSON.stringify(res));
           }).catch((err)=>{
             console.log(err);
           })
